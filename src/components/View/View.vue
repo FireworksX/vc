@@ -1,6 +1,8 @@
 <template>
     <div :class="classNames">
-        <slot></slot>
+        <template v-for="(panel, index) in panels">
+            <render v-if="panel.id === activePanel" :key="index" :vnode="panel.node" />
+        </template>
     </div>
 </template>
 
@@ -9,6 +11,9 @@ import getClassName from '@/helpers/getClassName'
 
 export default {
     name: 'vc-View',
+    props: {
+        activePanel: { type: String, required: true },
+    },
     computed: {
         classNames() {
             return getClassName('vc-View')
@@ -16,8 +21,19 @@ export default {
     },
     data() {
         return {
-            count: 0,
+            panels: [],
         }
+    },
+    created() {
+        this.panels = this.$slots.default.map(el => {
+            const {
+                data: { attrs },
+            } = el
+            return {
+                id: attrs.id,
+                node: el,
+            }
+        })
     },
 }
 </script>
