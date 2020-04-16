@@ -52,7 +52,7 @@ export default Vue.extend({
                         <div class="vc-PanelHeader__left-in">{this.leftSlot}</div>
                         <div class="vc-PanelHeader__left-addon">{this.addonSlot}</div>
                     </div>
-                    <div class="vc-PanelHeader__content">{this.defaultSlot}</div>
+                    <div class="vc-PanelHeader__content">{this.$slots.default}</div>
                     <div class="vc-PanelHeader__right">{this.rightSlot}</div>
                 </div>
                 {this.separator && <div class="vc-PanelHeader__separator"></div>}

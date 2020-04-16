@@ -8,11 +8,8 @@ export default Vue.extend({
         classNames(): string {
             return getClassName('vc-Panel')
         },
-        defaultSlot() {
-            return this.$slots.default
-        },
     },
     render(h: any) {
-        return <div class={this.classNames}>{this.defaultSlot}</div>
+        return <div class={this.classNames}>{this.$slots.default}</div>
     },
 })

@@ -19,6 +19,15 @@ export default Vue.extend({
         },
     },
     render(h: any) {
-        return <button class={this.classNames}>{this.defaultSlot}</button>
+        const clickCb =
+            this.$listeners.click ||
+            function() {
+                return undefined
+            }
+        return (
+            <button class={this.classNames} onClick={clickCb}>
+                {this.defaultSlot}
+            </button>
+        )
     },
 })

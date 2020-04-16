@@ -1,19 +1,64 @@
 import Vue from 'vue'
-import './Avatar.sass.sass'
 import getClassName from '@/helpers/getClassName'
+import './Avatar.sass'
+import classNames from '@/lib/classNames'
 
-export default Vue.extend({
-    // name: 'vc-Avatar',
-    // computed: {
-    //     classNames(): string {
-    //         return getClassName('vc-Avatar')
-    //     },
-    // },
-    // render(h: any) {
-    //     return (
-    //         <div class={this.classNames}>
-    //
-    //         </div>
-    //     )
-    // },
+interface Props {
+    src: string
+    size: number
+    mode: string
+}
+
+interface Data {
+    isVisible: boolean
+}
+
+interface Computed {
+    classNames: string
+    styleNames: {
+        [key: string]: string
+    }
+}
+
+interface Methods {}
+
+export default Vue.extend<Data, Methods, Computed, Props>({
+    name: 'vc-Avatar',
+    props: {
+        src: { type: String },
+        size: {
+            type: Number,
+            default: 36,
+            validator(size) {
+                return [80, 72, 64, 56, 48, 44, 40, 36, 32, 28, 24].indexOf(size) !== -1
+            },
+        },
+        mode: {
+            type: String,
+            default: 'default',
+            validator(mode) {
+                return ['default', 'image', 'app'].indexOf(mode) !== -1
+            },
+        },
+    },
+    computed: {
+        classNames(): string {
+            return classNames(getClassName('vc-Avatar'), `vc-Avatar--mode-${this.mode}`)
+        },
+        styleNames() {
+            return {
+                width: `${this.size}px`,
+                height: `${this.size}px`,
+            }
+        },
+    },
+    render(h: any) {
+        return (
+            <div class={this.classNames} style={this.styleNames}>
+                <div class="vc-Avatar__in">
+                    <img src={this.src} class="vc-Avatar__img" />
+                </div>
+            </div>
+        )
+    },
 })

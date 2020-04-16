@@ -1,24 +1,33 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Root.sass'
+import './Epic.sass'
 import '@/styles/bright_light.sass'
 import '@/styles/conts.sass'
 
-export default Vue.extend({
-    name: 'vc-Root',
+interface Props {
+    activeStory: string
+}
+
+interface Data {
+    isVisible: boolean
+}
+
+interface Computed {
+    classNames: string
+}
+
+interface Methods {
+    getViewId(node: VNode): string | undefined
+}
+
+export default Vue.extend<Data, Methods, Computed, Props>({
+    name: 'vc-Epic',
     props: {
-        activeView: { type: String, required: true },
-    },
-    data() {
-        return {
-            views: [],
-            viewStore: [],
-            isBack: false,
-        }
+        activeStory: { type: String, required: true },
     },
     computed: {
         classNames(): string {
-            return getClassName('vc-Root')
+            return getClassName('vc-Epic')
         },
     },
     methods: {
@@ -34,7 +43,8 @@ export default Vue.extend({
         return (
             <div class={this.classNames}>
                 {views !== undefined &&
-                    views.filter(view => this.getViewId(view) === this.activeView)}
+                    views.find(view => this.getViewId(view) === this.activeStory)}
+                {this.$slots.tabbar}
             </div>
         )
     },

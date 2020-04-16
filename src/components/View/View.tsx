@@ -22,10 +22,12 @@ export default Vue.extend({
     },
     render(h: any) {
         const panels = this.$slots.default
+        const hasPopout = this.$slots.popout !== undefined
         return (
             <div class={this.classNames}>
                 {panels !== undefined &&
                     panels.filter(panel => this.getPanelId(panel) === this.activePanel)}
+                {hasPopout && <div class="vc-View__popout">{this.$slots.popout}</div>}
             </div>
         )
     },

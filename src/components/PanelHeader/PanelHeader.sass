@@ -68,7 +68,31 @@
     font-size: 17px
     opacity: 1
     transition: opacity .3s var(--ios-easing)
+    .vc-PanelHeaderButton:not(:first-child)
+      padding-left: 12px
 
+    .vc-PanelHeaderButton:last-child .Icon--24
+      padding-right: 12px
+
+    .vc-PanelHeaderButton:last-child .Icon--28
+      padding-right: 10px
+
+    .vc-PanelHeaderButton
+      &:last-child > *:not(.Icon)
+        padding-right: 16px
+
+
+  .vc-PanelHeaderSimple__left-in
+    .vc-PanelHeaderButton
+      &:first-child
+        .vc-Icon--24
+          padding-left: 12px
+
+        .vc-Icon--28
+          padding-left: 10px
+
+        .vc-Icon--chevron_back_28
+          padding-left: 8px
 
 
 //

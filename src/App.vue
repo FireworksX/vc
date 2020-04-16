@@ -1,43 +1,95 @@
 <template>
     <div id="app">
-        <vc-root :active-view="activeView">
-            <vc-view name="main-view" :active-panel="activePanel">
+        <vc-epic :active-story="activeStory">
+            <vc-tabbar slot="tabbar">
+                <vc-tabbar-item
+                    text="Новости"
+                    :selected="activeStory === 'feed'"
+                    @click="changeStory('feed')"
+                >
+                    <vc-icon-feed />
+                </vc-tabbar-item>
+                <vc-tabbar-item
+                    text="Сообщения"
+                    label="3"
+                    :selected="activeStory === 'dialog'"
+                    @click="changeStory('dialog')"
+                >
+                    <vc-icon-message />
+                </vc-tabbar-item>
+                <vc-tabbar-item
+                    text="Поиск"
+                    :selected="activeStory === 'search'"
+                    @click="changeStory('search')"
+                >
+                    <vc-icon-search />
+                </vc-tabbar-item>
+            </vc-tabbar>
+            <vc-view name="feed" active-panel="panel1">
+                <template v-if="pop === 1" slot="popout">
+                    <vc-action-sheet @onClose="closeActiveSheet">
+                        <vc-action-sheet-item autoclose>
+                            <vc-icon-feed slot="before" />
+                            По дням
+                        </vc-action-sheet-item>
+                        <vc-action-sheet-item :autoclose="true" @click="selectActionSheet(2)"
+                            >По неделям</vc-action-sheet-item
+                        >
+                        <vc-action-sheet-item @click="selectActionSheet(0)"
+                            >По месяцам</vc-action-sheet-item
+                        >
+                        <vc-action-sheet-item mode="cancel">Отменить</vc-action-sheet-item>
+                    </vc-action-sheet>
+                </template>
                 <vc-panel name="panel1">
-                    <vc-panel-header>
-                        <vc-panel-header-content>
-                            <span slot="status">был в сети сегодня, в 18:46</span>
-                            Влад Анесов
-                        </vc-panel-header-content>
-                    </vc-panel-header>
+                    <vc-panel-header>Новости</vc-panel-header>
+                    <button @click="pop = 1">SowPop</button>
                 </vc-panel>
             </vc-view>
-        </vc-root>
+            <vc-view name="dialog" active-panel="panel2">
+                <vc-panel name="panel2">
+                    <vc-panel-header>Сообщения</vc-panel-header>
+                </vc-panel>
+            </vc-view>
+            <vc-view name="search" active-panel="panel3">
+                <vc-panel name="panel3">
+                    <vc-panel-header>Поиск</vc-panel-header>
+                </vc-panel>
+            </vc-view>
+        </vc-epic>
     </div>
 </template>
 
 <script>
-import Root from '@/components/Root/Root'
-import View from '@/components/View/View'
-import Panel from '@/components/Panel/Panel'
-import PanelHeader from '@/components/PanelHeader/PanelHeader'
-// import PanelHeaderButton from '@/components/PanelHeaderButton/PanelHeaderButton'
-import PanelHeaderContent from '@/components/PanelHeaderContent/PanelHeaderContent'
+import IconMessage from '@/icons/28/message_outline'
+import IconFeed from '@/icons/28/newsfeed_outline'
+import IconSearch from '@/icons/28/search_outline'
 
 export default {
     name: 'App',
     components: {
-        'vc-panel-header': PanelHeader,
-        // 'vc-panel-header-button': PanelHeaderButton,
-        'vc-panel-header-content': PanelHeaderContent,
-        'vc-panel': Panel,
-        'vc-view': View,
-        'vc-root': Root,
+        'vc-icon-message': IconMessage,
+        'vc-icon-feed': IconFeed,
+        'vc-icon-search': IconSearch,
     },
     data() {
         return {
             activeView: 'main-view',
             activePanel: 'panel1',
+            activeStory: 'feed',
+            pop: null,
         }
+    },
+    methods: {
+        changeStory(story) {
+            this.activeStory = story
+        },
+        closeActiveSheet() {
+            this.pop = null
+        },
+        selectActionSheet(index) {
+            alert(`select: ${index}`)
+        },
     },
 }
 </script>

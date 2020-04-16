@@ -12,11 +12,11 @@
     "mozaikjs": "^0.1.336",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^8.4.1"
+    "vue-property-decorator": "^8.4.1",
+    "@babel/runtime": "^7.9.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/runtime": "^7.9.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",

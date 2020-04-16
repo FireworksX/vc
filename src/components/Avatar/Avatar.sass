@@ -1,89 +1,39 @@
-.vc-PanelHeaderContent
-  line-height: initial
-  height: 100%
-  max-width: 100%
-  display: flex
-  align-items: center
-  justify-content: flex-start
+.vc-Avatar
+  box-sizing: border-box
 
+  .vc-Avatar__in
+    position: relative
+    color: var(--icon_secondary)
 
-  .vc-PanelHeaderContent__before
-    flex-shrink: 0
-    margin-right: 12px
-
-
-  .vc-PanelHeaderContent__in
-    flex-grow: 1
-    min-width: 0
-    display: flex
-    flex-direction: column
-    align-items: flex-start
-    justify-content: center
-    height: 100%
-
-
-    .vc-PanelHeaderContent__status
-      order: 1
-      font-weight: 400
-      font-size: 13px
-      line-height: 16px
-      margin-top: 1px
-      opacity: .6
-
-
-    .vc-PanelHeaderContent__status ~ .vc-PanelHeaderContent__children .vc-PanelHeaderContent__children-in
-      font-weight: 500
-      font-family: var(--font-common)
-      font-size: 16px
-      line-height: 20px
-
-
-    .vc-PanelHeaderContent__children
+    .vc-Avatar__img
+      background: var(--placeholder_icon_background)
+      border: none
+      display: block
       max-width: 100%
+      position: relative
+      z-index: 1
+      width: 100%
+      height: 100%
+
+    .vc-Avatar__children
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 2
+      width: 100%
+      height: 100%
       display: flex
       align-items: center
+      justify-content: center
 
+.vc-Avatar--mode-default
+  .vc-Avatar__img
+    border-radius: 50%
 
-      .vc-PanelHeaderContent__children-in
-        flex-grow: 0
-        min-width: 0
-        overflow: hidden
-        white-space: nowrap
-        text-overflow: ellipsis
-        font-size: 21px
-        line-height: var(--panelheader_height_ios)
-        font-weight: 800
-        font-family: var(--font-tt)
+.vc-Avatar--mode-image
+  .vc-Avatar__img
+    border-radius: 4px
 
-
-      .vc-PanelHeaderContent__aside
-        display: flex
-        align-items: center
-        justify-content: flex-start
-        margin-left: 2px
-        color: var(--header_tint)
-
-
-    .vc-PanelHeaderContent__width
-      width: 1000px
-
-
-/*
-  iOS
- */
-.vc-PanelHeaderContent--ios
-  font-family: var(--font-ios)
-
-
-  .vc-PanelHeaderContent--ios .vc-PanelHeaderContent__in
-    opacity: .7
-
-
-  .vc-PanelHeaderContent--ios .vc-PanelHeaderContent__before ~ .vc-PanelHeaderContent__in
-    align-items: flex-start
-
-
-  .vc-PanelHeaderContent--ios .vc-PanelHeaderContent__in
-    align-items: center
-
-
+.vc-Avatar--mode-app
+  .vc-Avatar__img
+    border-radius: 4px
