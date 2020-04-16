@@ -29,7 +29,9 @@ export default Vue.extend({
     render(h: CreateElement): VNode {
         return (
             <div class={this.classNames} onClick={this.nativeOnClose}>
-                {this.$slots.before !== undefined && <div class="vc-ActionSheetItem__before"></div>}
+                {this.$slots.before !== undefined && (
+                    <div class="vc-ActionSheetItem__before">{this.$slots.before}</div>
+                )}
                 <div class="vc-ActionSheetItem__container">
                     <div class="vc-ActionSheetItem__content">
                         <div class="vc-ActionSheetItem__children">{this.$slots.default}</div>

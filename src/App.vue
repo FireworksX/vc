@@ -35,7 +35,7 @@
                         <vc-action-sheet-item :autoclose="true" @click="selectActionSheet(2)"
                             >По неделям</vc-action-sheet-item
                         >
-                        <vc-action-sheet-item @click="selectActionSheet(0)"
+                        <vc-action-sheet-item mode="destructive" @click="selectActionSheet(0)"
                             >По месяцам</vc-action-sheet-item
                         >
                         <vc-action-sheet-item mode="cancel">Отменить</vc-action-sheet-item>
