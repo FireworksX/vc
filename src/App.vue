@@ -42,7 +42,11 @@
                     </vc-action-sheet>
                 </template>
                 <template v-if="pop === 2" slot="popout">
-                    <vc-alert :actions="alertActions">
+                    <vc-alert
+                        actions-layout="horizontal"
+                        :actions="alertActions"
+                        @onClose="pop = null"
+                    >
                         <h2>Подтвердите действие</h2>
                         <p>Добавить пользователю право на модерацию контента.</p>
                     </vc-alert>
@@ -87,6 +91,7 @@ export default {
             alertActions: [
                 {
                     title: 'Добавить',
+                    action: this.selectFromAlert,
                 },
                 {
                     title: 'Отмена',
@@ -105,6 +110,9 @@ export default {
         },
         selectActionSheet(index) {
             alert(`select: ${index}`)
+        },
+        selectFromAlert() {
+            this.pop = 1
         },
     },
 }

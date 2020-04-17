@@ -97,6 +97,9 @@ export default Vue.extend<any, any, any, Props>({
                                 <div
                                     key={`alert-action-${index}`}
                                     class={this.getActionClass(action)}
+                                    onClick={() =>
+                                        this.onClickItem(action.action, action.autoclose)
+                                    }
                                 >
                                     {action.title}
                                 </div>
