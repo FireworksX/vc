@@ -41,9 +41,15 @@
                         <vc-action-sheet-item mode="cancel">Отменить</vc-action-sheet-item>
                     </vc-action-sheet>
                 </template>
+                <template v-if="pop === 2" slot="popout">
+                    <vc-alert :actions="alertActions">
+                        <h2>Подтвердите действие</h2>
+                        <p>Добавить пользователю право на модерацию контента.</p>
+                    </vc-alert>
+                </template>
                 <vc-panel name="panel1">
                     <vc-panel-header>Новости</vc-panel-header>
-                    <button @click="pop = 1">SowPop</button>
+                    <button @click="pop = 2">SowPop</button>
                 </vc-panel>
             </vc-view>
             <vc-view name="dialog" active-panel="panel2">
@@ -78,6 +84,16 @@ export default {
             activePanel: 'panel1',
             activeStory: 'feed',
             pop: null,
+            alertActions: [
+                {
+                    title: 'Добавить',
+                },
+                {
+                    title: 'Отмена',
+                    mode: 'cancel',
+                    autoclose: true,
+                },
+            ],
         }
     },
     methods: {
