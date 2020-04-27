@@ -11,6 +11,7 @@ import PanelHeaderContent from './components/PanelHeaderContent'
 import ActionSheet from './components/ActionSheet'
 import ActionSheetItem from './components/ActionSheetItem'
 import Alert from './components/Alert'
+import Button from './components/Button'
 
 const components: any = {
     Root,
@@ -26,6 +27,7 @@ const components: any = {
     ActionSheet,
     ActionSheetItem,
     Alert,
+    Button,
 }
 
 export function install(Vue: any, options = {}) {

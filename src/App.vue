@@ -54,6 +54,10 @@
                 <vc-panel name="panel1">
                     <vc-panel-header>Новости</vc-panel-header>
                     <button @click="pop = 2">SowPop</button>
+                    <vc-button size="l" mode="primary" stretched @click="test()">
+                        <span>TEST</span>
+                        <vc-icon-message slot="before" />
+                    </vc-button>
                 </vc-panel>
             </vc-view>
             <vc-view name="dialog" active-panel="panel2">
@@ -113,6 +117,9 @@ export default {
         },
         selectFromAlert() {
             this.pop = 1
+        },
+        test() {
+            console.log('test')
         },
     },
 }

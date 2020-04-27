@@ -1,0 +1,165 @@
+.vc-Button
+  display: inline-block
+  box-sizing: border-box
+  outline: none
+  text-decoration: none
+  cursor: default
+  border: 1px solid transparent
+  margin: 0
+  padding: 0
+  user-select: none
+
+.vc-Button__in
+  display: flex
+  align-items: center
+
+.vc-Button
+  &.Tappable--active
+    opacity: .6
+
+  &[disabled]
+    opacity: .4
+
+.vc-Button--aln-left .vc-Button__in
+  justify-content: flex-start
+
+.vc-Button--aln-center .vc-Button__in
+  justify-content: center
+
+.vc-Button--aln-right .vc-Button__in
+  justify-content: flex-end
+
+.vc-Button--str
+  display: block
+  max-width: 100%
+  flex-grow: 1
+
+  &:first-child:last-child
+    width: 100%
+
+.vc-Button--stretched .vc-Button__in
+  justify-content: center
+
+.vc-Button__before
+  .vc-Icon--16
+    margin-right: 6px
+
+  .vc-Icon--24, .vc-Icon--28
+    margin-right: 8px
+
+.vc-Button
+  &:not(.Button--sz-xl) .vc-Button__after
+    margin-left: 8px
+
+  &::before, &::after
+    display: none
+
+.vc-Button--lvl-primary
+  background-color: var(--button_primary_background)
+  color: var(--button_primary_foreground)
+
+.vc-Button--lvl-secondary
+  background-color: var(--button_secondary_background)
+  color: var(--button_secondary_foreground)
+
+.vc-Button--lvl-tertiary
+  background-color: var(--button_tertiary_background)
+  color: var(--button_tertiary_foreground)
+
+.vc-Button--lvl-commerce
+  background-color: var(--button_commerce_background)
+  color: var(--button_commerce_foreground)
+
+.vc-Button--lvl-outline
+  background-color: transparent
+  border: 1px solid var(--button_outline_border)
+  color: var(--button_outline_foreground)
+
+.vc-Button--lvl-destructive
+  background-color: var(--destructive)
+  color: #fff
+
+.vc-Button--lvl-overlay_primary
+  background-color: var(--media_overlay_button_background)
+  color: var(--media_overlay_button_foreground)
+
+.vc-Button--lvl-overlay_secondary
+  background-color: rgba(255, 255, 255, 0.2)
+  color: #fff
+
+.vc-Button--lvl-overlay_outline
+  background-color: transparent
+  border: 1px solid #fff
+  color: #fff
+
+.vc-Button--sz-m
+  padding: 0 16px
+
+  .vc-Button__before
+    margin-left: -4px
+
+  .vc-Button__content
+    font-size: 14px
+    line-height: 14px
+    font-weight: 500
+    padding: 7px 0
+
+.vc-Button--sz-l
+  padding: 0 16px
+
+  .vc-Button__before
+    margin-left: -4px
+
+  .vc-Button__content
+    font-size: 15px
+    font-weight: 500
+    padding: 8px 0
+
+.vc-Button--sz-xl
+  display: block
+  width: 100%
+  padding: 0 16px
+
+  .vc-Button__before
+    margin-left: -6px
+    margin-right: 2px
+
+    ~ .vc-Button__content
+      padding-left: 0
+
+  .vc-Button__in
+    justify-content: center
+
+  .vc-Button__content
+    font-size: 17px
+    font-weight: 500
+    padding: 11px
+
+/*
+ *iOS
+
+.vc-Button--ios
+  border-radius: 10px
+
+/**
+ * Counter
+
+.vc-Button--lvl-primary .vc-Counter
+  background-color: var(--button_primary_foreground)
+  color: var(--button_primary_background)
+
+.vc-Button--lvl-secondary .vc-Counter
+  background-color: var(--button_secondary_foreground)
+  color: var(--background_content)
+
+.vc-Button--lvl-tertiary .vc-Counter
+  background-color: var(--button_tertiary_foreground)
+  color: var(--background_content)
+
+.vc-Button--lvl-outline .vc-Counter
+  background-color: var(--button_outline_foreground)
+  color: var(--background_content)
+
+.vc-Button--lvl-commerce .vc-Counter
+  background-color: var(--button_commerce_foreground)
+  color: var(--button_commerce_background)
