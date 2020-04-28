@@ -54,7 +54,9 @@
                 <vc-panel name="panel1">
                     <vc-panel-header>Новости</vc-panel-header>
                     <button @click="pop = 2">SowPop</button>
-                    <vc-separator style="margin: 20px 0px"></vc-separator>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-link :href="'#qwe'" target="_blank">Link</vc-link>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-button size="l" mode="primary" stretched @click="test()">
                         <span>TEST</span>
                         <vc-icon-message slot="before" />

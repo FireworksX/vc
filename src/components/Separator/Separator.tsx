@@ -1,31 +1,18 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Separator.sass'
-import '@/styles/bright_light.sass'
-import '@/styles/conts.sass'
 
 export default Vue.extend({
-    name: 'vc-Button',
+    name: 'vc-Link',
     props: {
         wide: {
             required: false,
             type: Boolean,
         },
     },
-    data() {
-        return {}
-    },
     computed: {
         classNames(): string {
             return getClassName('vc-Button')
-        },
-    },
-    methods: {
-        getViewId(node: VNode): string | undefined {
-            if (node.data !== undefined && node.data.attrs !== undefined) {
-                return node.data.attrs.name
-            }
-            return undefined
         },
     },
     render(h: any) {
