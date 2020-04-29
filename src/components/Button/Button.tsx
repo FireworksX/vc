@@ -22,15 +22,7 @@ export default Vue.extend({
             required: false,
             type: Boolean,
         },
-        stopPropagation: {
-            required: false,
-            type: Boolean,
-        },
         href: {
-            required: false,
-            type: String,
-        },
-        target: {
             required: false,
             type: String,
         },
@@ -72,7 +64,7 @@ export default Vue.extend({
         return (
             <div
                 class={[
-                    getClassName('vc-Button'),
+                    this.classNames,
                     className,
                     'vc-Button__wrapper',
                     `vc-Button--sz-${size}`,

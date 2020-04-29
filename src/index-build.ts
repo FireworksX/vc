@@ -13,9 +13,10 @@ import ActionSheetItem from './components/ActionSheetItem'
 import Alert from './components/Alert'
 import Button from './components/Button'
 import Separator from './components/Separator'
-import Link from './components/Link'
-import List from './components/List'
+import Link from './components/Link/Link'
+import List from './components/List/List'
 import Div from './components/Div'
+import Footer from './components/Footer/Footer'
 
 const components: any = {
     Root,
@@ -35,6 +36,7 @@ const components: any = {
     Separator,
     Link,
     List,
+    Footer,
     Div,
 }
 
