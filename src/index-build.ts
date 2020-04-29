@@ -13,6 +13,8 @@ import ActionSheetItem from './components/ActionSheetItem'
 import Alert from './components/Alert'
 import Button from './components/Button'
 import Separator from './components/Separator'
+import Link from './components/Link/Link'
+import List from './components/List/List'
 
 const components: any = {
     Root,
@@ -30,6 +32,8 @@ const components: any = {
     Alert,
     Button,
     Separator,
+    Link,
+    List,
 }
 
 export function install(Vue: any, options = {}) {

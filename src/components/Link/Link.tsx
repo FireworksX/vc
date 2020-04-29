@@ -25,20 +25,13 @@ export default Vue.extend({
         },
     },
     render(h: any) {
-        const { Component, className, restProps, getRootRef } = this.$props
-        const attrs = this.$attrs
+        const { Component, className, getRootRef } = this.$props
         const { default: textSlot } = this.$slots
 
-        return h(
-            Component,
-            {
-                attrs: {
-                    class: `${getClassName('vc-Link')} ${className}`,
-                    ref: getRootRef,
-                    ...attrs,
-                },
-            },
-            textSlot
+        return (
+            <Component ref={getRootRef} class={[getClassName('vc-Link'), className || '']}>
+                {textSlot}
+            </Component>
         )
     },
 })
