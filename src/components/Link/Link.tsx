@@ -33,7 +33,7 @@ export default Vue.extend({
             Component,
             {
                 attrs: {
-                    class: `${getClassName('vc-Link')} ${className}`,
+                    class: `${getClassName('vc-Link')} ${className || ''}`,
                     ref: getRootRef,
                     ...attrs,
                 },

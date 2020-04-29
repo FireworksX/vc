@@ -57,10 +57,23 @@
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-link :href="'#qwe'" target="_blank">Link</vc-link>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
-                    <vc-button size="l" mode="primary" stretched @click="test()">
-                        <span>TEST</span>
-                        <vc-icon-message slot="before" />
-                    </vc-button>
+                    <vc-list>
+                        <vc-button size="l" mode="primary" stretched @click="test()">
+                            <span>LIST BTN 1</span>
+                            <vc-icon-message slot="before" />
+                        </vc-button>
+                        <vc-button
+                            size="l"
+                            mode="primary"
+                            stretched
+                            @click="test()"
+                            style="margin-top: 10px;"
+                        >
+                            <span>LIST BTN 2</span>
+                            <vc-icon-message slot="before" />
+                        </vc-button>
+                    </vc-list>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
                 </vc-panel>
             </vc-view>
             <vc-view name="dialog" active-panel="panel2">
