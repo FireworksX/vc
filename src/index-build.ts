@@ -11,6 +11,8 @@ import PanelHeaderContent from './components/PanelHeaderContent'
 import ActionSheet from './components/ActionSheet'
 import ActionSheetItem from './components/ActionSheetItem'
 import Alert from './components/Alert'
+import Button from './components/Button'
+import Separator from './components/Separator'
 
 const components: any = {
     Root,
@@ -26,10 +28,12 @@ const components: any = {
     ActionSheet,
     ActionSheetItem,
     Alert,
+    Button,
+    Separator,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach(key => {
+    Object.keys(components).forEach((key) => {
         Vue.component(`Vc${key}`, components[key])
     })
 }
