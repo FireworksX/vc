@@ -4,10 +4,11 @@
             <vc-view name="main-view" :active-panel="activePanel">
                 <vc-panel name="1">
                     <vc-panel-header>Главная</vc-panel-header>
-                    <button></button>
+                    <vc-button size="xl" @click="activePanel = '2'">Поиск по городам</vc-button>
                 </vc-panel>
                 <vc-panel name="2">
                     <vc-panel-header>Города</vc-panel-header>
+                    <vc-button mode="secondary" @click="activePanel = '1'">На главную</vc-button>
                 </vc-panel>
             </vc-view>
         </vc-root>

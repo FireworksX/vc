@@ -57,6 +57,7 @@ export default Vue.extend<Data, any, any, any>({
         },
         getPanelClassNames(panel: VNode): any[] {
             const panelId = this.getPanelId(panel)
+            console.log(panelId, this.prevPanel, this.nextPanel, panelId === this.prevPanel)
             return [
                 'vc-View__panel',
                 {
@@ -81,7 +82,7 @@ export default Vue.extend<Data, any, any, any>({
             <div class={this.classNames}>
                 <div class="vc-View__panels">
                     {panels !== undefined &&
-                        panels.filter((panel: any) => (
+                        panels.map((panel: any) => (
                             <div class={this.getPanelClassNames(panel)}>{panel}</div>
                         ))}
                 </div>
