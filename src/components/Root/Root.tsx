@@ -3,22 +3,52 @@ import getClassName from '@/helpers/getClassName'
 import './Root.sass'
 import '@/styles/bright_light.sass'
 import '@/styles/conts.sass'
+import waitTransitionFinish from '@/helpers/waitTransitionFinish'
 
-export default Vue.extend({
+interface Data {
+    visibleViews: string[]
+}
+
+export default Vue.extend<Data, any, any, any>({
     name: 'vc-Root',
     props: {
         activeView: { type: String, required: true },
+    },
+    watch: {
+        activeView(newVal, oldVal) {
+            this.isBack = newVal === this.firstView
+            this.visibleViews = [newVal, oldVal]
+            this.transition = true
+            this.proxyActiveView = undefined
+            this.nextView = newVal
+            this.prevView = oldVal
+
+            waitTransitionFinish(() => {
+                this.proxyActiveView = newVal
+                this.visibleViews = [newVal]
+                this.transition = false
+                this.isBack = undefined
+                this.prevView = undefined
+                this.nextView = undefined
+            })
+        },
     },
     data() {
         return {
             views: [],
             viewStore: [],
-            isBack: false,
+            isBack: undefined,
+            visibleViews: [this.activeView],
+            transition: false,
+            firstView: this.activeView,
+            proxyActiveView: undefined,
+            prevView: undefined,
+            nextView: undefined,
         }
     },
     computed: {
-        classNames(): string {
-            return getClassName('vc-Root')
+        classNames(): any[] {
+            return [getClassName('vc-Root'), { 'vc-Root--transition': this.transition }]
         },
     },
     methods: {
@@ -28,13 +58,46 @@ export default Vue.extend({
             }
             return undefined
         },
+        calcViewClass(view: VNode) {
+            return [
+                `vc-Root__view`,
+                {
+                    'vc-Root__view--hide-back':
+                        this.getViewId(view) === this.prevView && this.isBack,
+                    'vc-Root__view--hide-forward':
+                        this.getViewId(view) === this.prevView && !this.isBack,
+                    'vc-Root__view--show-back':
+                        this.getViewId(view) === this.nextView && this.isBack,
+                    'vc-Root__view--show-forward':
+                        this.getViewId(view) === this.nextView && !this.isBack,
+                    'vc-Root__view--active': this.getViewId(view) === this.proxyActiveView,
+                },
+            ]
+        },
     },
     render(h: any) {
-        const views = this.$slots.default
+        let views: VNode[] = []
+
+        if (this.$slots.default !== undefined) {
+            views = this.$slots.default.filter((node: VNode) => {
+                const nodeId = this.getViewId(node)
+                if (nodeId !== undefined) {
+                    return this.visibleViews.includes(nodeId)
+                }
+                return false
+            })
+        }
+
         return (
             <div class={this.classNames}>
                 {views !== undefined &&
-                    views.filter(view => this.getViewId(view) === this.activeView)}
+                    views.map((view: any) => {
+                        return (
+                            <div key={this.getViewId(view)} class={this.calcViewClass(view)}>
+                                {view}
+                            </div>
+                        )
+                    })}
             </div>
         )
     },

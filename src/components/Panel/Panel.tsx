@@ -10,6 +10,10 @@ export default Vue.extend({
         },
     },
     render(h: any) {
-        return <div class={this.classNames}>{this.$slots.default}</div>
+        return (
+            <div class={this.classNames}>
+                <div class="vc-Panel__in">{this.$slots.default}</div>
+            </div>
+        )
     },
 })

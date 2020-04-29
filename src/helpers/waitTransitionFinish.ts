@@ -5,6 +5,6 @@ export default function(handler: () => void) {
     //   this.elRef.current.removeEventListener(eventName, eventHandler);
     //   this.elRef.current.addEventListener(eventName, eventHandler);
     // } else {
-    setTimeout(handler, 300)
+    setTimeout(handler, 600)
     // }
 }

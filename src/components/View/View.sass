@@ -9,3 +9,119 @@
   width: 100%
   height: 100%
 
+.vc-View--animated
+  overflow: hidden
+
+.vc-View--animated .vc-View__panel
+  pointer-events: none
+
+
+.vc-View--animated .vc-View__panel
+  position: fixed
+  top: 0
+  left: 0
+  overflow: hidden
+
+
+
+/**
+ * Panel transition
+ */
+.vc-View--ios .vc-View__panel--prev
+  animation: animation-ios-prev-forward .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--next
+  animation: animation-ios-next-back .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--prev ~ .vc-View__panel--next
+  animation: animation-ios-next-forward .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--next ~ .vc-View__panel--prev
+  animation: animation-ios-prev-back .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--prev .vc-Panel__in::before,
+.vc-View--ios .vc-View__panel--next .vc-Panel__in::before
+  position: absolute
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  z-index: 10
+  background: #000
+  content: ''
+  pointer-events: none
+
+
+.vc-View--ios .vc-View__panel--prev .vc-Panel__in::before
+  animation: animation-ios-fade-in .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--next .vc-Panel__in::before
+  animation: animation-ios-fade-out .6s var(--ios-easing)
+
+
+.vc-View--ios .vc-View__panel--prev ~ .vc-View__panel--next .vc-Panel__in::before,
+.vc-View--ios .vc-View__panel--next ~ .vc-View__panel--prev .vc-Panel__in::before
+  content: none
+  display: none
+
+
+/**
+ * Active panel
+ */
+.vc-View--ios .vc-View__panel--active .vc-Panel__in::before
+  content: none
+  display: none
+
+
+@keyframes animation-ios-next-forward
+  from
+    transform: translate3d(100%, 0, 0)
+  to
+    transform: translate3d(0, 0, 0)
+
+
+
+@keyframes animation-ios-next-back
+  from
+    transform: translate3d(-50%, 0, 0)
+  to
+    transform: translate3d(0, 0, 0)
+
+
+
+@keyframes animation-ios-prev-forward
+  from
+    transform: translate3d(0, 0, 0)
+  to
+    transform: translate3d(-50%, 0, 0)
+
+
+
+@keyframes animation-ios-prev-back
+  from
+    transform: translate3d(0, 0, 0)
+  to
+    transform: translate3d(100%, 0, 0)
+
+
+
+@keyframes animation-ios-fade-in
+  from
+    opacity: 0
+  to
+    opacity: .3
+
+
+
+@keyframes animation-ios-fade-out
+  from
+    opacity: .3
+  to
+    opacity: 0
+
+
