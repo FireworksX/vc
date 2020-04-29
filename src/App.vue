@@ -57,7 +57,7 @@
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-link :href="'#qwe'" target="_blank">Link</vc-link>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
-                    <vc-list>
+                    <vc-list class="qwe">
                         <vc-button size="l" mode="primary" stretched @click="test()">
                             <span>LIST BTN 1</span>
                             <vc-icon-message slot="before" />

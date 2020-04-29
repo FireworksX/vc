@@ -10,17 +10,7 @@ export default Vue.extend({
         },
     },
     render(h: any) {
-        const { default: children } = this.$slots
-        const attrs = this.$attrs
-        return h(
-            'div',
-            {
-                attrs: {
-                    class: `${getClassName('vc-List')}`,
-                    ...attrs,
-                },
-            },
-            children
-        )
+        const items = this.$slots.default
+        return <div class={[getClassName('vc-List')]}>{items}</div>
     },
 })
