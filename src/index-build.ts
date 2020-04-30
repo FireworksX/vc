@@ -17,6 +17,7 @@ import Link from './components/Link/Link'
 import List from './components/List/List'
 import Div from './components/Div'
 import Footer from './components/Footer/Footer'
+import Radio from './components/Radio/Radio'
 
 const components: any = {
     Root,
@@ -38,10 +39,11 @@ const components: any = {
     List,
     Footer,
     Div,
+    Radio,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach(key => {
+    Object.keys(components).forEach((key) => {
         Vue.component(`Vc${key}`, components[key])
     })
 }

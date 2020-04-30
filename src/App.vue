@@ -75,6 +75,12 @@
                     </vc-list>
                     <vc-footer>2 кнопки (ето футер)</vc-footer>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-radio label="1" description="Описание 1 радио кнопки" v-model="inputs.radio"
+                        >Radio 1</vc-radio
+                    >
+                    <vc-radio label="2" description="Описание 2 радио кнопки" v-model="inputs.radio"
+                        >Radio 2</vc-radio
+                    >
                 </vc-panel>
             </vc-view>
             <vc-view name="dialog" active-panel="panel2">
@@ -120,6 +126,9 @@ export default {
                     autoclose: true,
                 },
             ],
+            inputs: {
+                radio: '1',
+            },
         }
     },
     methods: {
