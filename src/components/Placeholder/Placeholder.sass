@@ -1,0 +1,47 @@
+.vc-Placeholder
+  background: var(--background_content)
+  display: flex
+  align-items: center
+  justify-content: center
+
+.vc-Placeholder--stretched
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1
+  padding-top: inherit
+  padding-bottom: inherit
+
+.vc-Placeholder__in
+  text-align: center
+  box-sizing: border-box
+  padding: 48px 32px
+
+.vc-Placeholder__icon
+  margin-bottom: 12px
+  display: inline-block
+  vertical-align: top
+  color: var(--placeholder_icon_foreground_secondary)
+
+.vc-Placeholder__header
+  font-size: 20px
+  line-height: 24px
+  font-weight: 500
+  color: var(--text_primary)
+
+.vc-Placeholder__text
+  font-size: 16px
+  line-height: 20px
+  color: var(--text_placeholder)
+
+.vc-Placeholder__header + .vc-Placeholder__text
+  margin-top: 8px
+
+.vc-Placeholder__action:not(:first-child)
+  margin-top: 24px
+
+
+.vc-Placeholder__action .vc-Button--lvl-tertiary
+  margin-top: -8px

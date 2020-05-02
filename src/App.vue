@@ -81,6 +81,15 @@
                     <vc-radio label="2" description="Описание 2 радио кнопки" v-model="inputs.radio"
                         >Radio 2</vc-radio
                     >
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-placeholder>
+                        <icon-wrapper :size="60" slot="icon">
+                            <vc-icon-feed />
+                        </icon-wrapper>
+                        <span slot="header">Новостей пока нет</span>
+                        Чтобы увидеть новости, нужно сначала их создать
+                        <vc-button @click="() => {}" slot="action">Ничего не сделать</vc-button>
+                    </vc-placeholder>
                 </vc-panel>
             </vc-view>
             <vc-view name="dialog" active-panel="panel2">
