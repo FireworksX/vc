@@ -55,6 +55,12 @@
                     <vc-panel-header>Новости</vc-panel-header>
                     <button @click="pop = 2">SowPop</button>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-header mode="secondary">
+                        Новые события
+                        <span slot="indicator">20</span>
+                        <vc-link slot="aside">Показать все </vc-link>
+                    </vc-header>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-link :href="'#qwe'" target="_blank">Link</vc-link>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-list class="qwe">

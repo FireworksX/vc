@@ -19,6 +19,7 @@ import Div from './components/Div'
 import Footer from './components/Footer/Footer'
 import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
+import Header from './components/Header/Header'
 
 const components: any = {
     Root,
@@ -42,6 +43,7 @@ const components: any = {
     Div,
     Radio,
     Placeholder,
+    Header,
 }
 
 export function install(Vue: any, options = {}) {

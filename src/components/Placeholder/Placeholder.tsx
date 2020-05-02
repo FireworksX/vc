@@ -4,7 +4,7 @@ import './Placeholder.sass'
 import classNames from '@/lib/classNames'
 
 export default Vue.extend({
-    name: 'vc-Link',
+    name: 'vc-Placeholder',
     props: {
         stretched: {
             required: false,
@@ -26,7 +26,7 @@ export default Vue.extend({
         return (
             <div
                 class={[
-                    ...classNames(),
+                    this.classNames,
                     `${stretched ? 'vc-Placeholder--stretched' : ''}`,
                     className,
                 ]}
