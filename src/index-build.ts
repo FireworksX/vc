@@ -28,6 +28,10 @@ import Touch from './components/Touch'
 import Slider from './components/Slider'
 import FixedLayout from './components/FixedLayout'
 import Snackbar from './components/Snackbar'
+import Footer from './components/Footer/Footer'
+import Radio from './components/Radio/Radio'
+import Placeholder from './components/Placeholder/Placeholder'
+import Header from './components/Header/Header'
 
 const components: any = {
     Root,
@@ -47,7 +51,11 @@ const components: any = {
     Separator,
     Link,
     List,
+    Footer,
     Div,
+    Radio,
+    Placeholder,
+    Header,
     CellButton,
     InfoRow,
     Switch,
