@@ -1,11 +1,6 @@
 import Vue, { CreateElement, VNode } from 'vue'
 import { validateIconSizes } from '@/helpers/validateSizes'
 
-interface Props {
-    size: number
-    name: string
-}
-
 interface Data {
     isVisible: boolean
 }
@@ -17,7 +12,7 @@ interface Computed {
     }
 }
 
-export default Vue.extend<Data, any, Computed, Props>({
+export default Vue.extend<Data, any, Computed, any>({
     name: 'vc-IconWrapper',
     props: {
         size: { type: Number, default: 28, validator: size => validateIconSizes(size) },

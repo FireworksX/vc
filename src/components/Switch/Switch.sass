@@ -1,0 +1,65 @@
+.vc-Switch
+  display: block
+  padding: 8px 15px
+
+
+.vc-Switch__self
+  display: none
+
+
+.vc-Switch__pseudo
+  position: relative
+  display: block
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-tap-highlight-color: transparent
+
+
+.vc-Switch__pseudo::before
+  position: absolute
+  content: ''
+
+
+.vc-Switch__self:checked + .vc-Switch__pseudo::before
+  transform: translateX(20px)
+
+
+/**
+ * iOS
+ */
+.vc-Switch--ios
+  margin: -12px -15px
+
+
+.vc-Switch--ios .vc-Switch__pseudo
+  width: 50px
+  height: 30px
+  border: 2px solid var(--switch_ios_off_border)
+  background: transparent
+  border-radius: 15px
+  box-sizing: border-box
+  transition:  background-color .2s ease, border-color .2s ease
+
+
+.vc-Switch--ios .vc-Switch__self:checked + .vc-Switch__pseudo
+  border-color: var(--accent)
+  background: var(--accent)
+
+
+.vc-Switch--ios .vc-Switch__self[disabled] + .vc-Switch__pseudo
+  opacity: .4
+
+
+.vc-Switch--ios .vc-Switch__pseudo::before
+  top: 0
+  left: 0
+  width: 26px
+  height: 26px
+  border-radius: 13px
+  background: var(--white)
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .15), 0 3px 1px rgba(0, 0, 0, .06), inset 0 0 0 .5px rgba(0, 0, 0, .04)
+  transition: transform .2s cubic-bezier(.36, -.24, .26, 1.32)
+
+
+.vc-Switch--ios .vc-Switch__self:checked + .vc-Switch__pseudo::before
+  transform: translateX(20px)
+

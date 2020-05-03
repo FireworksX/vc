@@ -57,18 +57,15 @@ export default Vue.extend({
             return getClassName('vc-Button')
         },
     },
-    methods: {
-        getViewId(node: VNode): string | undefined {
-            if (node.data !== undefined && node.data.attrs !== undefined) {
-                return node.data.attrs.name
-            }
-            return undefined
-        },
-    },
     render(h: any) {
         const { default: children, before, after } = this.$slots
         const { size, mode, align, className, stretched } = this.$props
-        const { click } = this.$listeners
+        let { click } = this.$listeners
+
+        if (click === undefined) {
+            click = () => undefined
+        }
+
         return (
             <div
                 class={[
@@ -80,7 +77,7 @@ export default Vue.extend({
                     `vc-Button--aln-${align}`,
                     stretched ? 'vc-Button--str' : '',
                 ]}
-                onclick={click}
+                onClick={click}
             >
                 <div class="vc-Button__in">
                     {before && <div class="vc-Button__before">{before}</div>}

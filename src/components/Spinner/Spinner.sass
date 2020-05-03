@@ -1,0 +1,36 @@
+.vc-Spinner
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+
+
+.vc-Spinner--ios
+  color: var(--activity_indicator_tint)
+
+
+.vc-Spinner--android
+  color: var(--accent)
+
+
+.vc-PanelHeader .vc-Spinner
+  color: currentColor
+
+
+.vc-Spinner__self
+  animation: rotator .7s linear infinite
+  transform-origin: center
+
+
+.vc-Spinner__self svg
+  transform: scale(1)
+
+
+@keyframes rotator
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+
