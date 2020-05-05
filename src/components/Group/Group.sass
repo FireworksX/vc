@@ -1,0 +1,41 @@
+.vc-Group
+  margin-bottom: 12px
+
+
+.vc-Group__content
+  color: var(--text_primary)
+
+
+.vc-Group__content:first-child
+  margin-top: 12px
+
+
+.vc-Group__description
+  font-size: 14px
+  line-height: 16px
+  color: var(--text_secondary)
+
+
+.vc-Group__separator
+  margin-top: 12px
+
+
+.vc-Group:last-of-type .vc-Group__separator
+  display: none
+
+
+.vc-Group:last-of-type .vc-Group__separator--force
+  display: block
+
+
+.vc-Group + .vc-Group > .vc-Header
+  margin-top: -12px
+
+
+.vc-Group--ios .vc-Group__description
+  padding: 4px 12px 24px
+
+
+.vc-Group--android .vc-Group__description
+  padding: 4px 16px 24px
+

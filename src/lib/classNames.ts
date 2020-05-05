@@ -1,31 +1,31 @@
 export interface ObjectClassNames {
-    [index: string]: boolean;
+    [index: string]: boolean
 }
 
-export type ClassName = number | string | ObjectClassNames | false | null | undefined;
+export type ClassName = number | string | ObjectClassNames | false | null | undefined
 
 export default function classNames(...classNames: ClassName[]) {
-    let result: string[] = [];
+    const result: string[] = []
 
     classNames.forEach((item: ClassName): void => {
         if (!item) {
-            return;
+            return
         }
         switch (typeof item) {
             case 'string':
-                result.push(item);
-                break;
+                result.push(item)
+                break
             case 'object':
                 Object.keys(item).forEach((key: string) => {
                     if (item[key]) {
-                        result.push(key);
+                        result.push(key)
                     }
-                });
-                break;
+                })
+                break
             default:
-                result.push(`${item}`);
+                result.push(`${item}`)
         }
-    });
+    })
 
-    return result.join(' ');
+    return result.join(' ')
 }

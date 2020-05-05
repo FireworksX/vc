@@ -17,9 +17,7 @@ interface Computed {
     }
 }
 
-interface Methods {}
-
-export default Vue.extend<Data, Methods, Computed, Props>({
+export default Vue.extend<Data, any, Computed, Props>({
     name: 'icon-28-message-outline',
     render(h: any) {
         return (

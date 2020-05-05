@@ -1,0 +1,24 @@
+.vc-FixedLayout
+  position: fixed
+  box-sizing: border-box
+  left: 0
+  z-index: 3
+
+.vc-FixedLayout--filled
+  background: var(--background_content)
+
+.vc-FixedLayout--top
+  width: 100%
+  top: 0
+
+.vc-PanelHeader--ios ~ .vc-FixedLayout--top
+  top: var(--panelheader_height_ios)
+
+.vc-FixedLayout--bottom
+  width: 100%
+  bottom: 0
+  padding-bottom: var(--safe-area-inset-bottom)
+
+.vc-Epic .vc-FixedLayout--bottom
+  padding-bottom: calc(var(--tabbar_height) + var(--safe-area-inset-bottom))
+

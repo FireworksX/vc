@@ -57,7 +57,6 @@ export default Vue.extend<Data, any, any, any>({
         },
         getPanelClassNames(panel: VNode): any[] {
             const panelId = this.getPanelId(panel)
-            console.log(panelId, this.prevPanel, this.nextPanel, panelId === this.prevPanel)
             return [
                 'vc-View__panel',
                 {

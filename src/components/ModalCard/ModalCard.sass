@@ -1,0 +1,148 @@
+.vc-ModalCard
+  box-sizing: border-box
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: flex-end
+  z-index: 1
+
+
+.vc-ModalCard__in
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  max-width: 480px
+  padding: 8px
+  animation: animation-modalcard-intro .34s var(--ios-easing)
+  box-sizing: border-box
+
+
+.vc-ModalCard--ios .vc-ModalCard__in
+  transition: transform 340ms var(--ios-easing)
+
+
+.vc-ModalCard--android .vc-ModalCard__in
+  transition: transform 340ms var(--android-easing)
+
+
+.ModalRoot--touched .vc-ModalCard__in
+  transition: none
+
+
+.vc-ModalCard__container
+  box-sizing: border-box
+  position: relative
+  background: var(--modal_card_background)
+  border-radius: 18px
+  padding: 16px
+  margin-bottom: var(--safe-area-inset-bottom)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  pointer-events: initial
+
+
+.vc-ModalCard--android .vc-ModalCard__container
+  border-radius: 12px
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .08)
+
+
+.vc-ModalCard__dismiss
+  position: absolute
+  top: 4px
+  right: 4px
+  width: 48px
+  height: 48px
+  color: var(--placeholder_icon_foreground_primary)
+  justify-content: center
+
+
+.vc-ModalCard__title,
+.vc-ModalCard__caption
+  text-align: center
+  margin: 0
+  padding: 0 8px
+
+
+.vc-ModalCard__title
+  color: var(--text_primary)
+  font-size: 20px
+  font-weight: 600
+  line-height: 1.2
+  letter-spacing: .3px
+  text-align: center
+
+
+.vc-ModalCard--ios .vc-ModalCard__title:first-child
+  padding-left: 36px
+  padding-right: 36px
+
+
+.vc-ModalCard__caption
+  color: var(--text_secondary)
+  font-size: 14px
+  line-height: 1.3
+
+
+.vc-ModalCard__title + .vc-ModalCard__caption
+  margin-top: 8px
+
+
+.vc-ModalCard__title + .FormField,
+.vc-ModalCard__caption + .FormField
+  margin-top: 16px
+
+
+.vc-ModalCard .vc-UsersStack
+  margin-top: 12px
+
+
+.vc-ModalCard__icon
+  margin: 8px auto 16px
+  color: var(--accent)
+
+
+.vc-ModalCard__actions
+  display: flex
+  margin-left: -6px
+  margin-right: -6px
+  margin-top: 16px
+
+
+.vc-ModalCard .UsersStack + .vc-ModalCard__actions
+  margin-top: 24px
+
+
+.vc-ModalCard__title + .vc-ModalCard__actions,
+.vc-ModalCard__caption + .vc-ModalCard__actions
+  margin-top: 32px
+
+
+.vc-ModalCard__actions .vc-Button
+  flex: 1
+  margin-left: 6px
+  margin-right: 6px
+
+
+.vc-ModalCard__actions--v
+  flex-direction: column
+  margin-left: 0
+  margin-right: 0
+
+
+.vc-ModalCard__actions--v .vc-Button
+  margin-left: 0
+  margin-right: 0
+
+
+.vc-ModalCard__actions--v .vc-Button + .vc-Button
+  margin-top: 12px
+
+@keyframes animation-modalcard-intro
+  from
+    transform: translateY(100%)
+  to
+    transform: translateY(0)

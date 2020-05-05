@@ -13,9 +13,21 @@ import ActionSheetItem from './components/ActionSheetItem'
 import Alert from './components/Alert'
 import Button from './components/Button'
 import Separator from './components/Separator'
-import Link from './components/Link/Link'
-import List from './components/List/List'
+import Link from './components/Link'
+import List from './components/List'
 import Div from './components/Div'
+import CellButton from './components/CellButton'
+import InfoRow from './components/InfoRow'
+import Switch from './components/Switch'
+import Spinner from './components/Spinner'
+import ScreenSpinner from './components/ScreenSpinner'
+import Checkbox from './components/Checkbox'
+import Group from './components/Group'
+import ModalCard from './components/ModalCard'
+import Touch from './components/Touch'
+import Slider from './components/Slider'
+import FixedLayout from './components/FixedLayout'
+import Snackbar from './components/Snackbar'
 import Footer from './components/Footer/Footer'
 import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
@@ -46,12 +58,24 @@ const components: any = {
     Radio,
     Placeholder,
     Header,
+    CellButton,
+    InfoRow,
+    Switch,
+    Spinner,
+    ScreenSpinner,
+    Checkbox,
+    Group,
+    ModalCard,
+    Touch,
+    Slider,
+    FixedLayout,
+    Snackbar,
     Textarea,
     FormLayout,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach((key) => {
+    Object.keys(components).forEach(key => {
         Vue.component(`Vc${key}`, components[key])
     })
 }
