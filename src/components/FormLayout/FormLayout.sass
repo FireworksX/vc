@@ -1,0 +1,87 @@
+.vc-FormLayout
+  position: relative
+
+.vc-FormLayout__row
+  display: block
+
+.vc-FormLayout__row-top
+  font-size: 14px
+  line-height: 18px
+  color: var(--text_secondary)
+
+.vc-FormLayout__row-bottom
+  font-size: 13px
+  line-height: 16px
+  color: var(--text_secondary)
+
+.vc-FormLayout__submit
+  position: absolute
+  visibility: hidden
+  pointer-events: none
+  left: 0
+  top: 0
+  padding: 0
+  width: 0
+  height: 0
+  appearance: none
+  border: none
+
+.vc-FormLayout--ios
+  .vc-FormLayout__row
+    padding: 12px 0
+
+    .vc-Checkbox:first-child, .vc-Radio:first-child, .vc-Cell:first-child, .vc-CellButton:first-child
+      margin-top: -4px
+
+    .vc-Checkbox:last-child, .vc-Radio:last-child, .vc-Cell:last-child, .vc-CellButton:last-child
+      margin-bottom: -4px
+
+    .vc-Button--sz-xl
+      width: calc(100% - 2 * 12px)
+
+    .vc-FormField, .vc-Button, .vc-FormStatus
+      margin-left: 12px
+      margin-right: 12px
+
+    .vc-Slider, .vc-RangeSlider
+      margin-left: 26px
+      margin-right: 26px
+
+  .vc-FormLayout__row-top
+    padding: 2px 12px 8px
+
+  .vc-FormLayout__row-bottom
+    padding: 8px 12px 0
+
+.vc-FormLayout--android
+  .vc-FormLayout__row
+    padding: 10px 0
+
+    .vc-Checkbox:first-child, .vc-Radio:first-child, .vc-Cell:first-child, .vc-CellButton:first-child
+      margin-top: -4px
+
+    .vc-Checkbox:last-child, .vc-Radio:last-child, .vc-Cell:last-child, .vc-CellButton:last-child
+      margin-bottom: -4px
+
+    .vc-Button--sz-xl
+      width: calc(100% - 2 * 16px)
+
+    .vc-FormField, .vc-Button, .vc-FormStatus
+      margin-left: 16px
+      margin-right: 16px
+
+    .vc-Slider, .vc-RangeSlider
+      margin-left: 30px
+      margin-right: 30px
+
+  .vc-FormLayout__row-top
+    padding: 2px 16px 8px
+
+  .vc-FormLayout__row-bottom
+    padding: 8px 16px 0
+
+.vc-FormLayout__row--s-error .vc-FormLayout__row-bottom
+  color: var(--field_error_border)
+
+.vc-FormLayout__row--s-valid .vc-FormLayout__row-bottom, .vc-FormLayout__row--s-verified .vc-FormLayout__row-bottom
+  color: var(--field_valid_border)

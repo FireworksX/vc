@@ -55,6 +55,19 @@
                     <vc-panel-header>Новости</vc-panel-header>
                     <button @click="pop = 2">SowPop</button>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-form-layout>
+                        <vc-textarea
+                            v-model="inputs.textarea"
+                            :placeholder="'test textfield'"
+                            @input="test()"
+                            top="top text"
+                            bottom="bottom text"
+                            status="error"
+                            :grow="false"
+                        >
+                        </vc-textarea>
+                    </vc-form-layout>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
                         Новые события
                         <span slot="indicator">20</span>
@@ -89,9 +102,7 @@
                     >
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-placeholder>
-                        <icon-wrapper :size="60" slot="icon">
-                            <vc-icon-feed />
-                        </icon-wrapper>
+                        <vc-icon-feed />
                         <span slot="header">Новостей пока нет</span>
                         Чтобы увидеть новости, нужно сначала их создать
                         <vc-button @click="() => {}" slot="action">Ничего не сделать</vc-button>
@@ -143,6 +154,7 @@ export default {
             ],
             inputs: {
                 radio: '1',
+                textarea: '',
             },
         }
     },
@@ -160,7 +172,7 @@ export default {
             this.pop = 1
         },
         test() {
-            console.log('test')
+            // console.log(this.inputs.textarea)
         },
     },
 }

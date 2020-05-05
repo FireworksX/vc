@@ -20,6 +20,8 @@ import Footer from './components/Footer/Footer'
 import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
+import Textarea from './components/Textarea/Textarea'
+import FormLayout from './components/FormLayout/FormLayout'
 
 const components: any = {
     Root,
@@ -44,6 +46,8 @@ const components: any = {
     Radio,
     Placeholder,
     Header,
+    Textarea,
+    FormLayout,
 }
 
 export function install(Vue: any, options = {}) {
