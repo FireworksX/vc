@@ -24,7 +24,6 @@ export default Vue.extend({
         },
         value: {
             required: true,
-            type: String || null,
         },
         placeholder: {
             required: false,
@@ -91,7 +90,7 @@ export default Vue.extend({
                 bottom={bottom}
             >
                 <textarea
-                    placeholder={placeholder}
+                    placeholder={placeholder || ''}
                     disabled={disabled}
                     ref="vctextarea"
                     class="vc-Textarea__el"

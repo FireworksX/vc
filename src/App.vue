@@ -66,6 +66,12 @@
                             :grow="false"
                         >
                         </vc-textarea>
+                        <vc-input
+                            top="Текстовое поле"
+                            v-model="inputs.input"
+                            align="center"
+                            status="valid"
+                        ></vc-input>
                     </vc-form-layout>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
@@ -102,7 +108,9 @@
                     >
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-placeholder>
-                        <vc-icon-feed />
+                        <icon-wrapper :size="60" slot="icon">
+                            <vc-icon-feed />
+                        </icon-wrapper>
                         <span slot="header">Новостей пока нет</span>
                         Чтобы увидеть новости, нужно сначала их создать
                         <vc-button @click="() => {}" slot="action">Ничего не сделать</vc-button>
@@ -155,6 +163,7 @@ export default {
             inputs: {
                 radio: '1',
                 textarea: '',
+                input: null,
             },
         }
     },

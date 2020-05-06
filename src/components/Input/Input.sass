@@ -1,0 +1,35 @@
+.vc-Input
+  position: relative
+  line-height: 19px
+  font-size: 16px
+
+.vc-Input--center .vc-Input__el
+  text-align: center
+
+.vc-Input--right .vc-Input__el
+  text-align: right
+
+.vc-Input__el
+  margin: 0
+  width: 100%
+  display: block
+  box-sizing: border-box
+  box-shadow: none
+  border: none
+  outline: none
+  appearance: none
+  text-overflow: ellipsis
+  height: 44px
+  line-height: 19px
+  font-size: 16px
+  color: var(--text_primary)
+  padding: 12px
+  position: relative
+  z-index: 2
+  background: transparent
+
+  &:disabled
+    opacity: .6
+
+  &::placeholder
+    color: var(--field_text_placeholder)

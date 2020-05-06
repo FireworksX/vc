@@ -34,6 +34,7 @@ import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
 import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
+import Input from '@/components/Input/Input'
 
 const components: any = {
     Root,
@@ -72,10 +73,11 @@ const components: any = {
     Snackbar,
     Textarea,
     FormLayout,
+    Input,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach(key => {
+    Object.keys(components).forEach((key) => {
         Vue.component(`Vc${key}`, components[key])
     })
 }
