@@ -1,0 +1,66 @@
+.vc-FormField
+  position: relative
+
+.vc-FormField__border
+  position: absolute
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  border: 1px solid var(--field_border)
+  background: var(--field_background)
+  content: ''
+  border-radius: 10px
+  box-sizing: border-box
+  z-index: 1
+  transform-origin: left top
+
+.vc-FormField--ios .vc-FormField__border
+  border-radius: 10px
+
+.vc-FormField--android .vc-FormField__border
+  border-radius: 8px
+
+.vc-FormField--s-error .vc-FormField__border
+  background: var(--field_error_background)
+  border-color: var(--field_error_border)
+
+.vc-FormField--s-valid .vc-FormField__border, .vc-FormField--s-verified .vc-FormField__border
+  border-color: var(--field_valid_border)
+
+.vc-FormField
+  &.vc-Textarea .vc-Textarea__el:disabled ~ .vc-FormField__border, &.vc-Select .vc-Select__el:disabled ~ .vc-FormField__border
+    opacity: .6
+
+  &.vc-Input .vc-Input__el
+    &:disabled ~ .vc-FormField__border
+      opacity: .6
+
+    &:focus ~ .vc-FormField__border
+      border-color: var(--accent)
+      background: var(--field_background)
+
+  &.vc-Textarea .vc-Textarea__el:focus ~ .vc-FormField__border, &.vc-Select .vc-Select__el:focus ~ .vc-FormField__border, &.vc-Select--mimicry:focus .vc-FormField__border
+    border-color: var(--accent)
+    background: var(--field_background)
+
+@media (min-resolution: 2dppx)
+  .vc-FormField--ios .vc-FormField__border
+    border-radius: 20px
+    transform: scale(0.5)
+    width: 200%
+    height: 200%
+
+@media (min-resolution: 3dppx)
+  .vc-FormField--ios .vc-FormField__border
+    border-radius: 31.25px
+    transform: scale(0.32)
+    width: 312.5%
+    height: 312.5%
+
+.vc-FormField--ios
+  &.vc-Input .vc-Input__el:focus ~ .vc-FormField__border, &.vc-Textarea .vc-Textarea__el:focus ~ .vc-FormField__border, &.vc-Select .vc-Select__el:focus ~ .vc-FormField__border, &.vc-Select--mimicry:focus .vc-FormField__border
+    border-radius: 10px
+    transform: scale(1)
+    width: 100%
+    height: 100%

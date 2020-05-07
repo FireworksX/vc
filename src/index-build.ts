@@ -1,3 +1,5 @@
+import Select from '@/components/Select/Select'
+import Input from '@/components/Input/Input'
 import Root from './components/Root'
 import View from './components/View'
 import Epic from './components/Epic'
@@ -33,6 +35,8 @@ import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
 import ModalRoot from './components/ModalRoot'
+import Textarea from './components/Textarea/Textarea'
+import FormLayout from './components/FormLayout/FormLayout'
 
 const components: any = {
     Root,
@@ -69,6 +73,10 @@ const components: any = {
     Slider,
     FixedLayout,
     Snackbar,
+    Textarea,
+    FormLayout,
+    Input,
+    Select,
     ModalRoot,
 }
 
