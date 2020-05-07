@@ -1,3 +1,5 @@
+import Select from '@/components/Select/Select'
+import Input from '@/components/Input/Input'
 import Root from './components/Root'
 import View from './components/View'
 import Epic from './components/Epic'
@@ -34,7 +36,6 @@ import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
 import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
-import Input from '@/components/Input/Input'
 
 const components: any = {
     Root,
@@ -74,6 +75,7 @@ const components: any = {
     Textarea,
     FormLayout,
     Input,
+    Select,
 }
 
 export function install(Vue: any, options = {}) {

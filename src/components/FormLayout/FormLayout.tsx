@@ -29,7 +29,12 @@ export default Vue.extend({
             <tag class={[this.classNames]}>
                 <div class="vc-FormLayout__container">
                     {children.map((field: any, i: number) => {
-                        const { top, bottom } = field.data.attrs
+                        let top
+                        let bottom
+                        if (field.data && field.data.attrs) {
+                            top = field.data.attrs.top
+                            bottom = field.data.attrs.bottom
+                        }
                         const { status } = field.componentOptions.propsData
                         return (
                             <div

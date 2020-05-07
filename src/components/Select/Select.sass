@@ -1,0 +1,63 @@
+.vc-Select
+  display: block
+  position: relative
+  box-sizing: border-box
+
+.vc-Select--mimicry:focus
+  outline: none
+
+.vc-Select select
+  display: block
+  position: absolute
+  appearance: none
+  outline: none
+  border: none
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  opacity: 0
+  z-index: 3
+  font-size: 16px
+
+.vc-Select__container
+  line-height: 19px
+  font-size: 16px
+  padding: 13px 40px 12px 12px
+  color: var(--text_primary)
+  box-sizing: border-box
+  height: 44px
+  position: relative
+  z-index: 2
+
+.vc-Select--disabled .vc-Select__container
+  opacity: .6
+
+.vc-Select
+  select:disabled ~ .vc-Select__container
+    opacity: .6
+
+  &:not(.vc-Select--multiline) .vc-Select__title
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.vc-Select--not-selected .vc-Select__title
+  color: var(--field_text_placeholder)
+
+.vc-Select--align-right .vc-Select__title
+  text-align: right
+
+.vc-Select--align-center .vc-Select__title
+  text-align: center
+
+.vc-Select .vc-Icon
+  position: absolute
+  top: 50%
+  margin-top: -12px
+  right: 10px
+  color: var(--icon_secondary)
+
+.vc-Select--multiline .vc-Select__container
+  height: auto
+  min-height: 44px

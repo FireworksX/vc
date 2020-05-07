@@ -72,6 +72,11 @@
                             align="center"
                             status="valid"
                         ></vc-input>
+                        <vc-select default-title="Выберите пол" v-model="inputs.select">
+                            <option value="m">Мужской</option>
+                            <option value="f">Женский</option>
+                            <option value="i">Изоморф</option>
+                        </vc-select>
                     </vc-form-layout>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
@@ -164,6 +169,7 @@ export default {
                 radio: '1',
                 textarea: '',
                 input: null,
+                select: null,
             },
         }
     },
