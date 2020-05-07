@@ -2,6 +2,7 @@
   "name": "vc_ui",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/vc.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve --fix",
     "build": "vue-cli-service build --target lib --name vc",

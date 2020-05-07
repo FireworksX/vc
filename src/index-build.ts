@@ -32,6 +32,7 @@ import Footer from './components/Footer/Footer'
 import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
+import ModalRoot from './components/ModalRoot'
 
 const components: any = {
     Root,
@@ -68,6 +69,7 @@ const components: any = {
     Slider,
     FixedLayout,
     Snackbar,
+    ModalRoot,
 }
 
 export function install(Vue: any, options = {}) {

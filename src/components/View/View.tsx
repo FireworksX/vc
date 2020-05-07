@@ -77,6 +77,8 @@ export default Vue.extend<Data, any, any, any>({
         }
 
         const hasPopout = this.$slots.popout !== undefined
+        const hasModal = this.$slots.modal !== undefined
+
         return (
             <div class={this.classNames}>
                 <div class="vc-View__panels">
@@ -87,6 +89,7 @@ export default Vue.extend<Data, any, any, any>({
                 </div>
 
                 {hasPopout && <div class="vc-View__popout">{this.$slots.popout}</div>}
+                {hasModal && <div class="vc-View__modal">{this.$slots.modal}</div>}
             </div>
         )
     },

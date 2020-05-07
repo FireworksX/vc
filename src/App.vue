@@ -2,11 +2,42 @@
     <div id="app">
         <vc-root :active-view="activeView">
             <vc-view name="main-view" active-panel="1">
+                <vc-modal-root slot="modal" :active-modal="activeModal">
+                    <vc-modal-card
+                        name="sendMoney"
+                        :actions="modalCardActions"
+                        @close="activeModal = null"
+                    >
+                        <template slot="header"
+                            >Отправляйте деньги друзьям, используя банковскую карту</template
+                        >
+                        <template slot="caption"
+                            >Номер карты получателя не нужен — он сам решит, куда зачислить
+                            средства.</template
+                        >
+                        <icon-money-transfer slot="icon" />
+                    </vc-modal-card>
+                    <vc-modal-card
+                        name="passMoney"
+                        :actions="modalCardActions"
+                        @close="activeModal = null"
+                    >
+                        <template slot="header"
+                            >Отправляйте деньги друзьям, используя банковскую карту</template
+                        >
+                        <icon-money-transfer slot="icon" />
+                    </vc-modal-card>
+                </vc-modal-root>
                 <vc-panel name="1">
                     <vc-panel-header>Главная</vc-panel-header>
                     <vc-div>
                         <vc-button size="xl" @click="snack = 1"
                             >Добавить товар в избранное</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'sendMoney'"
+                            >Перевести деньги</vc-button
                         >
                     </vc-div>
                     <vc-snackbar
@@ -41,12 +72,13 @@ export default {
         // 'vc-icon-message': IconMessage,
         // 'vc-icon-feed': IconFeed,
         // 'vc-icon-search': IconSearch,
-        // IconMoneyTransfer,
+        IconMoneyTransfer,
     },
     data() {
         return {
             activeView: 'main-view',
             activePanel: '1',
+            activeModal: null,
             snack: null,
             snackAction: {
                 title: 'Убрать',
@@ -54,6 +86,16 @@ export default {
                     console.log('Убрали из избранного')
                 },
             },
+            modalCardActions: [
+                {
+                    title: 'Попробовать',
+                    mode: 'primary',
+                    action: () => {
+                        this.activeModal = null
+                        return undefined
+                    },
+                },
+            ],
             slideValue: 0,
             buttonStyle: {
                 position: 'absolute',
