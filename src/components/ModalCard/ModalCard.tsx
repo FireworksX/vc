@@ -1,15 +1,18 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import PopoutWrapper from '@/components/PopoutWrapper'
 import './ModalCard.sass'
 import classNames from '@/lib/classNames'
 import Button from '@/components/Button'
+import { OS, platform } from '@/lib/platform'
+import PanelHeaderButton from '@/components/PanelHeaderButton'
+import IconDismiss from '@/icons/24/dismiss'
 
 export default Vue.extend({
     name: 'vc-ModalCard',
     components: {
-        PopoutWrapper,
         'vc-button': Button,
+        'vc-panel-headerButton': PanelHeaderButton,
+        IconDismiss,
     },
     props: {
         actions: { type: Array, default: () => [] },
@@ -22,34 +25,47 @@ export default Vue.extend({
     },
     render(h: any) {
         const { icon, header, caption } = this.$slots
+
+        let onClose: any = () => undefined
+
+        if (this.$listeners.close) {
+            if (Array.isArray(this.$listeners.close)) {
+                ;[onClose] = this.$listeners.close
+            } else {
+                onClose = this.$listeners.close
+            }
+        }
+
         return (
             <div class={this.classNames}>
-                <popout-wrapper align-y="bottom" onClick={this.$listeners.onClose}>
-                    <div class="vc-ModalCard__in">
-                        <div class="vc-ModalCard__container">
-                            {icon && <div class="vc-ModalCard__icon">{icon}</div>}
-                            {header && <div class="vc-ModalCard__title">{header}</div>}
-                            {caption && <div class="vc-ModalCard__caption">{caption}</div>}
+                <div class="vc-ModalCard__in">
+                    <div class="vc-ModalCard__container">
+                        {icon && <div class="vc-ModalCard__icon">{icon}</div>}
+                        {header && <div class="vc-ModalCard__title">{header}</div>}
+                        {caption && <div class="vc-ModalCard__caption">{caption}</div>}
 
-                            {this.$slots.default}
+                        {this.$slots.default}
 
-                            {this.actions.length > 0 && (
-                                <div
-                                    class={classNames('vc-ModalCard__actions', {
-                                        'vc-ModalCard__actions--v':
-                                            this.actionsLayout === 'vertical',
-                                    })}
-                                >
-                                    {this.actions.map(({ title, mode, action }: any, i: number) => (
-                                        <vc-button size="xl" mode={mode} onClick={action}>
-                                            {title}
-                                        </vc-button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                        {this.actions.length > 0 && (
+                            <div
+                                class={classNames('vc-ModalCard__actions', {
+                                    'vc-ModalCard__actions--v': this.actionsLayout === 'vertical',
+                                })}
+                            >
+                                {this.actions.map(({ title, mode, action }: any, i: number) => (
+                                    <vc-button size="xl" mode={mode} onClick={action}>
+                                        {title}
+                                    </vc-button>
+                                ))}
+                            </div>
+                        )}
+                        {platform() === OS.IOS && (
+                            <vc-panel-header-button class="vc-ModalCard__dismiss" onClick={onClose}>
+                                <icon-dismiss />
+                            </vc-panel-header-button>
+                        )}
                     </div>
-                </popout-wrapper>
+                </div>
             </div>
         )
     },

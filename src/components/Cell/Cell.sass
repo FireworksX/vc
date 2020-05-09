@@ -1,0 +1,148 @@
+.vc-Cell
+  display: flex
+  align-items: center
+  min-height: 48px
+  white-space: nowrap
+
+
+.vc-Cell--mult
+  white-space: normal
+
+
+.vc-Cell > *:first-child:not(.vc-Cell__main),
+.vc-Cell > .vc-Tappable__waves + *:not(.vc-Cell__main)
+  flex-shrink: 0
+
+
+.vc-Cell > .vc-Icon:first-child,
+.vc-Cell > .vc-Tappable__waves + .vc-Icon
+  color: var(--accent)
+
+
+.vc-Cell__main
+  max-width: 100%
+  flex-grow: 1
+  min-width: 0
+  flex-shrink: initial
+  overflow: hidden
+
+
+.vc-Cell > .vc-Icon:first-child,
+.vc-Cell > .vc-Tappable__waves + .vc-Icon,
+.vc-Cell > .vc-Avatar--sz-32,
+.vc-Cell > .vc-Avatar--sz-28
+  padding: 10px 16px 10px 0
+
+
+.vc-Cell > .vc-Avatar--sz-40:first-child,
+.vc-Cell > .vc-Tappable__waves + .vc-Avatar--sz-40
+  padding: 4px 12px 4px 0
+
+
+.vc-Cell > .vc-Avatar--sz-48:first-child,
+.vc-Cell > .vc-Tappable__waves + .vc-Avatar--sz-48,
+.vc-Cell > .vc-Avatar--sz-72:first-child,
+.vc-Cell > .vc-Tappable__waves + .vc-Avatar--sz-72
+  padding: 6px 12px 6px 0
+
+
+.vc-Cell__description
+  color: var(--text_secondary)
+  text-overflow: ellipsis
+  overflow: hidden
+  font-size: 13px
+  line-height: 16px
+  margin-top: 3px
+
+
+.vc-Cell > .vc-Avatar--sz-32 ~ .vc-Cell__main .vc-Cell__description,
+.vc-Cell > .vc-Avatar--sz-28 ~ .vc-Cell__main .vc-Cell__description
+  margin-top: 2px
+
+
+.vc-Cell__children
+  color: var(--text_primary)
+  text-overflow: ellipsis
+  overflow: hidden
+
+
+.vc-Cell__indicator
+  color: var(--text_secondary)
+  min-width: 0
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+  padding-left: 4px
+
+
+.vc-Cell__after
+  flex-shrink: 0
+  display: flex
+  align-items: center
+
+
+.vc-Cell .vc-Cell__after .vc-Icon
+  color: var(--accent)
+  padding: 10px 2px 10px 10px
+
+
+.vc-Cell .Switch
+  padding-left: 10px
+
+
+/**
+ * iOS
+ */
+
+.vc-Cell--ios
+  font-size: 17px
+  line-height: 22px
+  padding-left: 12px
+  padding-right: 12px
+
+
+.vc-Cell--ios .vc-Cell__main,
+.vc-Cell--ios .vc-Cell__indicator
+  padding-top: 9px
+  padding-bottom: 11px
+
+
+.vc-Cell--ios > .vc-Avatar:not(.Avatar--sz-32) ~ .vc-Cell__main,
+.vc-Cell--ios > .vc-Avatar:not(.Avatar--sz-32) ~ .vc-Cell__indicator
+  font-size: 16px
+  line-height: 20px
+
+
+.vc-Cell--ios > .vc-Icon:first-child,
+.vc-Cell--ios > .vc-Tappable__waves + .Icon,
+.vc-Cell--ios > .vc-Avatar--sz-32,
+.vc-Cell--ios > .vc-Avatar--sz-28
+  padding-left: 4px
+
+
+.vc-Cell--ios.vc-Cell--exp .vc-Cell__after .vc-Icon--28
+  padding-right: 0
+
+
+.vc-Cell--ios .vc-Cell__after .vc-Icon--chevron_24
+  color: var(--icon_tertiary)
+  padding-right: 4px
+  padding-left: 12px
+
+
+/**
+ * Android
+ */
+
+.vc-Cell--android
+  font-size: 16px
+  line-height: 20px
+  padding-left: 16px
+  padding-right: 16px
+
+
+.vc-Cell--android .vc-Cell__main,
+.vc-Cell--android .vc-Cell__indicator
+  padding-top: 11px
+  padding-bottom: 10px
+

@@ -34,8 +34,17 @@ import Footer from './components/Footer/Footer'
 import Radio from './components/Radio/Radio'
 import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
+import ModalRoot from './components/ModalRoot'
 import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
+import ModalPage from './components/ModalPage/ModalPage'
+import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
+import Cell from './components/Cell'
+
+import './styles/bright_light.sass'
+import './styles/conts.sass'
+
+import { canUseDOM, lockDomZoom } from './lib/dom'
 import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 
 const components: any = {
@@ -77,15 +86,21 @@ const components: any = {
     FormLayout,
     Input,
     Select,
+    ModalRoot,
+    ModalPage,
+    ModalPageHeader,
+    Cell,
     SelectMimicry,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach((key) => {
+    Object.keys(components).forEach(key => {
         Vue.component(`Vc${key}`, components[key])
     })
 }
 
 export default {
     install,
+    lockDomZoom,
+    canUseDOM,
 }

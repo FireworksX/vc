@@ -2,8 +2,6 @@ import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Button.sass'
 import { ButtonModes, ButtonSizes } from './helpers'
-import '@/styles/bright_light.sass'
-import '@/styles/conts.sass'
 
 export default Vue.extend({
     name: 'vc-Button',
@@ -59,7 +57,8 @@ export default Vue.extend({
         }
 
         return (
-            <div
+            <button
+                role="button"
                 class={[
                     this.classNames,
                     className,
@@ -76,7 +75,7 @@ export default Vue.extend({
                     {children && <div class="vc-Button__content">{children}</div>}
                     {after && <div class="vc-Button__after">{after}</div>}
                 </div>
-            </div>
+            </button>
         )
     },
 })

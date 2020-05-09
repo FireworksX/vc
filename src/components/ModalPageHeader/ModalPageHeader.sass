@@ -1,0 +1,199 @@
+.vc-ModalPageHeader
+
+.vc-ModalPageHeader__in,
+.vc-ModalPageHeader__left,
+.vc-ModalPageHeader__right
+  box-sizing: border-box
+
+
+.vc-ModalPageHeader__in
+  display: flex
+  align-items: center
+  white-space: nowrap
+  color: var(--header_text_alternate)
+  position: relative
+  z-index: 2
+
+
+.vc-ModalPage--android .vc-ModalPageHeader__in
+  height: var(--modalheader_height_android)
+  padding: 0 4px
+
+
+.vc-ModalPage--ios .vc-ModalPageHeader__in
+  height: var(--modalheader_height_ios)
+  padding: 0 2px
+
+
+.vc-ModalPageHeader__left,
+.vc-ModalPageHeader__right
+  color: var(--header_tint_alternate)
+
+
+.vc-ModalPageHeader__left
+  flex-shrink: 0
+  display: flex
+  align-items: center
+
+
+.vc-ModalPageHeader__content
+  overflow: hidden
+  text-overflow: ellipsis
+
+
+.vc-ModalPageHeader__content-in
+  overflow: hidden
+  text-overflow: ellipsis
+  font-weight: 500
+
+
+.vc-ModalPageHeader__right
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  flex-shrink: 0
+  text-align: right
+
+
+.vc-ModalPageHeader__shadow
+  pointer-events: none
+  opacity: 0
+  position: absolute
+  top: 0
+  height: 100%
+  width: 100%
+  z-index: 1
+  transition: opacity 120ms ease-out
+
+
+.vc-ModalRoot--touched .vc-ModalPageHeader__shadow
+  transition: none
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__shadow
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .06), 0 0 2px 0 rgba(0, 0, 0, .03)
+
+
+.vc-ModalPageHeader__shadow::after
+  content: ''
+  position: absolute
+  top: 100%
+  left: 0
+  width: 100%
+  height: 1px
+  background: var(--separator_common)
+  transform-origin: center bottom
+
+
+@media (min-resolution: 2dppx)
+  .vc-ModalPageHeader__shadow::after
+    transform: scaleY(.5)
+
+
+
+@media (min-resolution: 3dppx)
+  .vc-ModalPageHeader__shadow::after
+    transform: scaleY(.33)
+
+
+
+.vc-ModalPageHeader .PanelHeaderButton .Icon--dismiss_24
+  color: var(--placeholder_icon_foreground_primary)
+
+
+.vc-ModalPageHeader .PanelHeaderButton .Icon--cancel_24
+  color: var(--icon_secondary)
+
+
+/**
+ * iOS
+ */
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__in
+  justify-content: space-between
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__left
+  flex-grow: 1
+  flex-basis: 0
+  padding-right: 12px
+  font-size: 17px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__left .PanelHeaderButton .Icon--24
+  padding-left: 12px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__left .PanelHeaderButton > *:not(.Icon)
+  padding-left: 16px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__content
+  position: relative
+  z-index: 1
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__content-in
+  font-weight: 800
+  font-family: var(--font-tt)
+  font-size: 21px
+  text-align: center
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__right
+  flex-grow: 1
+  flex-basis: 0
+  padding-left: 12px
+  font-size: 17px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__right .PanelHeaderButton:not(:first-child)
+  padding-left: 12px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__right .PanelHeaderButton .Icon--24
+  padding-right: 12px
+
+
+.vc-ModalPageHeader--ios .vc-ModalPageHeader__right .PanelHeaderButton > *:not(.Icon)
+  padding-right: 16px
+
+
+/**
+ * Android
+ */
+.vc-ModalPageHeader--android .vc-ModalPageHeader__left
+  padding-right: 6px
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__left:empty
+  padding-right: 12px
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__left:not(:empty)
+  padding-left: 4px
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__dismiss
+  color: var(--icon_secondary)
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__content
+  max-width: 100%
+  flex-grow: 2
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__content-in
+  font-size: 20px
+  font-weight: 800
+  font-family: var(--font-tt)
+  display: flex
+  align-items: center
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__right
+  padding-left: 6px
+
+
+.vc-ModalPageHeader--android .vc-ModalPageHeader__right:not(:empty)
+  padding-right: 4px
+
