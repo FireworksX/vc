@@ -16,15 +16,15 @@
   margin-right: auto
   max-width: 480px
   padding: 8px
-  animation: animation-modalcard-intro .34s var(--ios-easing)
+  transform: translateY(100%)
+  //animation: animation-modalcard-intro 2.34s var(--ios-easing)
   box-sizing: border-box
 
-
 .vc-ModalCard--ios .vc-ModalCard__in
-  transition: transform .34ms var(--ios-easing)
+  transition: transform 340ms var(--ios-easing), -webkit-transform 340ms var(--ios-easing)
 
 .vc-ModalCard--android .vc-ModalCard__in
-  transition: transform .34ms var(--android-easing)
+  transition: transform 2.34ms var(--android-easing)
 
 
 .ModalRoot--touched .vc-ModalCard__in

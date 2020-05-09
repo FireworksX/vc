@@ -46,6 +46,7 @@ export default Vue.extend<Data, any, any, any>({
             proxyActivePanel: undefined,
             visiblePanels: [this.activePanel],
             animated: false,
+            hasModal: false,
         }
     },
     methods: {

@@ -1,8 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Epic.sass'
-import '@/styles/bright_light.sass'
-import '@/styles/conts.sass'
 
 interface Props {
     activeStory: string

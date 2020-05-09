@@ -2,8 +2,6 @@ import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Button.sass'
 import { ButtonModes, ButtonSizes } from './helpers'
-import '@/styles/bright_light.sass'
-import '@/styles/conts.sass'
 
 export default Vue.extend({
     name: 'vc-Button',

@@ -5,6 +5,7 @@ import './ModalRoot.sass'
 import vueListenersAdapter from '@/helpers/vueListenersAdapter'
 import transitionEvents from '@/lib/transitionEvents'
 import setTransformStyle from '@/lib/styles'
+import { rubber } from '@/lib/touch'
 
 export const TYPE_CARD = 'modal-card'
 export const TYPE_PAGE = 'modal-page'
@@ -115,12 +116,14 @@ export default Vue.extend<ModalRootData, any, any, any>({
             modalsState: {},
             maskAnimationFrame: '',
             documentScrolling: true,
+            stopComponentUpdate: false,
         }
     },
     methods: {
         /* Total methods */
 
         updateComponent() {
+            if (this.stopComponentUpdate) return undefined
             const nextModal = this.activeModal
             const prevModal = snapshotData.activeModal
             if (this.activeModal !== snapshotData.activeModal && !this.switching) {
@@ -147,20 +150,20 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 this.history = history
                 this.isBack = isBack
                 this.animated = true
-                this.inited = false
                 this.switching = false
+                this.inited = false
 
-                if (nextModal === null) {
-                    this.closeActiveModal()
-                } else {
-                    this.initActiveModal()
-                }
+                this.$nextTick(() => {
+                    if (nextModal === null) {
+                        this.closeActiveModal()
+                    } else {
+                        this.initActiveModal()
+                    }
+                })
 
                 return undefined
             }
 
-            this.prevModal = prevModal
-            this.nextModal = nextModal
             if (this.switching && !snapshotData.switching) {
                 requestAnimationFrame(() => this.switchPrevNext())
             }
@@ -177,8 +180,6 @@ export default Vue.extend<ModalRootData, any, any, any>({
         switchPrevNext() {
             const { prevModal, nextModal } = this
 
-            console.log(prevModal, nextModal)
-
             const prevModalState: ModalsStateEntry = this.modalsState[prevModal]
             const nextModalState: ModalsStateEntry = this.modalsState[nextModal]
 
@@ -191,9 +192,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
 
             const nextIsPage = !!nextModalState && nextModalState.type === TYPE_PAGE
             const nextIsCard = !!nextModalState && nextModalState.type === TYPE_CARD
-            console.log(prevModalState, nextModalState)
             if (prevModalState && (nextIsCard || prevIsCard || nextIsPage)) {
-                alert(1)
                 this.waitTransitionFinish(prevModalState, () => {
                     this.activeTransitions += 1
                     this.waitTransitionFinish(nextModalState, this.prevNextSwitchEndHandler)
@@ -331,17 +330,17 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 return
             }
 
-            this.$nextTick(() => {
-                const modalElement = this.pickModal(activeModal)
-                const modalState = this.modalsState[activeModal]
+            const modalElement = this.pickModal(activeModal)
+            const modalState = this.modalsState[activeModal]
 
-                if (modalElement.querySelector('.vc-ModalPage')) {
-                    modalState.type = TYPE_PAGE
-                } else if (modalElement.querySelector('.vc-ModalCard')) {
-                    modalState.type = TYPE_CARD
-                    this.initCardModal(modalState, modalElement)
-                }
-            })
+            if (modalElement.querySelector('.vc-ModalPage')) {
+                modalState.settlingHeight = modalState.settlingHeight || 75
+                modalState.type = TYPE_PAGE
+                this.initPageModal(modalState, modalElement)
+            } else if (modalElement.querySelector('.vc-ModalCard')) {
+                modalState.type = TYPE_CARD
+                this.initCardModal(modalState, modalElement)
+            }
 
             this.inited = true
             this.switching = true
@@ -354,6 +353,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
 
             const prevModalState = this.modalsState[this.prevModal]
 
+            prevModalState.translateYCurrent = 100
             this.waitTransitionFinish(prevModalState, this.prevNextSwitchEndHandler)
             this.animateTranslate(prevModalState, 100)
             this.setMaskOpacity(prevModalState, 0)
@@ -369,7 +369,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 if (this.$refs.maskElementRef) {
                     const { translateY, translateYCurrent } = modalState
 
-                    if (translateY && translateYCurrent) {
+                    if ((translateY || translateY === 0) && translateYCurrent) {
                         const opacity =
                             forceOpacity === undefined
                                 ? 1 - (translateYCurrent - translateY) / (100 - translateY) || 0
@@ -423,13 +423,19 @@ export default Vue.extend<ModalRootData, any, any, any>({
             }
 
             const activeModal = this.nextModal
-
             this.prevModal = null
             this.nextModal = null
             this.visibleModals = [activeModal]
-            this.activeModal = activeModal
             this.animated = false
+            this.stopComponentUpdate = true
             this.switching = false
+            this.$nextTick(() => {
+                this.stopComponentUpdate = false
+            }, 0)
+
+            this.$nextTick(() => {
+                this.proxyActiveModal = activeModal
+            }, 0)
 
             if (!activeModal) {
                 this.history = []
@@ -443,14 +449,16 @@ export default Vue.extend<ModalRootData, any, any, any>({
                     proxyCurrentPercent = modalState.translateY
                 }
             }
-
             const frameId = `animateTranslateFrame${modalState.id}`
 
             cancelAnimationFrame(this.frameIds[frameId])
 
             this.frameIds[frameId] = requestAnimationFrame(() => {
                 if (modalState.innerElement) {
-                    setTransformStyle(modalState.innerElement, `translateY(${currentPercent}%)`)
+                    setTransformStyle(
+                        modalState.innerElement,
+                        `translateY(${proxyCurrentPercent}%)`
+                    )
                 }
 
                 if (
@@ -500,6 +508,38 @@ export default Vue.extend<ModalRootData, any, any, any>({
             }
         },
 
+        /* Touches */
+
+        onTouchMove(e: any) {
+            if (this.switching) {
+                return
+            }
+
+            const activeModal = this.proxyActiveModal || this.nextModal
+            if (!activeModal) {
+                return
+            }
+
+            const modalState = this.modalsState[activeModal]
+
+            if (modalState.type === TYPE_CARD) {
+                this.onCardTouchMove(e, modalState)
+            }
+        },
+
+        onTouchEnd(e: any) {
+            const activeModal = this.proxyActiveModal || this.nextModal
+            if (!activeModal) {
+                return
+            }
+
+            const modalState = this.modalsState[activeModal]
+
+            if (modalState.type === TYPE_CARD) {
+                this.onCardTouchEnd(e, modalState)
+            }
+        },
+
         /* Card methods */
         initCardModal(state: ModalsStateEntry, element: HTMLElement) {
             state.modalElement = element
@@ -508,6 +548,173 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 state.innerElement = findCardIn
             }
             state.translateY = 0
+        },
+
+        onCardTouchMove(e: any, modalState: ModalsStateEntry) {
+            const newModalState = modalState
+            const { originalEvent, shiftY, startT } = e
+            const target = originalEvent.target as HTMLElement
+
+            if (target.closest('.vc-ModalCard__container')) {
+                if (!this.touchDown) {
+                    newModalState.touchStartTime = startT
+                    this.touchDown = true
+                    this.dragging = true
+                }
+
+                if (newModalState.innerElement) {
+                    const shiftYPercent = (shiftY / newModalState.innerElement.offsetHeight) * 100
+                    // TODO Add android
+                    const shiftYCurrent = rubber(shiftYPercent, 72, 1.2, false)
+
+                    newModalState.touchShiftYPercent = shiftYPercent
+                    const translateY = modalState.translateY ? modalState.translateY : 0
+                    newModalState.translateYCurrent = Math.max(0, translateY + shiftYCurrent)
+
+                    this.animateTranslate(newModalState, newModalState.translateYCurrent)
+                    this.setMaskOpacity(newModalState)
+                }
+            }
+        },
+
+        onCardTouchEnd(e: any, modalState: ModalsStateEntry) {
+            let next
+            const proxyModalState = modalState
+
+            if (this.dragging) {
+                let translateY = proxyModalState.translateYCurrent
+                    ? proxyModalState.translateYCurrent
+                    : 0
+                const translateYPercent = proxyModalState.touchShiftYPercent
+                    ? proxyModalState.touchShiftYPercent
+                    : 0
+                const touchStartTime: any = proxyModalState.touchStartTime
+                    ? proxyModalState.touchStartTime
+                    : new Date()
+
+                const expectTranslateY =
+                    translateY -
+                    (Date.now() - touchStartTime.getTime()) *
+                        240 *
+                        0.6 *
+                        (translateYPercent < 0 ? -1 : 1)
+                translateY += Math.max(0, expectTranslateY)
+
+                if (translateY >= 30) {
+                    translateY = 100
+                } else {
+                    translateY = 0
+                }
+
+                proxyModalState.translateY = translateY
+                proxyModalState.hidden = translateY === 100
+
+                if (proxyModalState.hidden) {
+                    this.doCloseModal(proxyModalState)
+                }
+
+                next = () => {
+                    if (!proxyModalState.hidden) {
+                        this.animateTranslate(proxyModalState)
+                        this.setMaskOpacity(proxyModalState)
+                    }
+                }
+
+                this.touchDown = false
+                this.dragging = false
+
+                this.$nextTick(next)
+            }
+        },
+
+        /* Page methods */
+
+        initPageModal(modalState: ModalsStateEntry, modalElement: HTMLElement) {
+            const newModalState = modalState
+
+            const contentElement: HTMLElement | null = modalElement.querySelector(
+                '.vc-ModalPage__content'
+            )
+            const contentHeight = contentElement
+                ? (contentElement.firstElementChild as HTMLElement).offsetHeight
+                : 0
+
+            const prevTranslateY = modalState.translateY
+
+            const innerElement: HTMLElement | null = modalElement.querySelector(
+                '.vc-ModalPage__in-wrap'
+            )
+            const headerElement: HTMLElement | null = modalElement.querySelector(
+                '.vc-ModalPage__header'
+            )
+            const contentQueryElement: HTMLElement | null = modalElement.querySelector(
+                '.vc-ModalPage__content'
+            )
+            const footerElement: HTMLElement | null = modalElement.querySelector(
+                '.vc-ModalPage__footer'
+            )
+
+            newModalState.expandable =
+                contentHeight > (contentElement ? contentElement.clientHeight : 0)
+
+            newModalState.modalElement = modalElement
+            newModalState.innerElement = innerElement !== null ? innerElement : undefined
+            newModalState.headerElement = headerElement !== null ? headerElement : undefined
+            newModalState.contentElement =
+                contentQueryElement !== null ? contentQueryElement : undefined
+            newModalState.footerElement = footerElement !== null ? footerElement : undefined
+
+            let collapsed = false
+            let expanded = false
+            let translateYFrom
+            let translateY
+            let expandedRange: [number, number]
+            let collapsedRange: [number, number]
+            let hiddenRange: [number, number]
+
+            if (newModalState.expandable) {
+                translateYFrom =
+                    100 - (newModalState.settlingHeight ? newModalState.settlingHeight : 75)
+
+                const shiftHalf = translateYFrom / 2
+                const visiblePart = 100 - translateYFrom
+
+                expandedRange = [0, shiftHalf]
+                collapsedRange = [shiftHalf, (translateYFrom = visiblePart / 4)]
+                hiddenRange = [translateYFrom + visiblePart / 4, 100]
+
+                collapsed = translateYFrom > 0
+                expanded = translateYFrom <= 0
+                translateY = translateYFrom
+            } else {
+                const headerHeight = newModalState.headerElement
+                    ? newModalState.headerElement.offsetHeight
+                    : 0
+                const height = contentHeight + headerHeight
+
+                const parenElementHeight =
+                    newModalState.innerElement && newModalState.innerElement.parentElement
+                        ? newModalState.innerElement.parentElement.offsetHeight
+                        : 0
+                translateYFrom = 100 - (height / parenElementHeight) * 100
+                translateY = translateYFrom
+
+                expandedRange = [translateY, translateY + 25]
+                collapsedRange = [translateY + 25, translateY + 25]
+                hiddenRange = [translateY + 25, translateY + 100]
+            }
+
+            if (newModalState.expandable && prevTranslateY && translateY > prevTranslateY) {
+                translateY = 0
+            }
+
+            newModalState.expandedRange = expandedRange
+            newModalState.collapsedRange = collapsedRange
+            newModalState.hiddenRange = hiddenRange
+            newModalState.translateY = translateY
+            newModalState.translateYFrom = translateYFrom
+            newModalState.collapsed = collapsed
+            newModalState.expanded = expanded
         },
     },
     created() {
@@ -518,11 +725,11 @@ export default Vue.extend<ModalRootData, any, any, any>({
     },
     render(h: any) {
         if (!this.activeModal && !this.prevModal && !this.nextModal && !this.animated) {
-            return <div></div>
+            return h()
         }
 
         return (
-            <touch class={this.classNames}>
+            <touch class={this.classNames} onMove={this.onTouchMove} onEnd={this.onTouchEnd}>
                 <div class="vc-ModalRoot__mask" onClick={this.onMaskClick} ref="maskElementRef" />
                 <div class="vc-ModalRoot__viewport">
                     {this.modals.map((modal: VNode) => {

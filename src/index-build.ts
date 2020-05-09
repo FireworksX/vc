@@ -37,6 +37,11 @@ import Header from './components/Header/Header'
 import ModalRoot from './components/ModalRoot'
 import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
+import ModalPage from './components/ModalPage/ModalPage'
+import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
+
+import './styles/bright_light.sass'
+import './styles/conts.sass'
 
 const components: any = {
     Root,
@@ -78,6 +83,8 @@ const components: any = {
     Input,
     Select,
     ModalRoot,
+    ModalPage,
+    ModalPageHeader,
 }
 
 export function install(Vue: any, options = {}) {

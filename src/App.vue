@@ -27,17 +27,32 @@
                         >
                         <icon-money-transfer slot="icon" />
                     </vc-modal-card>
+                    <vc-modal-page name="searchCity">
+                        <vc-modal-page-header slot="header">Фильтрация</vc-modal-page-header>
+                        <vc-div>
+                            <vc-button mode="secondary">Выбор страны</vc-button>
+                        </vc-div>
+                        <vc-div>
+                            <vc-button mode="secondary">Информация о пользователе</vc-button>
+                        </vc-div>
+                    </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
                     <vc-panel-header>Главная</vc-panel-header>
                     <vc-div>
-                        <vc-button size="xl" @click="snack = 1"
-                            >Добавить товар в избранное</vc-button
+                        <vc-button size="xl" @click="snack = 1">
+                            <icon-add-circle slot="before" />
+                            Добавить товар в избранное</vc-button
                         >
                     </vc-div>
                     <vc-div>
                         <vc-button size="xl" mode="secondary" @click="activeModal = 'sendMoney'"
                             >Перевести деньги</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
                         >
                     </vc-div>
                     <vc-snackbar
@@ -56,6 +71,7 @@
                 </vc-panel>
             </vc-view>
         </vc-root>
+        <div class="sq"></div>
     </div>
 </template>
 
@@ -64,6 +80,7 @@ import IconMessage from '@/icons/28/message_outline'
 import IconFeed from '@/icons/28/newsfeed_outline'
 import IconSearch from '@/icons/28/search_outline'
 import IconMoneyTransfer from '@/icons/56/money_transfer'
+import IconAddCircle from '@/icons/28/add_circle_outline'
 // import AboutPage from '@/AboutPage'
 
 export default {
@@ -72,6 +89,7 @@ export default {
         // 'vc-icon-message': IconMessage,
         // 'vc-icon-feed': IconFeed,
         // 'vc-icon-search': IconSearch,
+        IconAddCircle,
         IconMoneyTransfer,
     },
     data() {
@@ -91,7 +109,7 @@ export default {
                     title: 'Попробовать',
                     mode: 'primary',
                     action: () => {
-                        this.activeModal = null
+                        this.activeModal = 'passMoney'
                         return undefined
                     },
                 },
@@ -123,6 +141,12 @@ export default {
             this.buttonStyle.left = `${data.shiftXAbs}px`
         },
     },
+    mounted() {
+        setTimeout(() => {
+            const sq = document.querySelector('.sq')
+            sq.style.transform = `translateY(20%)`
+        }, 5000)
+    },
 }
 </script>
 
@@ -130,5 +154,12 @@ export default {
 body {
     margin: 0;
     padding: 0;
+}
+
+.sq {
+    width: 100px;
+    height: 100px;
+    background: #000;
+    transition: transform 1s;
 }
 </style>

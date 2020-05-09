@@ -1,8 +1,8 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Root.sass'
-import '@/styles/bright_light.sass'
-import '@/styles/conts.sass'
+import '../../styles/conts.sass'
+import '../../styles/bright_light.sass'
 import waitTransitionFinish from '@/helpers/waitTransitionFinish'
 
 interface Data {
