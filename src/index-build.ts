@@ -36,6 +36,7 @@ import Placeholder from './components/Placeholder/Placeholder'
 import Header from './components/Header/Header'
 import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
+import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 
 const components: any = {
     Root,
@@ -76,6 +77,7 @@ const components: any = {
     FormLayout,
     Input,
     Select,
+    SelectMimicry,
 }
 
 export function install(Vue: any, options = {}) {

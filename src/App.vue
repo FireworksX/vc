@@ -77,6 +77,11 @@
                             <option value="f">Женский</option>
                             <option value="i">Изоморф</option>
                         </vc-select>
+                        <vc-select-mimicry
+                            value=""
+                            placeholder="mimicry"
+                            @click="test()"
+                        ></vc-select-mimicry>
                     </vc-form-layout>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
@@ -170,6 +175,7 @@ export default {
                 textarea: '',
                 input: null,
                 select: null,
+                selectMimicry: null,
             },
         }
     },
@@ -187,7 +193,7 @@ export default {
             this.pop = 1
         },
         test() {
-            // console.log(this.inputs.textarea)
+            console.log('this.inputs.textarea')
         },
     },
 }

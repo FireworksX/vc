@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Select.sass'
 import FromField from '@/components/FormField/FromField'
 import dropdown from '@/icons/24/dropdown'
 import { InputAlighTypes } from './helpers'
@@ -29,44 +28,33 @@ export default Vue.extend({
             type: String,
             default: 'text',
         },
-        defaultTitle: {
+        multiline: {
             required: false,
-            type: String,
-            default: 'Выбор',
+            type: Boolean,
+            default: false,
         },
     },
-    data: () => ({
-        notSelected: false,
-        localValue: null,
-        title: '',
-    }),
+    data: () => ({}),
     computed: {
         classNames(): string {
             return getClassName('vc-Select')
         },
     },
-    methods: {
-        emitValue(e: any) {
-            this.$emit('input', e.target.value)
-            this.getTitle(e.target)
-        },
-        getTitle(target: any) {
-            const index = target.selectedIndex
-            this.title = target[index].text
-        },
-    },
     render(h: any) {
-        const { align, value, className, defaultTitle } = this.$props
-        const { style, status, top, bottom, autofocus, placeholder, disabled }: any = this.$attrs
-        const { default: children } = this.$slots
+        const { align, value, className, multiline } = this.$props
+        const { style, status, top, bottom, placeholder, disabled }: any = this.$attrs
+        const { click } = this.$listeners
 
         return (
             <vc-form-field
                 tag="label"
                 class={[
                     this.classNames,
+                    'vc-Select--mimicry',
                     !value ? 'vc-Select--not-selected' : '',
                     `vc-Select--align-${align}`,
+                    disabled ? 'vc-Select--disabled' : '',
+                    multiline ? 'vc-Select--multiline' : '',
                     className,
                 ]}
                 style={style}
@@ -74,17 +62,8 @@ export default Vue.extend({
                 top={top}
                 bottom={bottom}
             >
-                <select
-                    class="vc-Select__el"
-                    onChange={this.emitValue}
-                    value={value}
-                    disabled={disabled}
-                >
-                    {placeholder && <option value="">{placeholder}</option>}
-                    {children}
-                </select>
-                <div class="vc-Select__container">
-                    <div class="vc-Select__title">{this.title || defaultTitle}</div>
+                <div class="vc-Select__container" onClick={click}>
+                    <div class="vc-Select__title">{value || placeholder}</div>
                     <vc-icon-dropdown></vc-icon-dropdown>
                 </div>
             </vc-form-field>
