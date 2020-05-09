@@ -81,7 +81,12 @@
                     </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
-                    <vc-panel-header>Главная</vc-panel-header>
+                    <vc-panel-header
+                        >Главная
+                        <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
+                            <vc-icon-28-market />
+                        </vc-panel-header-button>
+                    </vc-panel-header>
                     <vc-div>
                         <vc-button size="xl" @click="snack = 1">
                             <icon-add-circle slot="before" />
@@ -106,6 +111,7 @@
                             Сообщения</vc-cell
                         >
                     </vc-group>
+                    <vc-icon-56-mention-outline />
 
                     <vc-snackbar
                         v-if="snack === 1"

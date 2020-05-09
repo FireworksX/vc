@@ -1,8 +1,87 @@
 .vc-PanelHeaderButton
-  background: transparent
-  font-family: inherit
-  color: inherit
+  appearance: none
+  background: none
   border: none
   outline: none
-  font-size: inherit
-  padding: inherit
+  box-shadow: none
+  display: block
+  color: currentColor
+  padding: 0
+  margin: 0
+  font-size: 17px
+  position: relative
+
+
+.vc-PanelHeaderButton[disabled]
+  opacity: .6
+
+
+.vc-PanelHeaderButton .Counter
+  position: absolute
+  padding: 0
+  top: 8px
+  right: 2px
+
+
+/*
+ * iOS
+ */
+
+.vc-PanelHeaderButton--ios
+  position: relative
+  display: flex
+  align-items: center
+
+
+.vc-PanelHeaderButton--ios.vc-PanelHeaderButton--primary
+  font-weight: 600
+
+
+.vc-PanelHeaderButton--ios.vc-PanelHeaderButton--primitive
+  height: 44px
+  line-height: 44px
+
+
+.vc-PanelHeaderButton--ios .vc-Icon--24
+  padding: 10px
+
+
+.vc-PanelHeaderButton--ios .vc-Icon--28
+  padding: 8px
+
+
+.vc-PanelHeaderButton--ios.Tappable--active
+  opacity: .7
+
+
+/*
+ * Android
+ */
+
+.vc-PanelHeaderButton--android
+  border-radius: 50%
+  font-weight: 500
+  font-size: 15px
+
+
+.vc-PanelHeaderButton--android.vc-PanelHeaderButton--primitive
+  height: 48px
+  line-height: 48px
+  padding: 0 12px
+
+
+.vc-PanelHeaderButton--android .Icon--24
+  padding: 12px
+
+
+.vc-PanelHeaderButton--android .Icon--28
+  padding: 10px
+
+
+.vc-PanelHeaderButton--android .Tappable__waves
+  border-radius: 50%
+
+
+.vc-PanelHeaderButton--android.Tappable--active
+  background-color: var(--background_highlighted)
+

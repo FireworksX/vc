@@ -40,6 +40,7 @@ import FormLayout from './components/FormLayout/FormLayout'
 import ModalPage from './components/ModalPage/ModalPage'
 import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
 import Cell from './components/Cell'
+import HorizontalScroll from './components/HorizontalScroll'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -89,6 +90,7 @@ const components: any = {
     ModalPage,
     ModalPageHeader,
     Cell,
+    HorizontalScroll,
 }
 
 export function install(Vue: any, options = {}) {
