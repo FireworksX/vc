@@ -40,6 +40,7 @@ import FormLayout from './components/FormLayout/FormLayout'
 import ModalPage from './components/ModalPage/ModalPage'
 import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
 import Cell from './components/Cell'
+import Search from './components/Search/Search'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -91,10 +92,11 @@ const components: any = {
     ModalPageHeader,
     Cell,
     SelectMimicry,
+    Search,
 }
 
 export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach(key => {
+    Object.keys(components).forEach((key) => {
         Vue.component(`Vc${key}`, components[key])
     })
 }

@@ -82,6 +82,10 @@
                             placeholder="mimicry"
                             @click="test()"
                         ></vc-select-mimicry>
+                        <vc-search
+                            v-model="inputs.search"
+                            placeholder="Поиск элементов"
+                        ></vc-search>
                     </vc-form-layout>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
@@ -176,6 +180,7 @@ export default {
                 input: null,
                 select: null,
                 selectMimicry: null,
+                search: null,
             },
         }
     },
