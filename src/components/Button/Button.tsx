@@ -57,7 +57,8 @@ export default Vue.extend({
         }
 
         return (
-            <div
+            <button
+                role="button"
                 class={[
                     this.classNames,
                     className,
@@ -74,7 +75,7 @@ export default Vue.extend({
                     {children && <div class="vc-Button__content">{children}</div>}
                     {after && <div class="vc-Button__after">{after}</div>}
                 </div>
-            </div>
+            </button>
         )
     },
 })

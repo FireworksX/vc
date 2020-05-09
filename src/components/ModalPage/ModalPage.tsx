@@ -17,6 +17,7 @@ export default Vue.extend({
         return (
             <div class={this.classNames}>
                 <div class="vc-ModalPage__in-wrap">
+                    <div class="vc-ModalPage__in-caret"></div>
                     <div class="vc-ModalPage__in">
                         <div class="vc-ModalPage__header">{header}</div>
                         <div class="vc-ModalPage__content">

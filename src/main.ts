@@ -8,4 +8,7 @@ Vue.use(VC)
 
 new Vue({
     render: h => h(App),
+    mounted() {
+        VC.lockDomZoom()
+    },
 }).$mount('#app')

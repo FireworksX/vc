@@ -3,11 +3,16 @@ import getClassName from '@/helpers/getClassName'
 import './ModalCard.sass'
 import classNames from '@/lib/classNames'
 import Button from '@/components/Button'
+import { OS, platform } from '@/lib/platform'
+import PanelHeaderButton from '@/components/PanelHeaderButton'
+import IconDismiss from '@/icons/24/dismiss'
 
 export default Vue.extend({
     name: 'vc-ModalCard',
     components: {
         'vc-button': Button,
+        'vc-panel-headerButton': PanelHeaderButton,
+        IconDismiss,
     },
     props: {
         actions: { type: Array, default: () => [] },
@@ -20,6 +25,17 @@ export default Vue.extend({
     },
     render(h: any) {
         const { icon, header, caption } = this.$slots
+
+        let onClose: any = () => undefined
+
+        if (this.$listeners.close) {
+            if (Array.isArray(this.$listeners.close)) {
+                ;[onClose] = this.$listeners.close
+            } else {
+                onClose = this.$listeners.close
+            }
+        }
+
         return (
             <div class={this.classNames}>
                 <div class="vc-ModalCard__in">
@@ -42,6 +58,11 @@ export default Vue.extend({
                                     </vc-button>
                                 ))}
                             </div>
+                        )}
+                        {platform() === OS.IOS && (
+                            <vc-panel-header-button class="vc-ModalCard__dismiss" onClick={onClose}>
+                                <icon-dismiss />
+                            </vc-panel-header-button>
                         )}
                     </div>
                 </div>

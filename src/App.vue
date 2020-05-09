@@ -27,14 +27,57 @@
                         >
                         <icon-money-transfer slot="icon" />
                     </vc-modal-card>
-                    <vc-modal-page name="searchCity">
+                    <vc-modal-page name="searchCity" @close="closeModal">
                         <vc-modal-page-header slot="header">Фильтрация</vc-modal-page-header>
-                        <vc-div>
-                            <vc-button mode="secondary">Выбор страны</vc-button>
-                        </vc-div>
-                        <vc-div>
-                            <vc-button mode="secondary">Информация о пользователе</vc-button>
-                        </vc-div>
+                        <vc-div
+                            ><vc-button size="xl" mode="secondary">Выбор страны</vc-button></vc-div
+                        >
+                        <vc-div
+                            ><vc-button
+                                size="xl"
+                                mode="secondary"
+                                @click="activeModal = 'profileInfo'"
+                                >Информация о пользователе</vc-button
+                            ></vc-div
+                        >
+                        <vc-form-layout>
+                            <vc-select top="Страна" placeholder="Выбор страны"></vc-select>
+                            <vc-select top="Город" placeholder="Выбор города"></vc-select>
+                            <vc-form-layout-group top="Пол">
+                                <vc-radio>Любой</vc-radio>
+                                <vc-radio>Мужской</vc-radio>
+                                <vc-radio>Женский</vc-radio>
+                            </vc-form-layout-group>
+                        </vc-form-layout>
+                        <vc-form-layout-group top="Дополнительно">
+                            <vc-checkbox>С фотографией</vc-checkbox>
+                            <vc-checkbox>Сейчас на сайте</vc-checkbox>
+                        </vc-form-layout-group>
+                    </vc-modal-page>
+                    <vc-modal-page name="profileInfo" @close="closeModal">
+                        <vc-modal-page-header slot="header"
+                            >Информация о пользователе</vc-modal-page-header
+                        >
+                        <vc-list>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Дата рождения</template>
+                                    20 января 1997
+                                </vc-info-row>
+                            </vc-div>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Родной город</template>
+                                    Лодейное Поле
+                                </vc-info-row>
+                            </vc-div>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Место работы</template>
+                                    mod:
+                                </vc-info-row>
+                            </vc-div>
+                        </vc-list>
                     </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
@@ -55,6 +98,15 @@
                             >Поиск брендов</vc-button
                         >
                     </vc-div>
+
+                    <vc-group>
+                        <vc-header slot="header">Меню</vc-header>
+                        <vc-cell expandable indicator="10" @click="activeModal = 'profileInfo'">
+                            <icon-chats-outline slot="before" />
+                            Сообщения</vc-cell
+                        >
+                    </vc-group>
+
                     <vc-snackbar
                         v-if="snack === 1"
                         :duration="3000"
@@ -71,7 +123,6 @@
                 </vc-panel>
             </vc-view>
         </vc-root>
-        <div class="sq"></div>
     </div>
 </template>
 
@@ -81,6 +132,7 @@ import IconFeed from '@/icons/28/newsfeed_outline'
 import IconSearch from '@/icons/28/search_outline'
 import IconMoneyTransfer from '@/icons/56/money_transfer'
 import IconAddCircle from '@/icons/28/add_circle_outline'
+import IconChatsOutline from '@/icons/28/chats_outline'
 // import AboutPage from '@/AboutPage'
 
 export default {
@@ -91,6 +143,7 @@ export default {
         // 'vc-icon-search': IconSearch,
         IconAddCircle,
         IconMoneyTransfer,
+        IconChatsOutline,
     },
     data() {
         return {
@@ -123,6 +176,9 @@ export default {
         }
     },
     methods: {
+        closeModal() {
+            this.activeModal = null
+        },
         changeStory(story) {
             this.activeStory = story
         },
@@ -136,16 +192,9 @@ export default {
             this.pop = 1
         },
         startDrag(data) {
-            console.log(data.shiftYAbs, data.shiftXAbs)
             this.buttonStyle.top = `${data.shiftYAbs}px`
             this.buttonStyle.left = `${data.shiftXAbs}px`
         },
-    },
-    mounted() {
-        setTimeout(() => {
-            const sq = document.querySelector('.sq')
-            sq.style.transform = `translateY(20%)`
-        }, 5000)
     },
 }
 </script>

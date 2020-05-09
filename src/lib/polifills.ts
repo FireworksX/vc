@@ -25,7 +25,7 @@ if (canUseDOM) {
     // Element.prototype.closest
     if (!ElementProto.closest) {
         ElementProto.closest = function(css: string): Element | null {
-            let node: Element = this
+            let node: Element | null = this
             while (node) {
                 if (node.matches(css)) {
                     return node

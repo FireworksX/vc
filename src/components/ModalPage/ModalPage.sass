@@ -18,10 +18,26 @@
   pointer-events: initial
   transform: translateY(100%)
 
+.vc-ModalPage__in-caret
+  position: absolute
+  top: -15px
+  left: 50%
+  transform: translateX(-50%)
+  width: 45px
+  height: 5px
+  background: var(--separator_common)
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
+  border-radius: 3px
+  display: none
+
 
 .vc-ModalPage--ios .vc-ModalPage__in-wrap
   transition: transform 400ms var(--ios-easing), -webkit-transform 400ms var(--ios-easing)
 
+
+.vc-ModalPage--ios .vc-ModalPage__in-caret
+  display: block
 
 .vc-ModalPage--android .vc-ModalPage__in-wrap
   transition: transform 320ms var(--android-easing)

@@ -15,27 +15,34 @@ export default Vue.extend({
             type: String,
         },
     },
-    data: () => ({}),
     computed: {
         classNames(): string {
             return getClassName('vc-FormLayout')
         },
     },
-    methods: {},
+    methods: {
+        getStatusByNode(node: VNode) {
+            if (node.componentOptions && node.componentOptions.propsData) {
+                const props: any = node.componentOptions.propsData
+                return props.status || 'default'
+            }
+            return 'default'
+        },
+    },
     render(h: any) {
         const { tag } = this.$props
         const { default: children }: any = this.$slots
         return (
-            <tag class={[this.classNames]}>
+            <tag class={this.classNames}>
                 <div class="vc-FormLayout__container">
                     {children.map((field: any, i: number) => {
                         let top
                         let bottom
+                        const status = this.getStatusByNode(field)
                         if (field.data && field.data.attrs) {
                             top = field.data.attrs.top
                             bottom = field.data.attrs.bottom
                         }
-                        const { status } = field.componentOptions.propsData
                         return (
                             <div
                                 class={[

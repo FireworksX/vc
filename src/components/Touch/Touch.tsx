@@ -103,8 +103,8 @@ export default Vue.extend({
                     const willBeSlidedY =
                         willBeY && (this.onPropMoveY !== undefined || this.onPropMove !== undefined)
 
-                    this.gesture.isY = isY
-                    this.gesture.isX = isX
+                    this.gesture.isY = willBeY
+                    this.gesture.isX = willBeX
                     this.gesture.isSlideX = willBeSlidedX
                     this.gesture.isSlideY = willBeSlidedY
                     this.gesture.isSlide = willBeSlidedX || willBeSlidedY

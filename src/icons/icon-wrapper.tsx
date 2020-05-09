@@ -20,7 +20,12 @@ export default Vue.extend<Data, any, Computed, any>({
     },
     computed: {
         classNames() {
-            return ['vc-Icon', `vc-Icon--${this.size}`, `vc-Icon--${this.name}`]
+            return [
+                'vc-Icon',
+                `vc-Icon--${this.size}`,
+                `vc-Icon--${this.name}`,
+                `vc-Icon--${this.name}_${this.size}`,
+            ]
         },
         styles() {
             return {

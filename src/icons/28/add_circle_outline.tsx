@@ -18,10 +18,13 @@ interface Computed {
 }
 
 export default Vue.extend<Data, any, Computed, Props>({
-    name: 'icon-28-add_circle_outline',
+    name: 'icon-28-message-outline',
+    components: {
+        IconWrapper,
+    },
     render(h: any) {
         return (
-            <IconWrapper>
+            <icon-wrapper>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 28 28"
@@ -36,7 +39,7 @@ export default Vue.extend<Data, any, Computed, Props>({
                         ></path>
                     </g>
                 </svg>
-            </IconWrapper>
+            </icon-wrapper>
         )
     },
 })

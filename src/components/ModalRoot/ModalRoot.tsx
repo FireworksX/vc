@@ -51,6 +51,14 @@ export interface ModalRootData {
 
 const snapshotData: any = {}
 
+function numberInRange(number: number, range: number[]) {
+    return number >= range[0] && number <= range[1]
+}
+
+function rangeTranslate(number: number) {
+    return Math.max(0, Math.min(98, number))
+}
+
 export default Vue.extend<ModalRootData, any, any, any>({
     name: 'vc-ModalRoot',
     components: {
@@ -93,10 +101,6 @@ export default Vue.extend<ModalRootData, any, any, any>({
         window(): Window {
             return window
         },
-
-        nativeOnClose() {
-            return vueListenersAdapter(this.$listeners.close)
-        },
     },
     data() {
         return {
@@ -117,6 +121,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
             maskAnimationFrame: '',
             documentScrolling: true,
             stopComponentUpdate: false,
+            nativeOnClose: () => undefined,
         }
     },
     methods: {
@@ -168,6 +173,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 requestAnimationFrame(() => this.switchPrevNext())
             }
 
+            console.log(this.activeModal, this.prevModal, this.nextModal)
             if (!this.activeModal && !this.prevModal && !this.nextModal) {
                 this.toggleDocumentScrolling(true)
             } else {
@@ -525,6 +531,10 @@ export default Vue.extend<ModalRootData, any, any, any>({
             if (modalState.type === TYPE_CARD) {
                 this.onCardTouchMove(e, modalState)
             }
+
+            if (modalState.type === TYPE_PAGE) {
+                this.onPageTouchMove(e, modalState)
+            }
         },
 
         onTouchEnd(e: any) {
@@ -537,6 +547,10 @@ export default Vue.extend<ModalRootData, any, any, any>({
 
             if (modalState.type === TYPE_CARD) {
                 this.onCardTouchEnd(e, modalState)
+            }
+
+            if (modalState.type === TYPE_PAGE) {
+                this.onPageTouchEnd(e, modalState)
             }
         },
 
@@ -716,20 +730,171 @@ export default Vue.extend<ModalRootData, any, any, any>({
             newModalState.collapsed = collapsed
             newModalState.expanded = expanded
         },
+
+        onPageTouchMove(e: any, modalState: ModalsStateEntry) {
+            const proxyModalState = modalState
+            const { shiftY, startT, originalEvent } = e
+
+            const target = originalEvent.target as HTMLElement
+
+            if (!e.isY) {
+                if (target.closest('.vc-ModalPage')) {
+                    originalEvent.preventDefault()
+                }
+                return undefined
+            }
+
+            if (!target.closest('.vc-ModalPage__in')) {
+                return originalEvent.preventDefault
+            }
+
+            originalEvent.stopPropagation()
+
+            const { expandable, contentScrolled, collapsed, expanded } = modalState
+
+            if (!this.touchDown) {
+                proxyModalState.touchStartTime = startT
+                proxyModalState.touchStartContentScrollTop = proxyModalState.contentElement
+                    ? proxyModalState.contentElement.scrollTop
+                    : 0
+                this.touchDown = true
+            }
+
+            if (contentScrolled) {
+                return undefined
+            }
+
+            if (proxyModalState.touchMovePositive === null) {
+                proxyModalState.touchMovePositive = shiftY > 0
+            }
+
+            if (
+                !proxyModalState.expandable ||
+                collapsed ||
+                (expanded &&
+                    proxyModalState.touchMovePositive &&
+                    proxyModalState.touchStartContentScrollTop === 0) ||
+                target.closest('.vc-ModalPage__header')
+            ) {
+                originalEvent.preventDefault()
+
+                if (!expandable && shiftY < 0) {
+                    return undefined
+                }
+
+                if (!this.dragging) {
+                    this.dragging = true
+                }
+
+                const shiftTPercent = (shiftY / this.window.innerHeight) * 100
+                // TODO Add android
+                const shiftYCurrent = rubber(shiftTPercent, 72, 0.8, false)
+
+                proxyModalState.touchShiftYPercent = shiftTPercent
+                proxyModalState.translateYCurrent = rangeTranslate(
+                    (proxyModalState.translateY ? proxyModalState.translateY : 0) + shiftYCurrent
+                )
+
+                this.animateTranslate(proxyModalState, proxyModalState.translateYCurrent)
+                this.setMaskOpacity(proxyModalState)
+            }
+
+            return undefined
+        },
+
+        onPageTouchEnd(e: any, modalState: ModalsStateEntry) {
+            const proxyModalState = modalState
+            const { startY, shiftY } = e
+
+            proxyModalState.contentScrolled = false
+            proxyModalState.touchMovePositive = null
+
+            let next
+
+            if (this.dragging) {
+                const shiftYEndPercent = ((startY + shiftY) / this.window.innerHeight) * 100
+                const touchStartTime = modalState.touchStartTime
+                    ? modalState.touchStartTime
+                    : new Date()
+                const touchShiftYPercent = modalState.touchShiftYPercent
+                    ? modalState.touchShiftYPercent
+                    : new Date()
+
+                let translateY = proxyModalState.translateYCurrent
+                    ? proxyModalState.translateYCurrent
+                    : 0
+                const expectTranslateY =
+                    (translateY / (Date.now() - touchStartTime.getTime())) *
+                    240 *
+                    0.6 *
+                    (touchShiftYPercent < 0 ? -1 : 1)
+                translateY = rangeTranslate(translateY + expectTranslateY)
+
+                const expandedRange = proxyModalState.expandedRange
+                    ? proxyModalState.expandedRange
+                    : [0, 0]
+                const collapsedRange = proxyModalState.collapsedRange
+                    ? proxyModalState.collapsedRange
+                    : [0, 0]
+                const hiddenRange = proxyModalState.hiddenRange
+                    ? proxyModalState.hiddenRange
+                    : [0, 0]
+
+                if (numberInRange(translateY, expandedRange)) {
+                    ;[translateY] = expandedRange
+                } else if (numberInRange(translateY, collapsedRange)) {
+                    translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
+                } else if (numberInRange(translateY, hiddenRange)) {
+                    translateY = 100
+                } else {
+                    translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
+                }
+
+                if (translateY !== 100 && shiftYEndPercent >= 75) {
+                    translateY = 100
+                }
+
+                proxyModalState.translateYCurrent = translateY
+                proxyModalState.translateY = translateY
+                proxyModalState.collapsed = translateY > 0 && translateY < shiftYEndPercent
+                proxyModalState.expanded = translateY === 0
+                proxyModalState.hidden = translateY === 100
+
+                if (proxyModalState.hidden) {
+                    this.doCloseModal(proxyModalState)
+                }
+
+                next = () => {
+                    if (!proxyModalState.hidden) {
+                        this.animateTranslate(proxyModalState)
+                    }
+                    this.setMaskOpacity(proxyModalState)
+                }
+
+                this.touchDown = false
+                this.dragging = false
+
+                this.$nextTick(next)
+            }
+        },
     },
     created() {
         this.initModalsState()
+        if (this.$listeners.close) {
+            this.nativeOnClose = this.$listeners.close
+        }
     },
     mounted() {
         this.initActiveModal()
     },
     render(h: any) {
         if (!this.activeModal && !this.prevModal && !this.nextModal && !this.animated) {
+            this.toggleDocumentScrolling(true)
             return h()
         }
 
         return (
-            <touch class={this.classNames} onMove={this.onTouchMove} onEnd={this.onTouchEnd}>
+            <touch class={this.classNames} onMoveY={this.onTouchMove} onEnd={this.onTouchEnd}>
                 <div class="vc-ModalRoot__mask" onClick={this.onMaskClick} ref="maskElementRef" />
                 <div class="vc-ModalRoot__viewport">
                     {this.modals.map((modal: VNode) => {

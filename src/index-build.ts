@@ -39,9 +39,12 @@ import Textarea from './components/Textarea/Textarea'
 import FormLayout from './components/FormLayout/FormLayout'
 import ModalPage from './components/ModalPage/ModalPage'
 import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
+import Cell from './components/Cell'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
+
+import { canUseDOM, lockDomZoom } from './lib/dom'
 
 const components: any = {
     Root,
@@ -85,6 +88,7 @@ const components: any = {
     ModalRoot,
     ModalPage,
     ModalPageHeader,
+    Cell,
 }
 
 export function install(Vue: any, options = {}) {
@@ -95,4 +99,6 @@ export function install(Vue: any, options = {}) {
 
 export default {
     install,
+    lockDomZoom,
+    canUseDOM,
 }

@@ -24,7 +24,7 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     render(h: any) {
         return (
             <IconWrapper>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" id="chevron_back_28"><g fill="none" fill-rule="evenodd"><path d="M0 0h20v28H0z"></path><path d="M4.56 12.94L13 4.5a1.414 1.414 0 012 2L7.5 14l7.5 7.5a1.414 1.414 0 01-2 2l-8.44-8.44a1.5 1.5 0 010-2.12z" fill="currentColor"></path></g></svg>            </IconWrapper>
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" id="download_outline_28"><g fill="none" fill-rule="evenodd"><path d="M0 0h28v28H0z"></path><path d="M21 22a1 1 0 110 2H7a1 1 0 010-2h14zM14 2a1 1 0 011 1v13.585l5.293-5.292a1 1 0 011.414 1.414l-7 7a1 1 0 01-1.414 0l-7-7a1 1 0 011.414-1.414L13 16.585V3a1 1 0 011-1z" fill="currentColor" fill-rule="nonzero"></path></g></svg>            </IconWrapper>
         )
     },
 })
