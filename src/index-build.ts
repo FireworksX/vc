@@ -41,6 +41,7 @@ import ModalPage from './components/ModalPage/ModalPage'
 import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
 import Cell from './components/Cell'
 import Search from './components/Search/Search'
+import Counter from './components/Counter/Counter'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -93,6 +94,7 @@ const components: any = {
     Cell,
     SelectMimicry,
     Search,
+    Counter,
 }
 
 export function install(Vue: any, options = {}) {

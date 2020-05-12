@@ -90,7 +90,9 @@
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-header mode="secondary">
                         Новые события
-                        <span slot="indicator">20</span>
+                        <span slot="indicator">
+                            <vc-counter mode="primary" size="s">20</vc-counter>
+                        </span>
                         <vc-link slot="aside">Показать все </vc-link>
                     </vc-header>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
