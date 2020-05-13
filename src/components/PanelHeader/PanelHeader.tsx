@@ -1,33 +1,19 @@
 import Vue, { VNode } from 'vue'
 import './PanelHeader.sass'
 import getClassName from '@/helpers/getClassName'
+import Separator from '@/components/Separator'
 
 export default Vue.extend({
     name: 'vc-PanelHeader',
+    components: {
+        'vc-Separator': Separator,
+    },
     props: {
         separator: { type: Boolean, default: true },
     },
     computed: {
         classNames(): string {
             return getClassName('vc-PanelHeader')
-        },
-        leftSlot() {
-            if (this.$slots.left !== undefined) {
-                return this.$slots.left[0]
-            }
-            return undefined
-        },
-        rightSlot() {
-            if (this.$slots.right !== undefined) {
-                return this.$slots.right[0]
-            }
-            return undefined
-        },
-        addonSlot() {
-            if (this.$slots.addon !== undefined) {
-                return this.$slots.addon[0]
-            }
-            return undefined
         },
         defaultSlot(): any {
             if (this.$slots.default !== undefined) {
@@ -45,17 +31,23 @@ export default Vue.extend({
         },
     },
     render(h: any) {
+        const { left, addon, right } = this.$slots
+
         return (
             <div class={this.classNames}>
                 <div class="vc-PanelHeader__in">
                     <div class="vc-PanelHeader__left">
-                        <div class="vc-PanelHeader__left-in">{this.leftSlot}</div>
-                        <div class="vc-PanelHeader__left-addon">{this.addonSlot}</div>
+                        <div class="vc-PanelHeader__left-in">{left}</div>
+                        <div class="vc-PanelHeader__left-addon">{addon}</div>
                     </div>
                     <div class="vc-PanelHeader__content">{this.$slots.default}</div>
-                    <div class="vc-PanelHeader__right">{this.rightSlot}</div>
+                    <div class="vc-PanelHeader__right">{right}</div>
                 </div>
-                {this.separator && <div class="vc-PanelHeader__separator"></div>}
+                {this.separator && (
+                    <div class="vc-PanelHeader__separator">
+                        <vc-separator />
+                    </div>
+                )}
             </div>
         )
     },

@@ -19,6 +19,8 @@ module.exports = {
         'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
         indent: ['error', 4],
         semi: 'off',
+        '@typescript-eslint/ban-ts-ignore': 'warn',
+        'import/extensions': 'warn',
         'prettier/prettier': 'error',
         '@typescript-eslint/member-delimiter-style': [
             'error',

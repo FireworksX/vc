@@ -1,0 +1,82 @@
+.vc-UsersStack
+  display: flex
+  align-items: center
+  color: var(--text_secondary)
+
+
+.vc-UsersStack--l-vertical
+  flex-direction: column
+  justify-content: center
+
+
+.vc-UsersStack--ios
+  padding: 8px 12px
+
+
+.vc-UsersStack--android
+  padding: 8px 16px
+
+
+.vc-UsersStack__photos
+  display: flex
+
+
+.vc-UsersStack__photo
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  border-radius: 50%
+
+
+.vc-UsersStack__photo--others
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 13px
+  font-weight: 600
+  color: #fff
+  background: var(--content_placeholder_icon)
+
+
+.vc-UsersStack__photo + .vc-UsersStack__photo
+  margin-left: -2px
+
+
+.vc-UsersStack--size-s .vc-UsersStack__photo
+  width: 24px
+  height: 24px
+
+
+.vc-UsersStack--size-s .vc-UsersStack__photo + .vc-UsersStack__photo
+  clip-path: url(#users_stack_mask_24_left)
+
+
+.vc-UsersStack--size-m .vc-UsersStack__photo
+  width: 32px
+  height: 32px
+
+
+.vc-UsersStack--size-m .vc-UsersStack__photo + .vc-UsersStack__photo
+  clip-path: url(#users_stack_mask_32_left)
+
+
+.vc-UsersStack--with-others.vc-UsersStack--size-m .vc-UsersStack__photo
+  clip-path: url(#users_stack_mask_32_right)
+
+
+.vc-UsersStack--with-others.vc-UsersStack--size-m .vc-UsersStack__photo:last-child
+  clip-path: none
+
+
+.vc-UsersStack__text
+  min-width: 0
+  flex: 1
+  margin: 0 0 0 8px
+  font-size: 13px
+  line-height: 16px
+
+
+.vc-UsersStack--l-vertical .vc-UsersStack__text
+  margin: 8px 0 0
+  text-align: center
+

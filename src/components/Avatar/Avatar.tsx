@@ -20,9 +20,7 @@ interface Computed {
     }
 }
 
-interface Methods {}
-
-export default Vue.extend<Data, Methods, Computed, Props>({
+export default Vue.extend<Data, any, Computed, Props>({
     name: 'vc-Avatar',
     props: {
         src: { type: String },
@@ -43,7 +41,11 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     },
     computed: {
         classNames(): string {
-            return classNames(getClassName('vc-Avatar'), `vc-Avatar--mode-${this.mode}`)
+            return classNames(
+                getClassName('vc-Avatar'),
+                `vc-Avatar--mode-${this.mode}`,
+                `vc-Avatar--sz-${this.size}`
+            )
         },
         styleNames() {
             return {

@@ -6,16 +6,13 @@ export default Vue.extend({
     name: 'vc-Link',
     props: {
         Component: {
-            required: false,
             type: String,
             default: 'a',
         },
         className: {
-            required: false,
             type: String,
         },
         getRootRef: {
-            required: false,
             type: String,
         },
     },
@@ -28,8 +25,22 @@ export default Vue.extend({
         const { Component, className, getRootRef } = this.$props
         const { default: textSlot } = this.$slots
 
+        let onClick: any = () => undefined
+
+        if (this.$listeners.click) {
+            if (Array.isArray(this.$listeners.click)) {
+                ;[onClick] = this.$listeners.click
+            } else {
+                onClick = this.$listeners.click
+            }
+        }
+
         return (
-            <Component ref={getRootRef} class={[getClassName('vc-Link'), className || '']}>
+            <Component
+                ref={getRootRef}
+                class={[getClassName('vc-Link'), className || '']}
+                onClick={onClick}
+            >
                 {textSlot}
             </Component>
         )

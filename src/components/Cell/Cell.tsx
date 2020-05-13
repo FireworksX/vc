@@ -3,7 +3,8 @@ import getClassName from '@/helpers/getClassName'
 import './Cell.sass'
 import usePlatform from '@/hooks/usePlatform'
 import { OS } from '@/lib/platform'
-import Icon24Chevron from '@/icons/24/chevron'
+// @ts-ignore
+import Icon24Chevron from '@fireworksx/vc-icons/dist/24/chevron'
 
 export default Vue.extend({
     name: 'vc-Cell',

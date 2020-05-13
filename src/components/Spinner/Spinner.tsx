@@ -1,9 +1,14 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import Spinner16 from '../../icons/16/spinner'
-import Spinner24 from '../../icons/24/spinner'
-import Spinner32 from '../../icons/32/spinner'
-import Spinner44 from '../../icons/44/spinner'
+// @ts-ignore
+import Spinner16 from '@fireworksx/vc-icons/dist/16/spinner'
+// @ts-ignore
+import Spinner24 from '@fireworksx/vc-icons/dist/24/spinner'
+// @ts-ignore
+import Spinner32 from '@fireworksx/vc-icons/dist/32/spinner'
+// @ts-ignore
+import Spinner44 from '@fireworksx/vc-icons/dist/44/spinner'
+
 import './Spinner.sass'
 
 export default Vue.extend<any, any, any, { size: string }>({

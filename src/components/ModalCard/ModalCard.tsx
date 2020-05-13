@@ -5,14 +5,15 @@ import classNames from '@/lib/classNames'
 import Button from '@/components/Button'
 import { OS, platform } from '@/lib/platform'
 import PanelHeaderButton from '@/components/PanelHeaderButton'
-import IconDismiss from '@/icons/24/dismiss'
+// @ts-ignore
+import Icon24Dismiss from '@fireworksx/vc-icons/dist/24/dismiss'
 
 export default Vue.extend({
     name: 'vc-ModalCard',
     components: {
         'vc-button': Button,
         'vc-panel-headerButton': PanelHeaderButton,
-        IconDismiss,
+      Icon24Dismiss,
     },
     props: {
         actions: { type: Array, default: () => [] },
@@ -61,7 +62,7 @@ export default Vue.extend({
                         )}
                         {platform() === OS.IOS && (
                             <vc-panel-header-button class="vc-ModalCard__dismiss" onClick={onClose}>
-                                <icon-dismiss />
+                                <icon-24-dismiss />
                             </vc-panel-header-button>
                         )}
                     </div>

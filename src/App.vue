@@ -1,7 +1,18 @@
 <template>
     <div id="app">
-        <vc-root :active-view="activeView">
-            <vc-view name="main-view" active-panel="1">
+        <vc-epic :active-story="activeStory">
+            <vc-tabbar slot="tabbar">
+                <vc-tabbar-item :selected="activeStory === 'home'" text="Главная">
+                    <home-outline-28 />
+                </vc-tabbar-item>
+                <vc-tabbar-item text="Мужчинам" :selected="activeStory === 'men'">
+                    <ghost-outline-28 />
+                </vc-tabbar-item>
+                <vc-tabbar-item text="Прочее" :selected="activeStory === 'other'">
+                    <menu-outline-28 />
+                </vc-tabbar-item>
+            </vc-tabbar>
+            <vc-view name="home" active-panel="1">
                 <vc-modal-root slot="modal" :active-modal="activeModal">
                     <vc-modal-card
                         name="sendMoney"
@@ -11,11 +22,12 @@
                         <template slot="header"
                             >Отправляйте деньги друзьям, используя банковскую карту</template
                         >
-                        <template slot="caption"
-                            >Номер карты получателя не нужен — он сам решит, куда зачислить
-                            средства.</template
-                        >
-                        <icon-money-transfer slot="icon" />
+                        <template slot="caption">
+                            <vc-user-stack :photos="photos"
+                                >Иван и ещё 2 ваших друга подписаны</vc-user-stack
+                            >
+                        </template>
+                        <money-transfer-56 slot="icon" />
                     </vc-modal-card>
                     <vc-modal-card
                         name="passMoney"
@@ -81,15 +93,14 @@
                     </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
-                    <vc-panel-header
-                        >Главная
+                    <vc-panel-header>
+                        Lamoda
                         <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
-                            <vc-icon-28-market />
+                            <market-28 />
                         </vc-panel-header-button>
                     </vc-panel-header>
                     <vc-div>
                         <vc-button size="xl" @click="snack = 1">
-                            <icon-add-circle slot="before" />
                             Добавить товар в избранное</vc-button
                         >
                     </vc-div>
@@ -107,11 +118,12 @@
                     <vc-group>
                         <vc-header slot="header">Меню</vc-header>
                         <vc-cell expandable indicator="10" @click="activeModal = 'profileInfo'">
-                            <icon-chats-outline slot="before" />
+                            <attachments-28 slot="before" />
                             Сообщения</vc-cell
                         >
                     </vc-group>
-                    <vc-icon-56-mention-outline />
+
+                    <vc-link @click="activeModal = 'sendMoney'">Подробнее</vc-link>
 
                     <vc-snackbar
                         v-if="snack === 1"
@@ -128,34 +140,40 @@
                     </vc-snackbar>
                 </vc-panel>
             </vc-view>
-        </vc-root>
+        </vc-epic>
     </div>
 </template>
 
 <script>
-import IconMessage from '@/icons/28/message_outline'
-import IconFeed from '@/icons/28/newsfeed_outline'
-import IconSearch from '@/icons/28/search_outline'
-import IconMoneyTransfer from '@/icons/56/money_transfer'
-import IconAddCircle from '@/icons/28/add_circle_outline'
-import IconChatsOutline from '@/icons/28/chats_outline'
-// import AboutPage from '@/AboutPage'
+import './styles/space_gray.sass'
+import HomeOutline28 from '@fireworksx/vc-icons/dist/28/home_outline'
+import GhostOutline28 from '@fireworksx/vc-icons/dist/28/ghost_outline'
+import MenuOutline28 from '@fireworksx/vc-icons/dist/28/menu_outline'
+import Market28 from '@fireworksx/vc-icons/dist/28/market_outline'
+import Attachments28 from '@fireworksx/vc-icons/dist/28/attachments'
+import MoneyTransfer56 from '@fireworksx/vc-icons/dist/56/money_transfer_outline'
 
 export default {
     name: 'App',
     components: {
-        // 'vc-icon-message': IconMessage,
-        // 'vc-icon-feed': IconFeed,
-        // 'vc-icon-search': IconSearch,
-        IconAddCircle,
-        IconMoneyTransfer,
-        IconChatsOutline,
+        HomeOutline28,
+        GhostOutline28,
+        MenuOutline28,
+        MoneyTransfer56,
+        Market28,
+        Attachments28,
     },
     data() {
         return {
+            activeStory: 'home',
             activeView: 'main-view',
             activePanel: '1',
             activeModal: null,
+            photos: [
+                'https://sun9-60.userapi.com/c855124/v855124003/167f36/TzgXYX1Izqk.jpg?ava=1',
+                'https://sun9-34.userapi.com/c857132/v857132690/49628/r4wBoWw0mJI.jpg?ava=1',
+                'https://sun9-49.userapi.com/c850332/v850332555/115030/JyNJrr4cytY.jpg?ava=1',
+            ],
             snack: null,
             snackAction: {
                 title: 'Убрать',
@@ -179,6 +197,7 @@ export default {
                 left: `50px`,
                 top: `50px`,
             },
+            switchChecked: false,
         }
     },
     methods: {

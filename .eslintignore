@@ -1,0 +1,3 @@
+/src/lib/*.ts
+/src/index-build.ts
+/src/icons/*.tsx

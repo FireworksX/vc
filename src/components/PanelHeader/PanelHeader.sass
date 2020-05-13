@@ -70,13 +70,13 @@
  */
 
 .vc-PanelHeader--ios ~ .vc-FixedLayout--top
-  top: calc(var(--PanelHeader_height_ios) + var(--safe-area-inset-top))
+  top: calc(var(--panelheader_height_ios) + var(--safe-area-inset-top))
 
 
 .vc-PanelHeader--ios::before,
 .vc-PanelHeader--ios .vc-PanelHeader__in
-  height: var(--PanelHeader_height_ios)
-  padding-top: var(--safe-area-inset-top)
+  height: var(--panelheader_height_ios)
+  // padding-top: var(--safe-area-inset-top)
 
 
 .vc-PanelHeader--ios .vc-PanelHeader__left
@@ -99,7 +99,7 @@
 
 .vc-PanelHeader--ios .vc-PanelHeader__content
   font-size: 21px
-  line-height: var(--PanelHeader_height_ios)
+  line-height: var(--panelheader_height_ios)
   text-align: center
   opacity: 1
   transition: opacity .3s var(--ios-easing)
@@ -149,13 +149,13 @@
  */
 
 .vc-PanelHeader--android ~ .FixedLayout--top
-  top: calc(var(--PanelHeader_height_android) + var(--safe-area-inset-top))
+  top: calc(var(--panelheader_height_android) + var(--safe-area-inset-top))
 
 
 .vc-PanelHeader--android::before,
 .vc-PanelHeader--android .vc-PanelHeader__in
-  height: var(--PanelHeader_height_android)
-  padding-top: var(--safe-area-inset-top)
+  height: var(--panelheader_height_android)
+  // padding-top: var(--safe-area-inset-top)
 
 
 .vc-PanelHeader--android .vc-PanelHeader__left:not(:empty)

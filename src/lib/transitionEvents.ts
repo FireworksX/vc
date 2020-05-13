@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 let supported: boolean = false
 let prefix: string | undefined = undefined
 
@@ -22,7 +23,6 @@ if (typeof document !== 'undefined' && document.createElement) {
 const transitionEndEventName: string = prefix ? prefix + 'TransitionEnd' : 'transitionend'
 const animationEndEventName: string = prefix ? prefix + 'AnimationEnd' : 'animationend'
 
-// @ts-ignore
 export default {
     supported,
     prefix,

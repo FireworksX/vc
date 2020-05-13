@@ -46,6 +46,8 @@ import './styles/bright_light.sass'
 import './styles/conts.sass'
 
 import { canUseDOM, lockDomZoom } from './lib/dom'
+import { setTheme } from './lib/styles'
+import UserStack from '@/components/UserStack/UserStack'
 
 const components: any = {
     Root,
@@ -91,16 +93,20 @@ const components: any = {
     ModalPageHeader,
     Cell,
     HorizontalScroll,
+    UserStack,
 }
 
 export function install(Vue: any, options = {}) {
     Object.keys(components).forEach(key => {
         Vue.component(`Vc${key}`, components[key])
     })
+
+    Vue.prototype.$setTheme = setTheme
 }
 
 export default {
     install,
     lockDomZoom,
     canUseDOM,
+    setTheme,
 }
