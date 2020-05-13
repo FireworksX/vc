@@ -41,11 +41,17 @@ import ModalPage from './components/ModalPage/ModalPage'
 import ModalPageHeader from './components/ModalPageHeader/ModalPageHeader'
 import Cell from './components/Cell'
 import HorizontalScroll from './components/HorizontalScroll'
+import Search from './components/Search/Search'
+import Counter from './components/Counter/Counter'
+import FormStatus from './components/FormStatus/FormStatus'
+import Progress from './components/Progress/Progress'
+import FormLayoutGroup from './components/FormLayoutGroup/FormLayoutGroup'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
 
 import { canUseDOM, lockDomZoom } from './lib/dom'
+import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 import { setTheme } from './lib/styles'
 import UserStack from '@/components/UserStack/UserStack'
 
@@ -94,6 +100,12 @@ const components: any = {
     Cell,
     HorizontalScroll,
     UserStack,
+    SelectMimicry,
+    Search,
+    Counter,
+    FormStatus,
+    Progress,
+    FormLayoutGroup,
 }
 
 export function install(Vue: any, options = {}) {
