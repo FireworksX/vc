@@ -55,6 +55,11 @@
                     <vc-panel-header>Новости</vc-panel-header>
                     <button @click="pop = 2">SowPop</button>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
+                    <vc-info-row>
+                        <span slot="header">40%</span>
+                        <vc-progress :value="40"></vc-progress>
+                    </vc-info-row>
+                    <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-form-layout>
                         <vc-form-status
                             class="eblan"

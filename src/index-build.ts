@@ -43,6 +43,7 @@ import Cell from './components/Cell'
 import Search from './components/Search/Search'
 import Counter from './components/Counter/Counter'
 import FormStatus from './components/FormStatus/FormStatus'
+import Progress from './components/Progress/Progress'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -97,6 +98,7 @@ const components: any = {
     Search,
     Counter,
     FormStatus,
+    Progress,
 }
 
 export function install(Vue: any, options = {}) {
