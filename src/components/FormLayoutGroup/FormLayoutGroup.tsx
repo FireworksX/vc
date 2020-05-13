@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './FormLayoutGroup.sass'
 
 export default Vue.extend({
     name: 'vc-FormLayoutGroup',

@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Cell.sass'
 import usePlatform from '@/hooks/usePlatform'
 import { OS } from '@/lib/platform'
 // @ts-ignore

@@ -2,7 +2,6 @@ import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import PopoutWrapper from '@/components/PopoutWrapper'
 import Spinner from '@/components/Spinner'
-import './ScreenSpinner.sass'
 
 export default Vue.extend({
     name: 'vc-ScreenSpinner',

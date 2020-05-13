@@ -9,8 +9,6 @@ import Spinner32 from '@fireworksx/vc-icons/dist/32/spinner'
 // @ts-ignore
 import Spinner44 from '@fireworksx/vc-icons/dist/44/spinner'
 
-import './Spinner.sass'
-
 export default Vue.extend<any, any, any, { size: string }>({
     name: 'vc-Spinner',
     props: {

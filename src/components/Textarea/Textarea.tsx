@@ -1,12 +1,11 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Textarea.sass'
-import FromField from '@/components/FormField/FromField'
+import FormField from '@/components/FormField/FormField'
 
 export default Vue.extend({
     name: 'vc-Textarea',
     components: {
-        'vc-form-field': FromField,
+        'vc-form-field': FormField,
     },
     props: {
         className: {

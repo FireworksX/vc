@@ -1,6 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import FromField from '@/components/FormField/FromField'
+import FormField from '@/components/FormField/FormField'
 // @ts-ignore
 import Icon24Dropdown from '@fireworksx/vc-icons/dist/24/dropdown'
 import { InputAlighTypes } from './helpers'
@@ -8,7 +8,7 @@ import { InputAlighTypes } from './helpers'
 export default Vue.extend({
     name: 'vc-Select',
     components: {
-        'vc-form-field': FromField,
+        'vc-form-field': FormField,
         'vc-icon-dropdown': Icon24Dropdown,
     },
     props: {

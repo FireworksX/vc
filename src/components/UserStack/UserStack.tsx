@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './UserStack.sass'
 import { createMasks } from '@/components/UserStack/masks'
 
 export default Vue.extend({

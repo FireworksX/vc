@@ -1,13 +1,12 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Input.sass'
-import FromField from '@/components/FormField/FromField'
+import FormField from '@/components/FormField/FormField'
 import { InputAlighTypes } from './helpers'
 
 export default Vue.extend({
     name: 'vc-Input',
     components: {
-        'vc-form-field': FromField,
+        'vc-form-field': FormField,
     },
     props: {
         className: {

@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Switch.sass'
 
 export default Vue.extend({
     name: 'vc-Switch',

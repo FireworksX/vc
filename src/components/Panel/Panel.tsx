@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Panel.sass'
 
 export default Vue.extend({
     name: 'vc-Panel',

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './TabbarItem.sass'
 
 interface Props {
     label: string

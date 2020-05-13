@@ -1,3 +1,3 @@
-import FromField from './FromField'
+import FormField from './FormField'
 
-export default FromField
+export default FormField

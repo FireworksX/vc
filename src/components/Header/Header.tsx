@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Header.sass'
 import { HeaderModes } from './helpers'
 
 export default Vue.extend({

@@ -1,7 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import Touch from '@/components/Touch'
-import './Slider.sass'
 import { canUseDOM } from '@/lib/dom'
 
 export function precisionRound(number: number, precision: number) {

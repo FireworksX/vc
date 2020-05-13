@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Group.sass'
 import classNames from '@/lib/classNames'
 import Separator from '@/components/Separator'
 

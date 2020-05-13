@@ -1,6 +1,5 @@
 import Vue, { CreateElement, VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './PopoutWrapper.sass'
 
 export default Vue.extend({
     name: 'vc-PopoutWrapper',

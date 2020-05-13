@@ -1,7 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Search.sass'
-import FromField from '@/components/FormField/FromField'
+import FormField from '@/components/FormField/FormField'
 // import searchOutline from '@/icons/16/search_outline'
 // import clear from '@/icons/16/clear'
 
@@ -13,7 +12,7 @@ import clear from '@fireworksx/vc-icons/dist/16/clear'
 export default Vue.extend({
     name: 'vc-Search',
     components: {
-        'vc-form-field': FromField,
+        'vc-form-field': FormField,
         'vc-icon-search': search,
         'vc-icon-clear': clear,
     },

@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './FromField.sass'
 import { FormFieldStatuses } from './helpers'
 
 export default Vue.extend({

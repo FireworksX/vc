@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './FormStatus.sass'
 import { FormStatusModes } from './helpers'
 
 export default Vue.extend({

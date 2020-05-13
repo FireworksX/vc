@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Button.sass'
 import { ButtonModes, ButtonSizes } from './helpers'
 
 export default Vue.extend({

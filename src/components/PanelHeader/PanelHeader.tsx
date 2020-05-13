@@ -1,5 +1,4 @@
 import Vue, { VNode } from 'vue'
-import './PanelHeader.sass'
 import getClassName from '@/helpers/getClassName'
 import Separator from '@/components/Separator'
 

@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './View.sass'
 import waitTransitionFinish from '@/helpers/waitTransitionFinish'
 
 interface Data {

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import './PanelHeaderButton.sass'
 import getClassName from '@/helpers/getClassName'
 
 export default Vue.extend({

@@ -1,6 +1,5 @@
 import Vue, { CreateElement, VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './ActionSheetItem.sass'
 
 export default Vue.extend({
     name: 'vc-ActionSheetItem',

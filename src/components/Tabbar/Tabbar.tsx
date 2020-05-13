@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Tabbar.sass'
 import classNames from '@/lib/classNames'
 
 interface Props {

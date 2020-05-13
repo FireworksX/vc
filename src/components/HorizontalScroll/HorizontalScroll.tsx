@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './HorizontalScroll.sass'
 
 export default Vue.extend({
     name: 'vc-HorizontalScroll',

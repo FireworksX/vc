@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Counter.sass'
 import { CounterSize, CounterModes } from '@/components/Counter/helpers'
 
 export default Vue.extend({

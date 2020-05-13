@@ -1,7 +1,6 @@
 import Vue, { CreateElement, VNode } from 'vue'
 import PopoutWrapper from '@/components/PopoutWrapper/PopoutWrapper'
 import getClassName from '@/helpers/getClassName'
-import './ActionSheet.sass'
 import waitTransitionFinish from '@/helpers/waitTransitionFinish'
 
 export default Vue.extend({

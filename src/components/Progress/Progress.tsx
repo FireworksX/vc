@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Progress.sass'
 
 export default Vue.extend({
     name: 'vc-Progress',

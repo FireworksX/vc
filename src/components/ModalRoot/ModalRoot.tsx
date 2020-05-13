@@ -1,7 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import Touch from '@/components/Touch'
-import './ModalRoot.sass'
 import vueListenersAdapter from '@/helpers/vueListenersAdapter'
 import transitionEvents from '@/lib/transitionEvents'
 import setTransformStyle from '@/lib/styles'

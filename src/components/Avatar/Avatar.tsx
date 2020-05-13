@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Avatar.sass'
 import classNames from '@/lib/classNames'
 
 interface Props {

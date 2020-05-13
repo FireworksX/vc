@@ -1,6 +1,5 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import './Placeholder.sass'
 import classNames from '@/lib/classNames'
 
 export default Vue.extend({
