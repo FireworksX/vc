@@ -38,7 +38,7 @@ export default Vue.extend({
         },
     },
     render(h: any) {
-        const { align, value } = this.$props
+        const { align, value, type } = this.$props
         const { style, status, top, bottom, autofocus, placeholder, disabled }: any = this.$attrs
 
         return (
@@ -52,6 +52,7 @@ export default Vue.extend({
                 <input
                     class="vc-Input__el"
                     value={value}
+                    type={type}
                     oninput={this.$emit('input', this.localValue)}
                     disabled={disabled || false}
                     autofocus={autofocus}

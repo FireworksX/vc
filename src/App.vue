@@ -67,6 +67,13 @@
                             header="Попробуйте ввести дргуие данные"
                             >Ты еблан?</vc-form-status
                         >
+                        <vc-form-layout-group
+                            top="Пароль"
+                            bottom="Пароль может содержать только латинские буквы и цифры."
+                        >
+                            <vc-input type="password" placeholder="Введите пароль" />
+                            <vc-input type="password" placeholder="Повторите пароль" />
+                        </vc-form-layout-group>
                         <vc-textarea
                             v-model="inputs.textarea"
                             :placeholder="'test textfield'"

@@ -44,6 +44,7 @@ import Search from './components/Search/Search'
 import Counter from './components/Counter/Counter'
 import FormStatus from './components/FormStatus/FormStatus'
 import Progress from './components/Progress/Progress'
+import FormLayoutGroup from './components/FormLayoutGroup/FormLayoutGroup'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -99,6 +100,7 @@ const components: any = {
     Counter,
     FormStatus,
     Progress,
+    FormLayoutGroup,
 }
 
 export function install(Vue: any, options = {}) {
