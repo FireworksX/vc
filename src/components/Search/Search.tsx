@@ -2,14 +2,19 @@ import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import './Search.sass'
 import FromField from '@/components/FormField/FromField'
-import searchOutline from '@/icons/16/search_outline'
-import clear from '@/icons/16/clear'
+// import searchOutline from '@/icons/16/search_outline'
+// import clear from '@/icons/16/clear'
+
+// @ts-ignore
+import search from '@fireworksx/vc-icons/dist/16/search'
+// @ts-ignore
+import clear from '@fireworksx/vc-icons/dist/16/clear'
 
 export default Vue.extend({
     name: 'vc-Search',
     components: {
         'vc-form-field': FromField,
-        'vc-icon-search-outline': searchOutline,
+        'vc-icon-search': search,
         'vc-icon-clear': clear,
     },
     props: {
@@ -98,7 +103,7 @@ export default Vue.extend({
 
                         <div class="vc-Search__placeholder">
                             <div class="vc-Search__placeholder-in">
-                                <vc-icon-search-outline size={16} />
+                                <vc-icon-search size={16} />
                                 <div class="vc-Search__placeholder-text">
                                     {this.value ? '' : placeholder || 'Поиск'}
                                 </div>
