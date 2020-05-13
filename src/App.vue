@@ -56,6 +56,12 @@
                     <button @click="pop = 2">SowPop</button>
                     <vc-separator style="margin: 20px 0;"></vc-separator>
                     <vc-form-layout>
+                        <vc-form-status
+                            class="eblan"
+                            mode="error"
+                            header="Попробуйте ввести дргуие данные"
+                            >Ты еблан?</vc-form-status
+                        >
                         <vc-textarea
                             v-model="inputs.textarea"
                             :placeholder="'test textfield'"
