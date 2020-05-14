@@ -105,6 +105,11 @@
                         >
                     </vc-div>
                     <vc-div>
+                        <vc-file size="xl" stretched @input="catchFiles">
+                            <camera24 slot="before" /> Открыть галерею
+                        </vc-file>
+                    </vc-div>
+                    <vc-div>
                         <vc-button size="xl" mode="secondary" @click="activeModal = 'sendMoney'"
                             >Перевести деньги</vc-button
                         >
@@ -152,6 +157,7 @@ import MenuOutline28 from '@fireworksx/vc-icons/dist/28/menu_outline'
 import Market28 from '@fireworksx/vc-icons/dist/28/market_outline'
 import Attachments28 from '@fireworksx/vc-icons/dist/28/attachments'
 import MoneyTransfer56 from '@fireworksx/vc-icons/dist/56/money_transfer_outline'
+import Camera24 from '@fireworksx/vc-icons/dist/24/camera'
 
 export default {
     name: 'App',
@@ -162,6 +168,7 @@ export default {
         MoneyTransfer56,
         Market28,
         Attachments28,
+        Camera24,
     },
     data() {
         return {
@@ -198,6 +205,7 @@ export default {
                 top: `50px`,
             },
             switchChecked: false,
+            files: [],
         }
     },
     methods: {
@@ -219,6 +227,10 @@ export default {
         startDrag(data) {
             this.buttonStyle.top = `${data.shiftYAbs}px`
             this.buttonStyle.left = `${data.shiftXAbs}px`
+        },
+        catchFiles(e) {
+            this.files.push(e)
+            console.log(this.files, 'files')
         },
     },
 }

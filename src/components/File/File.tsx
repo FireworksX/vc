@@ -1,9 +1,11 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
+import Button from '@/components/Button/Button'
 import { ButtonModes, ButtonSizes } from './helpers'
 
 export default Vue.extend({
-    name: 'vc-Button',
+    name: 'vc-File',
+    components: { 'vc-button': Button },
     props: {
         mode: {
             required: false,
@@ -32,24 +34,26 @@ export default Vue.extend({
             required: false,
             type: String,
         },
-        tag: { type: String, default: 'button' },
-        // TODO "getRootRef" after "Tapable" component
-    },
-    data() {
-        return {
-            views: [],
-            viewStore: [],
-            isBack: false,
-        }
+        originalEvent: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         classNames(): string {
-            return getClassName('vc-Button')
+            return getClassName('vc-File')
+        },
+    },
+    methods: {
+        emitVal(e: any) {
+            if (!this.originalEvent) {
+                this.$emit('input', e.target.files[0])
+            } else this.$emit('input', e)
         },
     },
     render(h: any) {
+        const { size, mode, align, className, stretched } = this.$props
         const { default: children, before, after } = this.$slots
-        const { size, mode, align, className, stretched, tag } = this.$props
         let { click } = this.$listeners
 
         if (click === undefined) {
@@ -57,25 +61,21 @@ export default Vue.extend({
         }
 
         return (
-            <tag
+            <vc-button
                 role="button"
-                class={[
-                    this.classNames,
-                    className,
-                    'vc-Button__wrapper',
-                    `vc-Button--sz-${size}`,
-                    `vc-Button--lvl-${mode}`,
-                    `vc-Button--aln-${align}`,
-                    stretched ? 'vc-Button--str' : '',
-                ]}
+                class={[this.classNames]}
+                size={size}
+                mode={mode}
+                align={align}
+                stretched={stretched}
+                tag="label"
                 onClick={click}
             >
-                <div class="vc-Button__in">
-                    {before && <div class="vc-Button__before">{before}</div>}
-                    {children && <div class="vc-Button__content">{children}</div>}
-                    {after && <div class="vc-Button__after">{after}</div>}
-                </div>
-            </tag>
+                {before && <template slot="before">{before}</template>}
+                <input class="vc-File__input" type="file" oninput={this.emitVal} />
+                {children}
+                {after && <template slot="after">{after}</template>}
+            </vc-button>
         )
     },
 })
