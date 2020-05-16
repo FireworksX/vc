@@ -46,6 +46,7 @@ import Counter from './components/Counter/Counter'
 import FormStatus from './components/FormStatus/FormStatus'
 import Progress from './components/Progress/Progress'
 import FormLayoutGroup from './components/FormLayoutGroup/FormLayoutGroup'
+import File from './components/File/File'
 
 import './styles/bright_light.sass'
 import './styles/conts.sass'
@@ -108,6 +109,7 @@ const components: any = {
     FormStatus,
     Progress,
     FormLayoutGroup,
+    File,
     PullToRefresh,
 }
 
@@ -115,6 +117,8 @@ export interface PluginOptions {
     platform?: OS
 }
 
+export function install(Vue: any, options = {}) {
+    Object.keys(components).forEach((key) => {
 export function install(Vue: any, options: PluginOptions = {}) {
     if (options !== undefined) {
         if (options.platform !== undefined) {
