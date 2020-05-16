@@ -1,13 +1,20 @@
-.vc-vc-PanelHeader
+.vc-PanelHeader
   position: relative
-
+  background: var(--header_background)
+  transition: .4s
 
 .vc-PanelHeader--vis::before
   display: block
   content: ''
 
+.vc-PanelHeader_fixed
+  position: sticky
+  top: 0
 
-.FixedLayout.vc-PanelHeader__fixed
+.vc-PanelHeader_hidden
+  transform: translateY(-100%)
+
+.vc-FixedLayout .vc-PanelHeader__fixed
   z-index: 10
 
 

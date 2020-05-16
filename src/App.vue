@@ -23,7 +23,7 @@
                             >Отправляйте деньги друзьям, используя банковскую карту</template
                         >
                         <template slot="caption">
-                            <vc-user-stack :photos="photos"
+                            <vc-user-stack layout="vertical" size="m" :photos="photos"
                                 >Иван и ещё 2 ваших друга подписаны</vc-user-stack
                             >
                         </template>
@@ -42,7 +42,9 @@
                     <vc-modal-page name="searchCity" @close="closeModal">
                         <vc-modal-page-header slot="header">Фильтрация</vc-modal-page-header>
                         <vc-div
-                            ><vc-button size="xl" mode="secondary">Выбор страны</vc-button></vc-div
+                            ><vc-button size="xl" mode="secondary" @click="activeModal = 'country'"
+                                >Выбор страны</vc-button
+                            ></vc-div
                         >
                         <vc-div
                             ><vc-button
@@ -65,6 +67,29 @@
                             <vc-checkbox>С фотографией</vc-checkbox>
                             <vc-checkbox>Сейчас на сайте</vc-checkbox>
                         </vc-form-layout-group>
+                    </vc-modal-page>
+                    <vc-modal-page name="country" @close="closeModal">
+                        <vc-modal-page-header slot="header">Выбор страны</vc-modal-page-header>
+                        <vc-list>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Дата рождения</template>
+                                    20 января 1997
+                                </vc-info-row>
+                            </vc-div>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Родной город</template>
+                                    Лодейное Поле
+                                </vc-info-row>
+                            </vc-div>
+                            <vc-div>
+                                <vc-info-row>
+                                    <template slot="header">Место работы</template>
+                                    mod:
+                                </vc-info-row>
+                            </vc-div>
+                        </vc-list>
                     </vc-modal-page>
                     <vc-modal-page name="profileInfo" @close="closeModal">
                         <vc-modal-page-header slot="header"
@@ -93,7 +118,7 @@
                     </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
-                    <vc-panel-header>
+                    <vc-panel-header layout="auto">
                         Lamoda
                         <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
                             <market-28 />
@@ -107,6 +132,56 @@
                     <vc-div>
                         <vc-button size="xl" mode="secondary" @click="activeModal = 'sendMoney'"
                             >Перевести деньги</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
+                            >Поиск брендов</vc-button
                         >
                     </vc-div>
                     <vc-div>
@@ -138,6 +213,14 @@
                         />
                         Товар "Marks & Spencer - Комплект" добавлен в избанное
                     </vc-snackbar>
+                </vc-panel>
+                <vc-panel name="2">
+                    <vc-panel-header>Список сотрудников</vc-panel-header>
+                    <vc-fixed-layout vertical="top">
+                        <vc-div>
+                            <vc-button size="xl">Перейти в корзину</vc-button>
+                        </vc-div>
+                    </vc-fixed-layout>
                 </vc-panel>
             </vc-view>
         </vc-epic>
@@ -198,6 +281,28 @@ export default {
                 top: `50px`,
             },
             switchChecked: false,
+            workers: [
+                {
+                    name: 'Влад Анесов',
+                    avatar:
+                        'https://sun9-44.userapi.com/c858128/v858128761/67fe1/nAnraWnpHK8.jpg?ava=1',
+                },
+                {
+                    name: 'Влад Анесов',
+                    avatar:
+                        'https://sun9-44.userapi.com/c858128/v858128761/67fe1/nAnraWnpHK8.jpg?ava=1',
+                },
+                {
+                    name: 'Влад Анесов',
+                    avatar:
+                        'https://sun9-44.userapi.com/c858128/v858128761/67fe1/nAnraWnpHK8.jpg?ava=1',
+                },
+                {
+                    name: 'Влад Анесов',
+                    avatar:
+                        'https://sun9-44.userapi.com/c858128/v858128761/67fe1/nAnraWnpHK8.jpg?ava=1',
+                },
+            ],
         }
     },
     methods: {

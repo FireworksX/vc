@@ -1,0 +1,95 @@
+.vc-PullToRefresh
+  height: 100%
+
+.vc-PullToRefresh .vc-FixedLayout
+  width: 100%
+
+.vc-PullToRefresh--refreshing
+  touch-action: none
+  pointer-events: none
+
+
+.vc-PullToRefresh__controls
+  left: 0
+  width: 100%
+  pointer-events: none
+  z-index: 100
+
+
+.vc-PullToRefresh--ios .vc-PullToRefresh__controls
+  z-index: 0
+
+
+.vc-PullToRefresh__spinner
+  display: flex
+  margin: auto
+  width: 40px
+  height: 40px
+  align-items: center
+  justify-content: center
+  box-sizing: border-box
+  transition: transform 300ms cubic-bezier(.1, 0, .25, 1), opacity 220ms ease-out
+  opacity: 0
+
+
+.vc-PullToRefresh--ios .vc-PullToRefresh__spinner
+  color: var(--activity_indicator_tint)
+
+
+.vc-PullToRefresh--android .vc-PullToRefresh__spinner
+  background: var(--background_suggestions)
+  border-radius: 50%
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .2)
+  color: var(--accent)
+
+
+.vc-PullToRefresh--watching .vc-PullToRefresh__spinner
+  transition: opacity 220ms ease-out
+
+
+.vc-PullToRefresh__spinner-self
+  stroke: currentColor
+
+
+.vc-PullToRefresh--ios.vc-PullToRefresh--refreshing .vc-PullToRefresh__spinner-self
+  animation: vc-PullToRefreshToRefreshing 380ms ease-out
+
+
+.vc-PullToRefresh__spinner-path
+  transform: rotate(-90deg)
+  transform-origin: center center
+  transition: stroke-dashoffset 167ms ease-out
+
+
+.vc-PullToRefresh--watching .vc-PullToRefresh__spinner-path,
+.vc-PullToRefresh--refreshing .vc-PullToRefresh__spinner-path
+  transition: none
+
+
+.vc-PullToRefresh__spinner--on .vc-PullToRefresh__spinner-path
+  animation: rotator var(--duration) linear infinite
+
+
+.vc-PullToRefresh__content
+  overflow: hidden
+  transition: transform 400ms var(--ios-easing)
+
+
+.vc-PullToRefresh--watching .vc-PullToRefresh__content
+  transition: none
+
+
+@keyframes vc-PullToRefreshToRefreshing
+  0%
+    transform: scale(1)
+
+  30%
+    transform: scale(.6)
+
+  90%
+    transform: scale(1.1)
+
+  100%
+    transform: scale(1)
+
+

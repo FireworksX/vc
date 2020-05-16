@@ -1,6 +1,7 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import Separator from '@/components/Separator'
+import { canUseDOM } from '@/lib/dom'
 
 export default Vue.extend({
     name: 'vc-PanelHeader',
@@ -9,10 +10,24 @@ export default Vue.extend({
     },
     props: {
         separator: { type: Boolean, default: true },
+        layout: { type: String, default: 'default' }, // default, fixed, auto
+    },
+    watch: {
+        layout(value) {
+            if (value === 'auto') {
+                this.subscribeAutoLayout()
+            }
+        },
     },
     computed: {
-        classNames(): string {
-            return getClassName('vc-PanelHeader')
+        classNames(): any {
+            return [
+                getClassName('vc-PanelHeader'),
+                {
+                    'vc-PanelHeader_fixed': this.layout === 'fixed' || this.layout === 'auto',
+                    'vc-PanelHeader_hidden': this.isHidden,
+                },
+            ]
         },
         defaultSlot(): any {
             if (this.$slots.default !== undefined) {
@@ -24,10 +39,28 @@ export default Vue.extend({
             return undefined
         },
     },
+    data() {
+        return {
+            isHidden: false,
+            saveYOffset: 0,
+        }
+    },
     methods: {
-        getPanelId(node: VNode) {
-            return undefined
+        subscribeAutoLayout() {
+            if (canUseDOM) {
+                document.addEventListener('scroll', () => this.doAutoDetect(window.pageYOffset))
+            }
         },
+
+        doAutoDetect(scrollYOffset: number) {
+            this.isHidden = scrollYOffset > this.saveYOffset
+            this.saveYOffset = scrollYOffset
+        },
+    },
+    mounted() {
+        if (this.layout === 'auto') {
+            this.subscribeAutoLayout()
+        }
     },
     render(h: any) {
         const { left, addon, right } = this.$slots

@@ -54,6 +54,8 @@ import { canUseDOM, lockDomZoom } from './lib/dom'
 import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 import { setTheme } from './lib/styles'
 import UserStack from '@/components/UserStack/UserStack'
+import PullToRefresh from '@/components/PullToRefresh/PullToRefresh'
+import { OS, setForcePlatform } from '@/lib/platform'
 
 const components: any = {
     Root,
@@ -106,9 +108,20 @@ const components: any = {
     FormStatus,
     Progress,
     FormLayoutGroup,
+    PullToRefresh,
 }
 
-export function install(Vue: any, options = {}) {
+export interface PluginOptions {
+    platform?: OS
+}
+
+export function install(Vue: any, options: PluginOptions = {}) {
+    if (options !== undefined) {
+        if (options.platform !== undefined) {
+            setForcePlatform(options.platform)
+        }
+    }
+
     Object.keys(components).forEach(key => {
         Vue.component(`Vc${key}`, components[key])
     })

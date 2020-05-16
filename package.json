@@ -1,6 +1,6 @@
 {
   "name": "@fireworksx/vc_ui",
-  "version": "0.1.93",
+  "version": "0.1.94",
   "module": "dist/vc.umd.js",
   "main": "dist/vc.umd.js",
   "typings": "types/index.d.ts",
@@ -14,13 +14,14 @@
     "serve": "vue-cli-service serve --fix",
     "build": "yarn build:components & yarn build:icons && yarn build:theme:main && yarn build:theme:space_gray",
     "build:components": "vue-cli-service build --fix --target lib --name vc src/index-build.ts",
+    "build:theme:main-watch": "node-sass -w src/styles/index.sass dist/vc.css",
     "build:theme:main": "node-sass src/styles/index.sass dist/vc.css",
     "build:theme:space_gray": "node-sass src/styles/space_gray.sass dist/space_gray.css",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
-    "@fireworksx/vc-icons": "^1.0.1",
+    "@fireworksx/vc-icons": "^1.0.2",
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.4",
     "express": "^4.17.1",

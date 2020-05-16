@@ -1,5 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
+import { canUseDOM } from '@/lib/dom'
 
 export default Vue.extend({
     name: 'vc-ModalPageHeader',
@@ -8,7 +9,7 @@ export default Vue.extend({
     },
     computed: {
         classNames(): any {
-            return getClassName('vc-ModalPageHeader')
+            return [getClassName('vc-ModalPageHeader')]
         },
     },
     render(h: any) {
