@@ -119,7 +119,7 @@
                 </vc-modal-root>
                 <vc-panel name="1">
                     <vc-panel-header layout="auto">
-                        <vc-search />
+                        Lamode
                         <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
                             <market-28 />
                         </vc-panel-header-button>

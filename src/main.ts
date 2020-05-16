@@ -9,7 +9,7 @@ import '../dist/android.css'
 Vue.config.productionTip = false
 
 Vue.use(VC, {
-    platform: 'ios',
+    platform: 'android',
 })
 
 new Vue({
