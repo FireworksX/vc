@@ -13,7 +13,7 @@ export default Vue.extend({
     components: {
         'vc-button': Button,
         'vc-panel-headerButton': PanelHeaderButton,
-      Icon24Dismiss,
+        Icon24Dismiss,
     },
     props: {
         actions: { type: Array, default: () => [] },

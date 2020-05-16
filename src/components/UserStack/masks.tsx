@@ -2,7 +2,7 @@ import { canUseDOM } from '@/lib/dom'
 
 let masksCreated = false
 
-export function createMasks(): void {
+export default function createMasks(): void {
     if (!canUseDOM || masksCreated) {
         return
     }

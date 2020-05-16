@@ -1,6 +1,6 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import { createMasks } from '@/components/UserStack/masks'
+import createMasks from '@/components/UserStack/masks'
 
 export default Vue.extend({
     name: 'vc-UserStack',
@@ -16,11 +16,11 @@ export default Vue.extend({
             const canShowOthers = othersCount > 0 && this.size === 'm'
 
             return [
-                getClassName('vc-UserStack'),
-                `UsersStack--size-${this.size}`,
-                `UsersStack--l-${this.layout}`,
+                getClassName('vc-UsersStack'),
+                `vc-UsersStack--size-${this.size}`,
+                `vc-UsersStack--l-${this.layout}`,
                 {
-                    'UsersStack--with-others': canShowOthers,
+                    'vc-UsersStack--with-others': canShowOthers,
                 },
             ]
         },
@@ -48,7 +48,7 @@ export default Vue.extend({
                     })}
 
                     {canShowOthers && (
-                        <div class="vc-UsersStack__photo UsersStack__photo--others">
+                        <div class="vc-UsersStack__photo vc-UsersStack__photo--others">
                             {`+${othersCount}`}
                         </div>
                     )}
