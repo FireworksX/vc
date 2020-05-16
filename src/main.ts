@@ -5,7 +5,7 @@ import '../dist/vc.css'
 
 Vue.config.productionTip = false
 
-Vue.use(VC)
+Vue.use(VC, { platform: 'ios' })
 
 new Vue({
     render: h => h(App),
