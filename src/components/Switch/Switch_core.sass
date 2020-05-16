@@ -1,0 +1,23 @@
+.vc-Switch
+  display: block
+  padding: 8px 15px
+
+
+.vc-Switch__self
+  display: none
+
+
+.vc-Switch__pseudo
+  position: relative
+  display: block
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-tap-highlight-color: transparent
+
+
+.vc-Switch__pseudo::before
+  position: absolute
+  content: ''
+
+
+.vc-Switch__self:checked + .vc-Switch__pseudo::before
+  transform: translateX(20px)

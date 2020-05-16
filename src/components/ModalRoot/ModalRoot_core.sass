@@ -1,0 +1,47 @@
+.vc-ModalRoot
+  width: 100%
+  height: 100%
+
+
+.vc-ModalRoot__mask
+  opacity: 1
+  width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+  background: rgba(0, 0, 0, .4)
+  user-select: none
+  transition: opacity 340ms var(--ios-easing), -webkit-opacity 340ms var(--ios-easing)
+  animation: animation-fadeIn .32s ease
+  backdrop-filter: blur(2px)
+
+.vc-ModalRoot--touched .vc-ModalRoot__mask
+  transition: none
+
+
+.vc-ModalRoot__viewport
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  height: 100%
+  pointer-events: none
+
+// vk-apps
+.vc-ModalRoot--vkapps.vc-ModalRoot--android .vc-ModalRoot__viewport
+  top: var(--panelheader_height_android)
+
+
+.vc-ModalRoot--vkapps.vc-ModalRoot--ios .vc-ModalRoot__viewport
+  top: calc(var(--safe-area-inset-top) + var(--panelheader_height_ios))
+
+
+.vc-ModalRoot__modal
+  position: absolute
+  width: 100%
+  height: 100%
+  box-sizing: border-box
+  z-index: 1
+

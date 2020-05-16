@@ -1,0 +1,41 @@
+.vc-Checkbox
+  display: block
+
+
+.vc-Checkbox__input
+  display: none
+
+
+.vc-Checkbox__container
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+
+
+.vc-Checkbox__icon
+  flex-shrink: 0
+  width: 20px
+  height: 20px
+  box-sizing: border-box
+  margin: 0 14px 0 2px
+  border-radius: 4px
+  border: 2px solid var(--icon_secondary)
+  color: transparent
+
+
+.vc-Checkbox__content
+  flex-grow: 1
+  font-size: 16px
+  line-height: 20px
+  color: var(--text_primary)
+
+
+.vc-Checkbox__input:checked ~ .vc-Checkbox__container .vc-Checkbox__icon
+  background-color: var(--accent)
+  border-color: var(--accent)
+  color: var(--white)
+
+
+.vc-Checkbox__input[disabled] ~ .vc-Checkbox__container
+  opacity: .6
+

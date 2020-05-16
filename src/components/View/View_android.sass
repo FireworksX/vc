@@ -1,0 +1,42 @@
+.vc-View--android
+  font-family: var(--font-android)
+
+  &.vc-View--header
+    .vc-Panel__in
+      padding-top: var(--panelheader_height_android)
+
+    .vc-FixedLayout--top
+      top: var(--panelheader_height_android)
+
+  .vc-View__panel--next ~ .vc-View__panel--prev
+    animation: animation-android-prev-back 0.3s var(--android-easing)
+
+  .vc-View__panel--prev ~ .vc-View__panel--next
+    animation: animation-android-next-forward 0.3s var(--android-easing)
+
+  .vc-View__panel--active::before
+    content: none
+
+/**
+ * Panel transition
+
+/**
+ * Active panel
+
+@keyframes animation-android-prev-back
+  from
+    opacity: 1
+    transform: translateY(0)
+
+  to
+    opacity: 0
+    transform: translateY(80px)
+
+@keyframes animation-android-next-forward
+  from
+    opacity: 0
+    transform: translateY(80px)
+
+  to
+    opacity: 1
+    transform: translateY(0)

@@ -1,0 +1,27 @@
+.vc-Textarea
+  position: relative
+
+  textarea
+    margin: 0
+    width: 100%
+    display: block
+    box-sizing: border-box
+    outline: none
+    resize: none
+    appearance: none
+    line-height: 19px
+    font-size: 16px
+    color: var(--text_primary)
+    padding: 12px
+    min-height: 86px
+    max-height: 198px
+    border: none
+    z-index: 2
+    position: relative
+    background: transparent
+
+    &::placeholder
+      color: var(--field_text_placeholder)
+
+    &:disabled
+      opacity: .6

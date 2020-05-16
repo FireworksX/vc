@@ -1,0 +1,49 @@
+.vc-PanelHeader--android ~ .FixedLayout--top
+  top: calc(var(--panelheader_height_android) + var(--safe-area-inset-top))
+
+
+.vc-PanelHeader--android::before,
+.vc-PanelHeader--android .vc-PanelHeader__in
+  height: var(--panelheader_height_android)
+  // padding-top: var(--safe-area-inset-top)
+
+
+.vc-PanelHeader--android .vc-PanelHeader__left:not(:empty)
+  padding: 4px 0 4px 4px
+
+
+.vc-PanelHeader--android .vc-PanelHeader__content
+  font-size: 20px
+  display: flex
+  align-items: center
+  flex-grow: 1
+  max-width: 100%
+
+
+.vc-PanelHeader--android .vc-PanelHeader__content > *
+  padding: 0 12px
+
+
+.vc-PanelHeader--android .vc-Search
+  padding: 0 4px
+
+
+.vc-PanelHeader--android.vc-PanelHeader--no-left .vc-PanelHeader__content > *
+  padding-left: 0
+
+
+.vc-PanelHeader--android.vc-PanelHeader--no-left .vc-PanelHeader__content
+  padding-left: 16px
+
+
+.vc-PanelHeader--android.vc-PanelHeader--no-right .vc-PanelHeader__content > *
+  padding-right: 0
+
+
+.vc-PanelHeader--android.vc-PanelHeader--no-right .vc-PanelHeader__content
+  padding-right: 16px
+
+
+.vc-PanelHeader--android .vc-PanelHeader__right:not(:empty)
+  padding: 4px 4px 4px 0
+

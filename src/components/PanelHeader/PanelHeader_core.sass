@@ -1,0 +1,65 @@
+.vc-vc-PanelHeader
+  position: relative
+
+
+.vc-PanelHeader--vis::before
+  display: block
+  content: ''
+
+
+.FixedLayout.vc-PanelHeader__fixed
+  z-index: 10
+
+
+.vc-PanelHeader__fixed
+  background: var(--header_background)
+
+
+.vc-PanelHeader--trnsp .vc-PanelHeader__fixed
+  background: transparent
+
+
+.vc-PanelHeader__in
+  display: flex
+  justify-content: space-between
+  align-items: center
+  white-space: nowrap
+  position: relative
+
+
+.vc-PanelHeader__left
+  box-sizing: border-box
+  color: var(--header_tint)
+  display: flex
+  flex-shrink: 0
+
+
+.vc-PanelHeader__left .vc-Avatar
+  margin-left: 8px
+
+
+.vc-PanelHeader__content
+  overflow: hidden
+  text-overflow: ellipsis
+  color: var(--header_text)
+  font-weight: 800
+  font-family: var(--font-tt)
+
+
+.vc-PanelHeader__right
+  display: flex
+  justify-content: flex-end
+  box-sizing: border-box
+  color: var(--header_tint)
+
+
+.vc-PanelHeader__right .vc-Avatar
+  margin-right: 8px
+
+
+.vc-PanelHeader__separator
+  padding-top: 4px
+
+// vk-apps
+.vc-PanelHeader--vkapps .vc-PanelHeader__right
+  min-width: 90px

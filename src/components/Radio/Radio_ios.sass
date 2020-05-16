@@ -1,0 +1,26 @@
+.vc-Radio--ios
+  padding: 10px 12px
+
+  .vc-Radio__container
+
+  .vc-Radio__icon
+    width: 22px
+    height: 22px
+    border: 2px solid var(--icon_secondary)
+    margin: 1px 12px 1px 1px
+    transition: border-color 0.15s var(--ios-easing)
+
+  .vc-Radio__input:checked ~ .vc-Radio__container .vc-Radio__icon
+    border-color: var(--accent)
+
+  .vc-Radio__icon::after
+    width: 14px
+    height: 14px
+    left: 2px
+    top: 2px
+    transform: scale(0.3)
+    transition: transform 0.15s var(--ios-easing)
+
+  .vc-Radio__input:checked ~ .vc-Radio__container .vc-Radio__icon::after
+    background-color: var(--accent)
+    transform: scale(1)

@@ -1,0 +1,97 @@
+.vc-Snackbar
+  user-select: none
+
+
+.vc-Snackbar__in
+  padding: 10px
+
+
+.vc-Snackbar--closing .vc-Snackbar__in
+  transform: translate3d(0, 140%, 0)
+
+
+.vc-Snackbar__body
+  box-sizing: border-box
+  padding: 12px 16px
+  min-height: 56px
+  display: flex
+  align-items: center
+  background: var(--modal_card_background)
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, .24), 0 0 2px 0 rgba(0, 0, 0, .08)
+
+
+.vc-Snackbar__before
+  margin-left: -4px
+  margin-right: 12px
+
+
+.vc-Snackbar__after
+  margin-right: -4px
+  margin-left: 12px
+
+
+.vc-Snackbar__content
+  flex: 1
+  display: flex
+  align-items: center
+
+
+.vc-Snackbar--l-vertical .vc-Snackbar__content
+  flex-direction: column
+  align-items: flex-start
+
+
+.vc-Snackbar__content-text
+  flex: 1
+
+
+.vc-Snackbar__content-text
+  color: var(--text_primary)
+  font-size: 15px
+  line-height: 19px
+
+
+.vc-Snackbar__action
+  font-family: inherit
+  display: inline-block
+  box-sizing: border-box
+  outline: none
+  border: none
+  box-shadow: none
+  user-select: none
+  font-size: 14px
+  line-height: 30px
+  font-weight: 500
+  color: var(--accent)
+  background: none
+  padding: 0 16px
+  margin: 0 -16px
+  white-space: nowrap
+
+
+.vc-Snackbar__action:active
+  opacity: .4
+
+
+.vc-Snackbar--l-vertical .vc-Snackbar__action
+  margin-top: 2px
+  margin-bottom: -6px
+
+/**
+ * Touch-interaction
+ */
+.vc-Snackbar--touched .vc-Snackbar__body
+  transition: none
+
+
+/**
+ * Animations
+ */
+@keyframes animation-vc-SnackbarIntro
+  from
+    transform: translate3d(0, 140%, 0)
+
+  to
+    transform: translate3d(0, 0, 0)
+
+

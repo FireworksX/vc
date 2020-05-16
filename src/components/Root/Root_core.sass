@@ -1,0 +1,35 @@
+body
+  margin: 0
+  padding: 0
+
+.vc-Root
+  min-height: 100vh
+  width: 100%
+
+.vc-Root__view
+  background: #ffffff
+  height: 100vh
+
+.vc-Root--transition
+  pointer-events: none
+
+
+.vc-Root--transition .vc-Root__view:not(.vc-Root__view--hide-forward)
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+
+
+.vc-Root--transition .vc-Root__view:not(.vc-Root__view--hide-forward) .View__panel
+  overflow: hidden
+
+
+.vc-Root__view--show-back,
+.vc-Root__view--hide-forward
+  z-index: 1
+
+
+.vc-Root__view--show-forward,
+.vc-Root__view--hide-back
+  z-index: 10

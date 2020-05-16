@@ -1,0 +1,65 @@
+
+.vc-ActionSheetItem--ios
+  padding: 14px 18px
+  display: flex
+  align-items: center
+  width: 100%
+  height: 100%
+  background-color: var(--modal_card_background)
+  z-index: 1
+  color: var(--action_sheet_action_foreground)
+
+  &:first-child
+    border-top-left-radius: 14px
+    border-top-right-radius: 14px
+
+  &:last-child
+    border-bottom-left-radius: 14px
+    border-bottom-right-radius: 14px
+
+  ~ .vc-ActionSheetItem--last
+    border-bottom-left-radius: 14px
+    border-bottom-right-radius: 14px
+
+
+  .vc-ActionSheetItem__container
+    font-size: 17px
+    line-height: 24px
+    text-align: center
+    padding: 2px 0
+
+
+  .vc-ActionSheetItem__before
+    margin-right: 20px
+
+  .vc-ActionSheetItem__before + .vc-ActionSheetItem__container
+    text-align: left
+
+  &:after
+    position: absolute
+    right: 0
+    left: 0
+    z-index: 1
+    height: 1px
+    content: ''
+    bottom: 0
+    background: var(--action_sheet_separator)
+    transform-origin: center bottom
+
+.vc-ActionSheetItem--cancel
+  display: block
+  width: auto
+  margin-top: 7px
+  font-size: 17px
+  margin-bottom: var(--safe-area-inset-bottom)
+  font-weight: 500
+  border-top-left-radius: 14px
+  border-top-right-radius: 14px
+  order: 1
+  text-align: center
+
+.vc-ActionSheetItem
+  color: var(--action_sheet_action_foreground)
+
+.vc-ActionSheetItem--destructive
+  color: var(--destructive)

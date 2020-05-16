@@ -1,0 +1,46 @@
+.vc-CellButton
+  display: block
+  box-sizing: border-box
+  outline: none
+  text-decoration: none
+  margin: 0
+  padding: 0
+  border: none
+  cursor: default
+  width: 100%
+  background: transparent
+  position: relative
+
+
+.vc-CellButton[disabled]
+  opacity: .4
+
+
+.vc-CellButton__in
+  display: flex
+  align-items: center
+
+
+.vc-CellButton--aln-left .vc-CellButton__in
+  justify-content: flex-start
+  text-align: left
+
+
+.vc-CellButton--aln-center .vc-CellButton__in
+  justify-content: center
+  text-align: center
+
+
+.vc-CellButton--aln-right .vc-CellButton__in
+  justify-content: flex-end
+  text-align: right
+
+
+.vc-CellButton--lvl-primary
+  color: var(--accent)
+
+
+.vc-CellButton--lvl-danger
+  color: var(--destructive)
+
+

@@ -1,0 +1,38 @@
+.vc-Radio
+  display: block
+
+.vc-Radio__input
+  display: none
+
+.vc-Radio__container
+  display: flex
+  align-items: center
+  justify-content: flex-start
+
+.vc-Radio__input:disabled ~ .vc-Radio__container
+  opacity: .6
+
+.vc-Radio__icon
+  flex-shrink: 0
+  box-sizing: border-box
+  border-radius: 50%
+  position: relative
+
+  &::after
+    position: absolute
+    content: ''
+    display: block
+    border-radius: 50%
+    box-sizing: border-box
+
+.vc-Radio__content
+  line-height: 20px
+  font-size: 16px
+  flex-grow: 1
+  max-width: 100%
+  color: var(--text_primary)
+
+.vc-Radio__description
+  font-size: 13px
+  line-height: 15px
+  color: var(--text_secondary)

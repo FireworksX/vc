@@ -1,0 +1,115 @@
+.vc-View--ios
+  font-family: var(--font-ios)
+
+  &.vc-View--header .vc-Panel__in
+    padding-top: 64px
+    padding-top: calc(var(--panelheader_height_ios) + var(--safe-area-inset-top))
+
+  .vc-Panel__in
+    padding-bottom: var(--safe-area-inset-bottom)
+
+  &.vc-View--header .vc-FixedLayout--top
+    top: 64px
+    top: calc(var(--panelheader_height_ios) + var(--safe-area-inset-top))
+
+  .vc-Panel__in
+    padding-bottom: var(--safe-area-inset-bottom)
+
+  .vc-View__panel--swipe-back-prev
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.3)
+
+    &.vc-View__panel--swipe-back-success
+      transition: transform 0.3s var(--ios-easing)
+      transform: translate3d(100%, 0, 0)
+
+  .vc-View__panel--swipe-back-next.vc-View__panel--swipe-back-success, .vc-View__panel--swipe-back-prev.vc-View__panel--swipe-back-failed
+    transition: transform 0.3s var(--ios-easing)
+    transform: translate3d(0, 0, 0)
+
+  .vc-View__panel--swipe-back-next.vc-View__panel--swipe-back-failed
+    transition: transform 0.3s var(--ios-easing)
+    transform: translate3d(-50%, 0, 0)
+
+  .vc-View__panel--prev
+    animation: animation-ios-prev-forward 0.6s var(--ios-easing)
+
+  .vc-View__panel--next
+    animation: animation-ios-next-back 0.6s var(--ios-easing)
+
+  .vc-View__panel--prev ~ .vc-View__panel--next
+    animation: animation-ios-next-forward 0.6s var(--ios-easing)
+
+  .vc-View__panel--next ~ .vc-View__panel--prev
+    animation: animation-ios-prev-back 0.6s var(--ios-easing)
+
+  .vc-View__panel--prev .vc-Panel__in::before, .vc-View__panel--next .vc-Panel__in::before
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    z-index: 10
+    background: #000
+    content: ''
+    pointer-events: none
+
+  .vc-View__panel--prev .vc-Panel__in::before
+    animation: animation-ios-fade-in 0.6s var(--ios-easing)
+
+  .vc-View__panel--next .vc-Panel__in::before
+    animation: animation-ios-fade-out 0.6s var(--ios-easing)
+
+  .vc-View__panel--prev ~ .vc-View__panel--next .vc-Panel__in::before, .vc-View__panel--next ~ .vc-View__panel--prev .vc-Panel__in::before, .vc-View__panel--active .vc-Panel__in::before
+    content: none
+    display: none
+
+/**
+ * Panel swipe back
+
+/**
+ * Panel transition
+
+/**
+ * Active panel
+
+@keyframes animation-ios-next-forward
+  from
+    transform: translate3d(100%, 0, 0)
+
+  to
+    transform: translate3d(0, 0, 0)
+
+@keyframes animation-ios-next-back
+  from
+    transform: translate3d(-50%, 0, 0)
+
+  to
+    transform: translate3d(0, 0, 0)
+
+@keyframes animation-ios-prev-forward
+  from
+    transform: translate3d(0, 0, 0)
+
+  to
+    transform: translate3d(-50%, 0, 0)
+
+@keyframes animation-ios-prev-back
+  from
+    transform: translate3d(0, 0, 0)
+
+  to
+    transform: translate3d(100%, 0, 0)
+
+@keyframes animation-ios-fade-in
+  from
+    opacity: 0
+
+  to
+    opacity: .3
+
+@keyframes animation-ios-fade-out
+  from
+    opacity: .3
+
+  to
+    opacity: 0

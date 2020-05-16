@@ -15,6 +15,9 @@
     "build": "yarn build:components & yarn build:icons && yarn build:theme:main && yarn build:theme:space_gray",
     "build:components": "vue-cli-service build --fix --target lib --name vc src/index-build.ts",
     "build:theme:main": "node-sass src/styles/index.sass dist/vc.css",
+    "build:core": "node-sass src/styles/core_styles.sass dist/core.css",
+    "build:ios": "node-sass src/styles/ios.sass dist/ios.css",
+    "build:android": "node-sass src/styles/android.sass dist/android.css",
     "build:theme:space_gray": "node-sass src/styles/space_gray.sass dist/space_gray.css",
     "lint": "vue-cli-service lint"
   },

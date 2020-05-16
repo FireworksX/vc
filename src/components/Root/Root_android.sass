@@ -1,0 +1,26 @@
+.vc-Root--android
+  font-family: var(--font-android)
+
+  .vc-Root__view--show-forward
+    animation: root-android-animation-show-forward 0.3s var(--android-easing)
+
+  .vc-Root__view--hide-back
+    animation: root-android-animation-hide-back 0.3s var(--android-easing)
+
+@keyframes root-android-animation-hide-back
+  from
+    transform: scale(1)
+    opacity: 1
+
+  to
+    transform: scale(1.05)
+    opacity: 0
+
+@keyframes root-android-animation-show-forward
+  from
+    transform: scale(1.05)
+    opacity: 0
+
+  to
+    transform: scale(1)
+    opacity: 1

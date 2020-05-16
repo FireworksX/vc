@@ -1,0 +1,33 @@
+.vc-FormLayout
+  position: relative
+
+.vc-FormLayout__row
+  display: block
+
+.vc-FormLayout__row-top
+  font-size: 14px
+  line-height: 18px
+  color: var(--text_secondary)
+
+.vc-FormLayout__row-bottom
+  font-size: 13px
+  line-height: 16px
+  color: var(--text_secondary)
+
+.vc-FormLayout__submit
+  position: absolute
+  visibility: hidden
+  pointer-events: none
+  left: 0
+  top: 0
+  padding: 0
+  width: 0
+  height: 0
+  appearance: none
+  border: none
+
+.vc-FormLayout__row--s-error .vc-FormLayout__row-bottom
+  color: var(--field_error_border)
+
+.vc-FormLayout__row--s-valid .vc-FormLayout__row-bottom, .vc-FormLayout__row--s-verified .vc-FormLayout__row-bottom
+  color: var(--field_valid_border)

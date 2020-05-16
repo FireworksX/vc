@@ -1,0 +1,42 @@
+// REDUNDANT STYLES
+
+.ActionSheet--android
+  width: calc(100% - 20px)
+  margin: 10px
+  animation: animation-actionsheet-intro 0.3s var(--android-easing)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  border-radius: 12px
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.16), 0 0 4px 0 rgba(0, 0, 0, 0.08)
+  padding: 8px 0
+  background: var(--modal_card_background)
+
+  &.ActionSheet--closing
+    transform: translateY(calc(100% + 20px))
+    transition: transform 0.3s var(--android-easing)
+
+  //.ActionSheetItem
+  //  padding: 12px 24px
+  //  line-height: 1.25
+  //  font-size: 16px
+  //
+  //  &.Tappable--active
+  //    background-color: var(--action_sheet_separator)
+
+//.ActionSheetItem--android .ActionSheetItem__before
+//  margin-right: 18px
+
+//.ActionSheet--android
+//  .ActionSheetItem
+//    color: var(--action_sheet_action_foreground)
+//
+//  .ActionSheetItem__before
+//    color: var(--action_sheet_action_foreground)
+//
+//    + .ActionSheetItem__container
+//      color: var(--text_primary)
+//
+//  .ActionSheetItem--destructive
+//    color: var(--destructive)

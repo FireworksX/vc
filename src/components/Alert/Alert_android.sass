@@ -1,0 +1,74 @@
+.vc-Alert--android
+  min-width: 280px
+  margin: auto 24px
+  box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.3), 0 0 35px 0 rgba(0, 0, 0, 0.22)
+  border-radius: 12px
+  animation: animation-android-alert-intro .2s ease
+
+  &.vc-Alert--closing
+    transform: scale(0.95)
+    opacity: 0
+    transition: transform 0.2s var(--android-easing), opacity 0.2s var(--android-easing)
+
+  .vc-Alert__content
+    padding: 20px 24px 8px
+    font-size: 16px
+    line-height: 24px
+
+    h2
+      margin: 0 0 8px
+      font-weight: 500
+      font-size: 20px
+      line-height: 28px
+
+    p
+      margin: 0
+
+      + p
+        margin: 24px 0 0
+
+  .vc-Alert__footer
+    padding: 12px 16px 16px
+    display: flex
+    justify-content: flex-end
+    flex-flow: wrap
+
+  &.vc-Alert--v .vc-Alert__footer
+    flex-direction: column
+    align-items: flex-end
+
+  .vc-Alert__btn
+    margin: 4px 0 0 8px
+    border: 0
+    flex: 0 1 auto
+    text-transform: uppercase
+    font-weight: 500
+    font-size: 15px
+    line-height: 20px
+    padding: 8px 16px
+    border-radius: 8px
+    color: var(--accent)
+    outline: none
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .vc-Alert__btn--destructive
+    color: var(--destructive)
+
+/**
+ * Content container
+
+/**
+ * Footer
+
+/**
+ * Animations
+
+@keyframes animation-android-alert-intro
+  from
+    opacity: 0
+    transform: scale(0.95)
+
+  to
+    opacity: 1
+    transform: scale(1)
