@@ -117,8 +117,6 @@ export interface PluginOptions {
     platform?: OS
 }
 
-export function install(Vue: any, options = {}) {
-    Object.keys(components).forEach((key) => {
 export function install(Vue: any, options: PluginOptions = {}) {
     if (options !== undefined) {
         if (options.platform !== undefined) {
