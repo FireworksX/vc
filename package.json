@@ -13,13 +13,20 @@
   "scripts": {
     "serve": "vue-cli-service serve --fix",
     "build": "yarn build:components & yarn build:icons && yarn build:theme:main && yarn build:theme:space_gray",
+    "build:styles": "yarn build:theme:main & yarn build:core & yarn build:ios & yarn build:android",
     "build:components": "vue-cli-service build --fix --target lib --name vc src/index-build.ts",
-    "build:theme:main-watch": "node-sass -w src/styles/index.sass dist/vc.css",
     "build:theme:main": "node-sass src/styles/index.sass dist/vc.css",
     "build:core": "node-sass src/styles/core_styles.sass dist/core.css",
     "build:ios": "node-sass src/styles/ios.sass dist/ios.css",
     "build:android": "node-sass src/styles/android.sass dist/android.css",
     "build:theme:space_gray": "node-sass src/styles/space_gray.sass dist/space_gray.css",
+
+    "watch:styles": "yarn build:theme:main && yarn build:core && yarn build:ios && yarn build:android",
+    "watch:theme:main": "node-sass -w src/styles/index.sass dist/vc.css",
+    "watch:core": "node-sass -w src/styles/core_styles.sass dist/core.css",
+    "watch:ios": "node-sass -w src/styles/ios.sass dist/ios.css",
+    "watch:android": "node-sass -w src/styles/android.sass dist/android.css",
+    "watch:theme:space_gray": "node-sass -w src/styles/space_gray.sass dist/space_gray.css",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
