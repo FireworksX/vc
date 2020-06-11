@@ -2,13 +2,21 @@
     <div id="app">
         <vc-epic :active-story="activeStory">
             <vc-tabbar slot="tabbar">
-                <vc-tabbar-item :selected="activeStory === 'home'" text="Главная">
+                <vc-tabbar-item
+                    :selected="activeStory === '/home'"
+                    text="Главная"
+                    @click="changeStory('/home')"
+                >
                     <home-outline-28 />
                 </vc-tabbar-item>
-                <vc-tabbar-item text="Мужчинам" :selected="activeStory === 'men'">
+                <vc-tabbar-item
+                    text="Мужчинам"
+                    :selected="activeStory === '/men'"
+                    @click="changeStory('/men')"
+                >
                     <ghost-outline-28 />
                 </vc-tabbar-item>
-                <vc-tabbar-item text="Прочее" :selected="activeStory === 'other'">
+                <vc-tabbar-item text="Прочее" :selected="activeStory === '/other'">
                     <menu-outline-28 />
                 </vc-tabbar-item>
             </vc-tabbar>
@@ -228,6 +236,7 @@
 </template>
 
 <script>
+import VueRouter from 'vue-router'
 import './styles/space_gray.sass'
 import HomeOutline28 from '@fireworksx/vc-icons/dist/28/home_outline'
 import GhostOutline28 from '@fireworksx/vc-icons/dist/28/ghost_outline'
@@ -236,8 +245,14 @@ import Market28 from '@fireworksx/vc-icons/dist/28/market_outline'
 import Attachments28 from '@fireworksx/vc-icons/dist/28/attachments'
 import MoneyTransfer56 from '@fireworksx/vc-icons/dist/56/money_transfer_outline'
 
+const router = new VueRouter({
+    mode: 'history',
+    routes: [{ path: '/home' }, { path: '/men' }],
+})
+
 export default {
     name: 'App',
+    router,
     components: {
         HomeOutline28,
         GhostOutline28,
@@ -310,7 +325,7 @@ export default {
             this.activeModal = null
         },
         changeStory(story) {
-            this.activeStory = story
+            console.log(this.$route)
         },
         closeActiveSheet() {
             this.pop = null
