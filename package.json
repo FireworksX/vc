@@ -1,6 +1,6 @@
 {
   "name": "@fireworksx/vc_ui",
-  "version": "0.1.95",
+  "version": "0.1.96",
   "module": "dist/vc.umd.js",
   "main": "dist/vc.umd.js",
   "typings": "types/index.d.ts",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve --fix",
-    "build": "yarn build:components && yarn build:theme:main && yarn build:theme:space_gray",
+    "build": "yarn build:components && yarn build:styles && yarn build:theme:space_gray",
     "build:styles": "yarn build:theme:main & yarn build:core & yarn build:ios & yarn build:android",
     "build:components": "vue-cli-service build --fix --target lib --name vc src/index-build.ts",
     "build:theme:main": "node-sass src/styles/index.sass dist/vc.css",
