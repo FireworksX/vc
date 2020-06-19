@@ -34,6 +34,7 @@ export default Vue.extend<any, any, any, Props>({
             ]
         },
         nativeOnClose(): Function {
+            console.log(this.$listeners.onClose)
             if (!Array.isArray(this.$listeners.onClose)) {
                 return this.$listeners.onClose
             }
@@ -58,20 +59,30 @@ export default Vue.extend<any, any, any, Props>({
 
             return 'default'
         },
+
+        getOnCloseFn() {
+            if (!Array.isArray(this.$listeners.close)) {
+                return this.$listeners.close
+            }
+            if (this.$listeners.close.length > 0) {
+                return this.$listeners.close[0]
+            }
+            return () => undefined
+        },
+
         onClose() {
             this.closing = true
 
             waitTransitionFinish(() => {
                 this.closing = false
-
-                this.nativeOnClose()
+                this.getOnCloseFn()()
             })
         },
         onClickItem(clickHandler: Function, autoclose = false) {
             if (autoclose) {
                 this.closing = true
                 waitTransitionFinish(() => {
-                    this.nativeOnClose()
+                    this.getOnCloseFn()()
 
                     if (clickHandler !== undefined) {
                         clickHandler()

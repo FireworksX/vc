@@ -21,6 +21,16 @@
                 </vc-tabbar-item>
             </vc-tabbar>
             <vc-view name="home" active-panel="1">
+                <vc-alert
+                    v-if="popout === 'clear'"
+                    slot="popout"
+                    :actions="clearAlertActions"
+                    @close="popout = undefined"
+                    ><h2>Подтвердите действие</h2>
+                    <p>
+                        Вы уверены, что хотите очистить корзину?
+                    </p></vc-alert
+                >
                 <vc-modal-root slot="modal" :active-modal="activeModal">
                     <vc-modal-card
                         name="sendMoney"
@@ -136,6 +146,9 @@
                         <vc-button size="xl" @click="snack = 1">
                             Добавить товар в избранное</vc-button
                         >
+                    </vc-div>
+                    <vc-div>
+                        <vc-button size="xl" @click="popout = 'clear'"> Алерт</vc-button>
                     </vc-div>
                     <vc-div>
                         <vc-button size="xl" mode="secondary" @click="activeModal = 'sendMoney'"
@@ -266,7 +279,20 @@ export default {
             activeStory: 'home',
             activeView: 'main-view',
             activePanel: '1',
+            popout: undefined,
             activeModal: null,
+            clearAlertActions: [
+                {
+                    title: 'Очистить',
+                    autoclose: true,
+                    mode: 'destructive',
+                },
+                {
+                    title: 'Отмена',
+                    autoclose: true,
+                    mode: 'cancel',
+                },
+            ],
             photos: [
                 'https://sun9-60.userapi.com/c855124/v855124003/167f36/TzgXYX1Izqk.jpg?ava=1',
                 'https://sun9-34.userapi.com/c857132/v857132690/49628/r4wBoWw0mJI.jpg?ava=1',
