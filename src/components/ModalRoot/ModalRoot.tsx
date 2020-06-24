@@ -172,7 +172,6 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 requestAnimationFrame(() => this.switchPrevNext())
             }
 
-            console.log(this.activeModal, this.prevModal, this.nextModal)
             if (!this.activeModal && !this.prevModal && !this.nextModal) {
                 this.toggleDocumentScrolling(true)
             } else {

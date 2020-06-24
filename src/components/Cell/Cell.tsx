@@ -28,6 +28,7 @@ export default Vue.extend({
         },
     },
     render(h: any) {
+
         const { before, after } = this.$slots
         const platform = usePlatform()
         const hasAfter = after || (this.expandable && platform === OS.IOS)

@@ -137,11 +137,13 @@
                 </vc-modal-root>
                 <vc-panel name="1">
                     <vc-panel-header layout="auto">
-                        Lamode
+                        Lamode {{ testVal }}
                         <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
-                            <market-28 />
+                            <template v-if="testVal">test val</template>
+                            <market-28 v-else />
                         </vc-panel-header-button>
                     </vc-panel-header>
+                    <vc-cell class="test_calss"></vc-cell>
                     <vc-div>
                         <vc-button size="xl" @click="snack = 1">
                             Добавить товар в избранное</vc-button
@@ -276,6 +278,7 @@ export default {
     },
     data() {
         return {
+            testVal: false,
             activeStory: 'home',
             activeView: 'main-view',
             activePanel: '1',
@@ -366,6 +369,11 @@ export default {
             this.buttonStyle.top = `${data.shiftYAbs}px`
             this.buttonStyle.left = `${data.shiftXAbs}px`
         },
+    },
+    created() {
+        setTimeout(() => {
+            this.testVal = true
+        }, 2000)
     },
 }
 </script>
