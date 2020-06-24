@@ -143,6 +143,9 @@
                             <market-28 v-else />
                         </vc-panel-header-button>
                     </vc-panel-header>
+                    <vc-search v-model="value">
+                        <Icon28SlidersOutline slot="icon" />
+                    </vc-search>
                     <vc-cell class="test_calss"></vc-cell>
                     <vc-div>
                         <vc-button size="xl" @click="snack = 1">
@@ -259,6 +262,7 @@ import MenuOutline28 from '@fireworksx/vc-icons/dist/28/menu_outline'
 import Market28 from '@fireworksx/vc-icons/dist/28/market_outline'
 import Attachments28 from '@fireworksx/vc-icons/dist/28/attachments'
 import MoneyTransfer56 from '@fireworksx/vc-icons/dist/56/money_transfer_outline'
+import Icon28SlidersOutline from '@fireworksx/vc-icons/dist/28/sliders_outline'
 
 const router = new VueRouter({
     mode: 'history',
@@ -269,6 +273,7 @@ export default {
     name: 'App',
     router,
     components: {
+        Icon28SlidersOutline,
         HomeOutline28,
         GhostOutline28,
         MenuOutline28,
@@ -283,6 +288,7 @@ export default {
             activeView: 'main-view',
             activePanel: '1',
             popout: undefined,
+            value: '',
             activeModal: null,
             clearAlertActions: [
                 {

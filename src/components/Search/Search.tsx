@@ -113,7 +113,7 @@ export default Vue.extend({
                         <div class="vc-Search__icons">
                             {this.$slots.icon && (
                                 <div onclick={this.onIconClick} class="vc-Search__icon">
-                                    <slot name="icon" />
+                                    {this.$slots.icon}
                                 </div>
                             )}
                             {!!this.value && (
@@ -123,9 +123,7 @@ export default Vue.extend({
                             )}
                         </div>
                         {this.$slots.after && (
-                            <div class="vc-Search__after-in">
-                                <slot name="after" />
-                            </div>
+                            <div class="vc-Search__after-in">{this.$slots.after}</div>
                         )}
                     </div>
                 </div>
