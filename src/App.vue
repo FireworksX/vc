@@ -143,7 +143,7 @@
                             <market-28 v-else />
                         </vc-panel-header-button>
                     </vc-panel-header>
-                    <vc-search v-model="value">
+                    <vc-search v-model="value" @iconClick="openFilter">
                         <Icon28SlidersOutline slot="icon" />
                     </vc-search>
                     <vc-cell class="test_calss"></vc-cell>
@@ -356,6 +356,9 @@ export default {
         }
     },
     methods: {
+        openFilter() {
+            alert(1)
+        },
         closeModal() {
             this.activeModal = null
         },

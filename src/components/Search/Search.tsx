@@ -95,9 +95,7 @@ export default Vue.extend({
                             ref="searchinput"
                         />
                         {this.$slots.after && (
-                            <div class="vc-Search__after-width">
-                                <slot name="after" />
-                            </div>
+                            <div class="vc-Search__after-width">{this.$slots.after}</div>
                         )}
 
                         <div class="vc-Search__placeholder">
@@ -112,7 +110,7 @@ export default Vue.extend({
                     <div class="vc-Search__after" onclick={this.onCancel}>
                         <div class="vc-Search__icons">
                             {this.$slots.icon && (
-                                <div onclick={this.onIconClick} class="vc-Search__icon">
+                                <div onclick={iconClick} class="vc-Search__icon">
                                     {this.$slots.icon}
                                 </div>
                             )}
