@@ -6,7 +6,7 @@ yarn add @fireworksx/vc_ui
 
 ```
 
-```
+```js
 import VC from '@fireworksx/vc_ui'
 import '@fireworksx/vc_ui/dist/vc.css'
 import '@fireworksx/vc_ui/dist/core.css'
@@ -23,7 +23,7 @@ Naming from https://vkcom.github.io/VKUI/
 Choose component and add ```vc``` prefix
 
 ### Example
-```
+```vue
 <vc-root activeView="home"></vc-root>
 
 // Slots
