@@ -1,5 +1,7 @@
 # vc_ui
 
+### Nuxt SSR friendly
+
 ## Install
 ```
 yarn add @fireworksx/vc_ui
