@@ -1,24 +1,36 @@
 # vc_ui
 
-## Project setup
+### Nuxt SSR friendly
+
+## Install
 ```
-yarn install
+yarn add @fireworksx/vc_ui
+
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+```js
+import VC from '@fireworksx/vc_ui'
+import '@fireworksx/vc_ui/dist/vc.css'
+import '@fireworksx/vc_ui/dist/core.css'
+import '@fireworksx/vc_ui/dist/ios.css'
+import '@fireworksx/vc_ui/dist/android.css'
+
+Vue.use(VC, {
+    platform: 'ios', // optional, default auto detect
+})
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Using
+Naming from https://vkcom.github.io/VKUI/
+Choose component and add ```vc``` prefix
 
-### Lints and fixes files
-```
-yarn lint
-```
+### Example
+```vue
+<vc-root activeView="home"></vc-root>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+// Slots
+<vc-panel-header>
+  <vc-panel-header-button slot="left">Go back</vc-panel-header-button>
+  About page
+</vc-panel-header>
+```
