@@ -311,20 +311,23 @@ export default Vue.extend<ModalRootData, any, any, any>({
         },
 
         initModalsState() {
-            this.modalsState = this.modals.reduce((acc: any, modal: VNode) => {
-                const state: ModalsStateEntry = {
-                    id: this.getModalNameByNode(modal),
-                    onClose: this.getModalOnCloseByNode(modal),
-                    dynamicContentHeight: !!this.getModalAttrsByNode(modal).dynamicContentHeight,
-                }
+            this.modalsState = this.modals
+                .filter((node: VNode) => node && node.tag)
+                .reduce((acc: any, modal: VNode) => {
+                    const state: ModalsStateEntry = {
+                        id: this.getModalNameByNode(modal),
+                        onClose: this.getModalOnCloseByNode(modal),
+                        dynamicContentHeight: !!this.getModalAttrsByNode(modal)
+                            .dynamicContentHeight,
+                    }
 
-                if (typeof this.getModalAttrsByNode(modal).settlingHeight === 'number') {
-                    state.settlingHeight = this.getModalAttrsByNode(modal).settlingHeight
-                }
+                    if (typeof this.getModalAttrsByNode(modal).settlingHeight === 'number') {
+                        state.settlingHeight = this.getModalAttrsByNode(modal).settlingHeight
+                    }
 
-                acc[state.id] = state
-                return acc
-            }, {})
+                    acc[state.id] = state
+                    return acc
+                }, {})
         },
 
         initActiveModal() {
