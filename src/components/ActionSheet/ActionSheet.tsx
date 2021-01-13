@@ -16,10 +16,10 @@ export default Vue.extend({
             ]
         },
         nativeOnClose(): Function {
-            if (!Array.isArray(this.$listeners.onClose)) {
-                return this.$listeners.onClose
+            if (!Array.isArray(this.$listeners.close)) {
+                return this.$listeners.close
             }
-            return this.$listeners.onClose[0]
+            return this.$listeners.close[0]
         },
     },
     data() {

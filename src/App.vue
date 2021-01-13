@@ -166,6 +166,11 @@
                         >
                     </vc-div>
                     <vc-div>
+                        <vc-button size="xl" mode="secondary" @click="activeSheet = true"
+                            >ACTION SHEET</vc-button
+                        >
+                    </vc-div>
+                    <vc-div>
                         <vc-button size="xl" mode="secondary" @click="activeModal = 'searchCity'"
                             >Поиск брендов</vc-button
                         >
@@ -240,6 +245,9 @@
                         Товар "Marks & Spencer - Комплект" добавлен в избанное
                     </vc-snackbar>
                 </vc-panel>
+                <vc-action-sheet v-if="activeSheet" slot="popout" @close="activeSheet = false">
+                    <vc-action-sheet-item>qweqwe</vc-action-sheet-item>
+                </vc-action-sheet>
                 <vc-panel name="2">
                     <vc-panel-header>Список сотрудников</vc-panel-header>
                     <vc-fixed-layout vertical="top">
@@ -286,6 +294,7 @@ export default {
             testVal: false,
             activeStory: 'home',
             activeView: 'main-view',
+            activeSheet: false,
             activePanel: '1',
             popout: undefined,
             value: '',
