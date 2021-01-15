@@ -247,6 +247,10 @@
                 </vc-panel>
                 <vc-action-sheet v-if="activeSheet" slot="popout" @close="activeSheet = false">
                     <vc-action-sheet-item>qweqwe</vc-action-sheet-item>
+                    <vc-action-sheet-item>qweqwe</vc-action-sheet-item>
+                    <vc-action-sheet-item>qweqwe</vc-action-sheet-item>
+                    <vc-action-sheet-item>qweqwe</vc-action-sheet-item>
+                    <vc-action-sheet-item mode="cancel" autoclose>close</vc-action-sheet-item>
                 </vc-action-sheet>
                 <vc-panel name="2">
                     <vc-panel-header>Список сотрудников</vc-panel-header>
