@@ -13,7 +13,16 @@ export default Vue.extend<Data, any, any, any>({
     },
     watch: {
         activeView(newVal, oldVal) {
-            this.isBack = newVal === this.firstView
+            const foundInHistoryIndex = this.transitionsHistory.findIndex(
+                (i: string) => i === newVal
+            )
+            if (foundInHistoryIndex !== -1) {
+                this.isBack = true
+                this.transitionsHistory = this.transitionsHistory.slice(0, foundInHistoryIndex + 1)
+            } else {
+                this.transitionsHistory.push(newVal)
+                this.isBack = false
+            }
             this.visibleViews = [newVal, oldVal]
             this.transition = true
             this.proxyActiveView = undefined
@@ -41,7 +50,11 @@ export default Vue.extend<Data, any, any, any>({
             proxyActiveView: undefined,
             prevView: undefined,
             nextView: undefined,
+            transitionsHistory: [],
         }
+    },
+    created() {
+        this.transitionsHistory.push(this.activeView)
     },
     computed: {
         classNames(): any[] {
