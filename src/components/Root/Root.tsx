@@ -1,6 +1,7 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import waitTransitionFinish from '@/helpers/waitTransitionFinish'
+import { canUseDOM } from "@/lib/dom";
 
 interface Data {
     visibleViews: string[]
@@ -36,6 +37,9 @@ export default Vue.extend<Data, any, any, any>({
                 this.isBack = undefined
                 this.prevView = undefined
                 this.nextView = undefined
+                if (canUseDOM) {
+                    window.scrollTo({ top: 0 })
+                }
             })
         },
     },
