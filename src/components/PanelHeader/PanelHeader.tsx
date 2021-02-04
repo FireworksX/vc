@@ -24,7 +24,7 @@ export default Vue.extend({
             return [
                 getClassName('vc-PanelHeader'),
                 {
-                    'vc-PanelHeader_fixed': this.layout === 'fixed' || this.layout === 'auto',
+                    'vc-PanelHeader__fixed': this.layout === 'fixed' || this.layout === 'auto',
                     'vc-PanelHeader_hidden': this.isHidden,
                     'vc-PanelHeader--no-left': this.$slots.left === undefined,
                     'vc-PanelHeader--no-right': this.$slots.right === undefined,
