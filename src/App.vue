@@ -36,6 +36,7 @@
                         name="sendMoney"
                         :actions="modalCardActions"
                         @close="activeModal = null"
+                        persistent
                     >
                         <template slot="header"
                             >Отправляйте деньги друзьям, используя банковскую карту</template
@@ -57,7 +58,7 @@
                         >
                         <icon-money-transfer slot="icon" />
                     </vc-modal-card>
-                    <vc-modal-page name="searchCity" @close="closeModal">
+                    <vc-modal-page name="searchCity" @close="closeModal" persistent>
                         <vc-modal-page-header slot="header">Фильтрация</vc-modal-page-header>
                         <vc-div
                             ><vc-button size="xl" mode="secondary" @click="activeModal = 'country'"
@@ -76,14 +77,18 @@
                             <vc-select top="Страна" placeholder="Выбор страны"></vc-select>
                             <vc-select top="Город" placeholder="Выбор города"></vc-select>
                             <vc-form-layout-group top="Пол">
-                                <vc-radio>Любой</vc-radio>
-                                <vc-radio>Мужской</vc-radio>
-                                <vc-radio>Женский</vc-radio>
+                                <vc-radio v-model="modalPageData.radioOne">Любой</vc-radio>
+                                <vc-radio v-model="modalPageData.radioTwo">Мужской</vc-radio>
+                                <vc-radio v-model="modalPageData.radioThree">Женский</vc-radio>
                             </vc-form-layout-group>
                         </vc-form-layout>
                         <vc-form-layout-group top="Дополнительно">
-                            <vc-checkbox>С фотографией</vc-checkbox>
-                            <vc-checkbox>Сейчас на сайте</vc-checkbox>
+                            <vc-checkbox v-model="modalPageData.checkOne"
+                                >С фотографией</vc-checkbox
+                            >
+                            <vc-checkbox v-model="modalPageData.checkTwo"
+                                >Сейчас на сайте</vc-checkbox
+                            >
                         </vc-form-layout-group>
                     </vc-modal-page>
                     <vc-modal-page name="country" @close="closeModal">
@@ -136,7 +141,7 @@
                     </vc-modal-page>
                 </vc-modal-root>
                 <vc-panel name="1">
-                    <vc-panel-header layout="auto">
+                    <vc-panel-header layout="fixed">
                         Lamode {{ testVal }}
                         <vc-panel-header-button slot="right" @click="activeModal = 'subscribe'">
                             <template v-if="testVal">test val</template>
@@ -303,6 +308,13 @@ export default {
             popout: undefined,
             value: '',
             activeModal: null,
+            modalPageData: {
+                radioOne: false,
+                radioTwo: false,
+                radioThree: true,
+                checkOne: false,
+                checkTwo: true,
+            },
             clearAlertActions: [
                 {
                     title: 'Очистить',

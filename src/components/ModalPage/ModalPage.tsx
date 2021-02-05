@@ -5,6 +5,7 @@ export default Vue.extend({
     name: 'vc-ModalPage',
     props: {
         settlingHeight: { type: Number, default: 75 },
+        persistent: { type: Boolean, default: false },
     },
     computed: {
         classNames(): any {

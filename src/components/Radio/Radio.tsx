@@ -13,7 +13,7 @@ export default Vue.extend({
             required: true,
         },
         label: {
-            required: true,
+            type: String,
         },
     },
     computed: {

@@ -39,6 +39,7 @@ export interface ModalsStateEntry {
     collapsedRange?: [number, number]
     hiddenRange?: [number, number]
     contentScrollStopTimeout?: number
+    persistent?: boolean
 }
 
 export interface ModalRootData {
@@ -280,7 +281,8 @@ export default Vue.extend<ModalRootData, any, any, any>({
         },
 
         onMaskClick() {
-            if (!this.switching) {
+            const activeModalName = this.proxyActiveModal || this.nextModal
+            if (!this.switching && !this.modalsState[activeModalName].persistent) {
                 this.triggerActiveModalClose()
             }
         },
@@ -295,6 +297,16 @@ export default Vue.extend<ModalRootData, any, any, any>({
         getModalAttrsByNode(node: VNode): any {
             if (node.data !== undefined && node.data.attrs !== undefined) {
                 return node.data.attrs
+            }
+            return undefined
+        },
+
+        getModalPropsByNode(node: VNode): any {
+            if (
+                node.componentOptions !== undefined &&
+                node.componentOptions.propsData !== undefined
+            ) {
+                return node.componentOptions.propsData
             }
             return undefined
         },
@@ -314,11 +326,13 @@ export default Vue.extend<ModalRootData, any, any, any>({
             this.modalsState = this.modals
                 .filter((node: VNode) => node && node.tag)
                 .reduce((acc: any, modal: VNode) => {
+                    const presistent = this.getModalPropsByNode(modal).persistent
                     const state: ModalsStateEntry = {
                         id: this.getModalNameByNode(modal),
                         onClose: this.getModalOnCloseByNode(modal),
                         dynamicContentHeight: !!this.getModalAttrsByNode(modal)
                             .dynamicContentHeight,
+                        persistent: presistent !== undefined && presistent !== false,
                     }
 
                     if (typeof this.getModalAttrsByNode(modal).settlingHeight === 'number') {
@@ -614,8 +628,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
                         0.6 *
                         (translateYPercent < 0 ? -1 : 1)
                 translateY += Math.max(0, expectTranslateY)
-
-                if (translateY >= 30) {
+                if (translateY >= 30 && !proxyModalState.persistent) {
                     translateY = 100
                 } else {
                     translateY = 0
@@ -845,13 +858,13 @@ export default Vue.extend<ModalRootData, any, any, any>({
                     ;[translateY] = expandedRange
                 } else if (numberInRange(translateY, collapsedRange)) {
                     translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
-                } else if (numberInRange(translateY, hiddenRange)) {
+                } else if (numberInRange(translateY, hiddenRange) && !proxyModalState.persistent) {
                     translateY = 100
                 } else {
                     translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
                 }
 
-                if (translateY !== 100 && shiftYEndPercent >= 75) {
+                if (translateY !== 100 && shiftYEndPercent >= 75 && !proxyModalState.persistent) {
                     translateY = 100
                 }
 

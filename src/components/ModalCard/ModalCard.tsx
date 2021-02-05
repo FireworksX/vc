@@ -18,6 +18,7 @@ export default Vue.extend({
     props: {
         actions: { type: Array, default: () => [] },
         actionsLayout: { type: String, default: 'vertical' },
+        persistent: { type: Boolean, default: false },
     },
     computed: {
         classNames(): any {
@@ -29,7 +30,7 @@ export default Vue.extend({
 
         let onClose: any = () => undefined
 
-        if (this.$listeners.close) {
+        if (this.$listeners.close && !this.persistent) {
             if (Array.isArray(this.$listeners.close)) {
                 ;[onClose] = this.$listeners.close
             } else {

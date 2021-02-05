@@ -1,7 +1,7 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
-import VcIcon24CheckBoxOn from '@fireworksx/vc-icons/dist/20/check_box_on.vue'
-import VcIcon24CheckBoxOff from '@fireworksx/vc-icons/dist/20/check_box_off.vue'
+import VcIcon24CheckBoxOn from '@fireworksx/vc-icons/dist/24/check_box_on.vue'
+import VcIcon24CheckBoxOff from '@fireworksx/vc-icons/dist/24/check_box_off.vue'
 
 export default Vue.extend({
     name: 'vc-Checkbox',
