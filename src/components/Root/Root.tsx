@@ -1,10 +1,15 @@
 import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 import waitTransitionFinish from '@/helpers/waitTransitionFinish'
-import { canUseDOM } from "@/lib/dom";
+import { canUseDOM } from '@/lib/dom'
 
 interface Data {
     visibleViews: string[]
+}
+
+interface TransitionHistoryObject {
+    name: string
+    scrollPos: number
 }
 
 export default Vue.extend<Data, any, any, any>({
@@ -14,14 +19,20 @@ export default Vue.extend<Data, any, any, any>({
     },
     watch: {
         activeView(newVal, oldVal) {
-            const foundInHistoryIndex = this.transitionsHistory.findIndex(
-                (i: string) => i === newVal
+            const foundInHistoryIndex: number = this.transitionsHistory.findIndex(
+                (i: TransitionHistoryObject) => i.name === newVal
             )
             if (foundInHistoryIndex !== -1) {
                 this.isBack = true
                 this.transitionsHistory = this.transitionsHistory.slice(0, foundInHistoryIndex + 1)
             } else {
-                this.transitionsHistory.push(newVal)
+                this.transitionsHistory[this.transitionsHistory.length - 1].scrollPos = canUseDOM
+                    ? window.pageYOffset
+                    : 0
+                this.transitionsHistory.push({
+                    name: newVal,
+                    scrollPos: 0,
+                })
                 this.isBack = false
             }
             this.visibleViews = [newVal, oldVal]
@@ -31,14 +42,20 @@ export default Vue.extend<Data, any, any, any>({
             this.prevView = oldVal
 
             waitTransitionFinish(() => {
+                const foundHistoryItem = this.transitionsHistory.find((i: any) => i.name === newVal)
+                if (canUseDOM) {
+                    window.scrollTo({ top: this.isBack ? 0 : 0 })
+                }
                 this.proxyActiveView = newVal
                 this.visibleViews = [newVal]
                 this.transition = false
                 this.isBack = undefined
                 this.prevView = undefined
                 this.nextView = undefined
-                if (canUseDOM) {
-                    window.scrollTo({ top: 0 })
+                const changedCallback = this.getViewByName(newVal).componentOptions.listeners
+                    ?.opened
+                if (changedCallback) {
+                    changedCallback()
                 }
             })
         },
@@ -58,7 +75,7 @@ export default Vue.extend<Data, any, any, any>({
         }
     },
     created() {
-        this.transitionsHistory.push(this.activeView)
+        this.transitionsHistory.push({ name: this.activeView, scrollPos: 0 })
     },
     computed: {
         classNames(): any[] {
@@ -66,6 +83,9 @@ export default Vue.extend<Data, any, any, any>({
         },
     },
     methods: {
+        getViewByName(name: string): any {
+            return this.$slots.default.find((node: VNode) => node.data?.attrs?.name === name)
+        },
         getViewId(node: VNode): string | undefined {
             if (node.data !== undefined && node.data.attrs !== undefined) {
                 return node.data.attrs.name
@@ -107,7 +127,11 @@ export default Vue.extend<Data, any, any, any>({
                 {views !== undefined &&
                     views.map((view: any) => {
                         return (
-                            <div key={this.getViewId(view)} class={this.calcViewClass(view)}>
+                            <div
+                                key={this.getViewId(view)}
+                                class={this.calcViewClass(view)}
+                                ref="rootview"
+                            >
                                 {view}
                             </div>
                         )
