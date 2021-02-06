@@ -795,10 +795,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fireworksx/vc-icons@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@fireworksx/vc-icons/-/vc-icons-1.0.2.tgz#481040df11544b8a941ddb6fa0df4da6085da9be"
-  integrity sha512-3SRPX6/dbkD7IZN+BlfqjlkwvlB1U3iuD9Y9VsKMljF6PpWhYlVkNQplZPDaZIrHktu6LVYg8VcYs2OdpgwuLQ==
+"@fireworksx/vc-icons@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@fireworksx/vc-icons/-/vc-icons-1.0.4.tgz#50bd65d3ae7cf68ea850a507c0022e6e06193371"
+  integrity sha512-9hrzskfzBRbRPXyJ2XObXYwXZje8OKARd/Tu0n6rVhjNQTggyLfCYfocZ+ziDhIS2JWDceGrovbFeJ6C03XXHg==
   dependencies:
     nodemon "^2.0.3"
 
