@@ -282,7 +282,10 @@ export default Vue.extend<ModalRootData, any, any, any>({
 
         onMaskClick() {
             const activeModalName = this.proxyActiveModal || this.nextModal
-            if (!this.switching && !this.modalsState[activeModalName].persistent) {
+            if (
+                !this.switching &&
+                !this.checkBooleanAttrTrue(this.modalsState[activeModalName].persistent)
+            ) {
                 this.triggerActiveModalClose()
             }
         },
@@ -299,6 +302,20 @@ export default Vue.extend<ModalRootData, any, any, any>({
                 return node.data.attrs
             }
             return undefined
+        },
+
+        getModalPersistentByNode(node: VNode): boolean {
+            const propsPersistent = this.getModalPropsByNode(node)
+                ? this.checkBooleanAttrTrue(this.getModalPropsByNode(node).persistent)
+                : false
+            const attrsPersistent = this.getModalAttrsByNode(node)
+                ? this.checkBooleanAttrTrue(this.getModalAttrsByNode(node).persistent)
+                : false
+            return propsPersistent || attrsPersistent
+        },
+
+        checkBooleanAttrTrue(val: any) {
+            return val !== undefined && val !== false
         },
 
         getModalPropsByNode(node: VNode): any {
@@ -326,13 +343,12 @@ export default Vue.extend<ModalRootData, any, any, any>({
             this.modalsState = this.modals
                 .filter((node: VNode) => node && node.tag)
                 .reduce((acc: any, modal: VNode) => {
-                    const presistent = this.getModalPropsByNode(modal).persistent
                     const state: ModalsStateEntry = {
                         id: this.getModalNameByNode(modal),
                         onClose: this.getModalOnCloseByNode(modal),
                         dynamicContentHeight: !!this.getModalAttrsByNode(modal)
                             .dynamicContentHeight,
-                        persistent: presistent !== undefined && presistent !== false,
+                        persistent: this.getModalPersistentByNode(modal),
                     }
 
                     if (typeof this.getModalAttrsByNode(modal).settlingHeight === 'number') {
@@ -628,7 +644,7 @@ export default Vue.extend<ModalRootData, any, any, any>({
                         0.6 *
                         (translateYPercent < 0 ? -1 : 1)
                 translateY += Math.max(0, expectTranslateY)
-                if (translateY >= 30 && !proxyModalState.persistent) {
+                if (translateY >= 30 && !this.checkBooleanAttrTrue(proxyModalState.persistent)) {
                     translateY = 100
                 } else {
                     translateY = 0
@@ -858,13 +874,20 @@ export default Vue.extend<ModalRootData, any, any, any>({
                     ;[translateY] = expandedRange
                 } else if (numberInRange(translateY, collapsedRange)) {
                     translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
-                } else if (numberInRange(translateY, hiddenRange) && !proxyModalState.persistent) {
+                } else if (
+                    numberInRange(translateY, hiddenRange) &&
+                    !this.checkBooleanAttrTrue(proxyModalState.persistent)
+                ) {
                     translateY = 100
                 } else {
                     translateY = proxyModalState.translateYFrom ? proxyModalState.translateYFrom : 0
                 }
 
-                if (translateY !== 100 && shiftYEndPercent >= 75 && !proxyModalState.persistent) {
+                if (
+                    translateY !== 100 &&
+                    shiftYEndPercent >= 75 &&
+                    !this.checkBooleanAttrTrue(proxyModalState.persistent)
+                ) {
                     translateY = 100
                 }
 

@@ -61,7 +61,7 @@ export default Vue.extend({
                                 ))}
                             </div>
                         )}
-                        {platform() === OS.IOS && (
+                        {platform() === OS.IOS && !this.persistent && (
                             <vc-panel-header-button class="vc-ModalCard__dismiss" onClick={onClose}>
                                 <icon-24-dismiss />
                             </vc-panel-header-button>
