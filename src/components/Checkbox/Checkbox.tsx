@@ -31,6 +31,7 @@ export default Vue.extend({
                     type="checkbox"
                     class="vc-Checkbox__input"
                     onChange={this.onChange}
+                    checked={this.value}
                 />
                 <div class="vc-Checkbox__container">
                     <div class="vc-Checkbox__icon vc-Checkbox__icon--on">
