@@ -2,46 +2,42 @@ import Vue, { VNode } from 'vue'
 import getClassName from '@/helpers/getClassName'
 
 export default Vue.extend({
-    name: 'vc-Link',
-    props: {
-        Component: {
-            type: String,
-            default: 'a',
-        },
-        className: {
-            type: String,
-        },
-        getRootRef: {
-            type: String,
-        },
+  name: 'vc-Link',
+  props: {
+    Component: {
+      type: String,
+      default: 'a'
     },
-    computed: {
-        classNames(): string {
-            return getClassName('vc-Link')
-        },
+    className: {
+      type: String
     },
-    render(h: any) {
-        const { Component, className, getRootRef } = this.$props
-        const { default: textSlot } = this.$slots
+    getRootRef: {
+      type: String
+    }
+  },
+  computed: {
+    classNames(): string {
+      return getClassName('vc-Link')
+    }
+  },
+  render(h: any) {
+    const { Component, className, getRootRef } = this.$props
+    const { default: textSlot } = this.$slots
 
-        let onClick: any = () => undefined
+    let onClick: any = () => undefined
 
-        if (this.$listeners.click) {
-            if (Array.isArray(this.$listeners.click)) {
-                ;[onClick] = this.$listeners.click
-            } else {
-                onClick = this.$listeners.click
-            }
-        }
+    if (this.$listeners.click) {
+      if (Array.isArray(this.$listeners.click)) {
+        ;[onClick] = this.$listeners.click
+      } else {
+        onClick = this.$listeners.click
+      }
+    }
 
-        return (
-            <Component
-                ref={getRootRef}
-                class={[getClassName('vc-Link'), className || '']}
-                onClick={onClick}
-            >
-                {textSlot}
-            </Component>
-        )
-    },
+    return (
+      <Component ref={getRootRef} class={[getClassName('vc-Link'), className || '']} onClick={onClick}>
+        {textSlot}
+      </Component>
+    )
+  }
 })

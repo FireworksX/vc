@@ -59,81 +59,81 @@ import PullToRefresh from '@/components/PullToRefresh/PullToRefresh'
 import { OS, setForcePlatform } from '@/lib/platform'
 
 const components: any = {
-    Root,
-    View,
-    Panel,
-    Tabbar,
-    TabbarItem,
-    Avatar,
-    Epic,
-    PanelHeader,
-    PanelHeaderButton,
-    PanelHeaderContent,
-    ActionSheet,
-    ActionSheetItem,
-    Alert,
-    Button,
-    Separator,
-    Link,
-    List,
-    Footer,
-    Div,
-    Radio,
-    Placeholder,
-    Header,
-    CellButton,
-    InfoRow,
-    Switch,
-    Spinner,
-    ScreenSpinner,
-    Checkbox,
-    Group,
-    ModalCard,
-    Touch,
-    Slider,
-    FixedLayout,
-    Snackbar,
-    Textarea,
-    FormLayout,
-    Input,
-    Select,
-    ModalRoot,
-    ModalPage,
-    ModalPageHeader,
-    Cell,
-    HorizontalScroll,
-    UserStack,
-    SelectMimicry,
-    Search,
-    Counter,
-    FormStatus,
-    Progress,
-    FormLayoutGroup,
-    File,
-    PullToRefresh,
+  Root,
+  View,
+  Panel,
+  Tabbar,
+  TabbarItem,
+  Avatar,
+  Epic,
+  PanelHeader,
+  PanelHeaderButton,
+  PanelHeaderContent,
+  ActionSheet,
+  ActionSheetItem,
+  Alert,
+  Button,
+  Separator,
+  Link,
+  List,
+  Footer,
+  Div,
+  Radio,
+  Placeholder,
+  Header,
+  CellButton,
+  InfoRow,
+  Switch,
+  Spinner,
+  ScreenSpinner,
+  Checkbox,
+  Group,
+  ModalCard,
+  Touch,
+  Slider,
+  FixedLayout,
+  Snackbar,
+  Textarea,
+  FormLayout,
+  Input,
+  Select,
+  ModalRoot,
+  ModalPage,
+  ModalPageHeader,
+  Cell,
+  HorizontalScroll,
+  UserStack,
+  SelectMimicry,
+  Search,
+  Counter,
+  FormStatus,
+  Progress,
+  FormLayoutGroup,
+  File,
+  PullToRefresh
 }
 
 export interface PluginOptions {
-    platform?: OS
+  platform?: OS
 }
 
 export function install(Vue: any, options: PluginOptions = {}) {
-    if (options !== undefined) {
-        if (options.platform !== undefined) {
-            setForcePlatform(options.platform)
-        }
+  if (options !== undefined) {
+    if (options.platform !== undefined) {
+      setForcePlatform(options.platform)
     }
+  }
 
-    Object.keys(components).forEach(key => {
-        Vue.component(`Vc${key}`, components[key])
-    })
+  Object.keys(components).forEach(key => {
+    Vue.component(`Vc${key}`, components[key])
+  })
 
-    Vue.prototype.$setTheme = setTheme
+  Vue.prototype.$setTheme = setTheme
 }
 
 export default {
-    install,
-    lockDomZoom,
-    canUseDOM,
-    setTheme,
+  install,
+  lockDomZoom,
+  canUseDOM,
+  setTheme
 }

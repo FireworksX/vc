@@ -3,19 +3,19 @@ import { canUseDOM } from '@/lib/dom'
 let masksCreated = false
 
 export default function createMasks(): void {
-    if (!canUseDOM || masksCreated) {
-        return
-    }
+  if (!canUseDOM || masksCreated) {
+    return
+  }
 
-    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-    svgElement.setAttributeNS(null, 'id', '__SVG_MASKS_NODE__')
-    svgElement.setAttributeNS(null, 'width', '0')
-    svgElement.setAttributeNS(null, 'height', '0')
-    svgElement.style.position = 'absolute'
-    svgElement.style.width = '0px'
-    svgElement.style.height = '0px'
+  const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  svgElement.setAttributeNS(null, 'id', '__SVG_MASKS_NODE__')
+  svgElement.setAttributeNS(null, 'width', '0')
+  svgElement.setAttributeNS(null, 'height', '0')
+  svgElement.style.position = 'absolute'
+  svgElement.style.width = '0px'
+  svgElement.style.height = '0px'
 
-    svgElement.innerHTML = `<defs>
+  svgElement.innerHTML = `<defs>
   <clipPath id="users_stack_mask_24_left">
     <path d="M3.9971785,12 C3.9971785,9.49005736 3.33667467,7.13438366 2.18,5.09731189 C4.35181237,2.01417617 7.93927741,0 11.9971785,0 C18.6245955,0 23.9971785,5.372583 23.9971785,12 C23.9971785,18.627417 18.6245955,24 11.9971785,24 C7.93927741,24 4.35181237,21.9858238 2.18,18.9026881 C3.33667467,16.8656163 3.9971785,14.5099426 3.9971785,12 Z"></path>
   </clipPath>
@@ -33,6 +33,6 @@ export default function createMasks(): void {
   </clipPath>
 </defs>`
 
-    document.body.appendChild(svgElement)
-    masksCreated = true
+  document.body.appendChild(svgElement)
+  masksCreated = true
 }

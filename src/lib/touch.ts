@@ -20,30 +20,23 @@ const touchEnabled: boolean = isClient && 'ontouchstart' in window
  * Если нет, используем события мыши
  */
 function getSupportedEvents(): string[] {
-    if (touchEnabled) {
-        return ['touchstart', 'touchmove', 'touchend', 'touchcancel']
-    }
+  if (touchEnabled) {
+    return ['touchstart', 'touchmove', 'touchend', 'touchcancel']
+  }
 
-    return ['mousedown', 'mousemove', 'mouseup', 'mouseleave']
+  return ['mousedown', 'mousemove', 'mouseup', 'mouseleave']
 }
 
 /*
  * Рассчитывает "сопротивление" для iOS тач-событий
  */
-function rubber(
-    offset: number,
-    dimension: number,
-    resistanceRate: number,
-    isAndroid: boolean
-): number {
-    if (isAndroid || offset < 0) {
-        return offset
-    }
+function rubber(offset: number, dimension: number, resistanceRate: number, isAndroid: boolean): number {
+  if (isAndroid || offset < 0) {
+    return offset
+  }
 
-    const result =
-        (resistanceRate * Math.abs(offset) * dimension) /
-        (dimension + resistanceRate * Math.abs(offset))
-    return offset < 0 ? -result : result
+  const result = (resistanceRate * Math.abs(offset) * dimension) / (dimension + resistanceRate * Math.abs(offset))
+  return offset < 0 ? -result : result
 }
 
 export { getSupportedEvents, coordX, coordY, touchEnabled, rubber }
