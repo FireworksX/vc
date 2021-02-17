@@ -51,7 +51,7 @@ import File from './components/File/File'
 import './styles/bright_light.sass'
 import './styles/conts.sass'
 
-import { VueConstructor } from "vue";
+import { VueConstructor } from 'vue'
 import { canUseDOM, lockDomZoom } from './lib/dom'
 import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 import { setTheme } from './lib/styles'
@@ -115,28 +115,28 @@ const components: any = {
 }
 
 export interface PluginOptions {
-    platform?: OS
-    components?: Record<string, VueConstructor>
+  platform?: OS
+  components?: Record<string, VueConstructor>
 }
 
 export function install(Vue: any, options: PluginOptions = {}) {
-    const partialComponents = options.components || []
-    const partialComponentsKeys = Object.keys(partialComponents)
-    if (options !== undefined) {
-        if (options.platform !== undefined) {
-            setForcePlatform(options.platform)
-        }
+  const partialComponents = options.components || []
+  const partialComponentsKeys = Object.keys(partialComponents)
+  if (options !== undefined) {
+    if (options.platform !== undefined) {
+      setForcePlatform(options.platform)
     }
-    if (partialComponentsKeys.length) {
-        partialComponentsKeys.forEach(key => {
-            Vue.component(`Vc${key}`, components[key])
-        })
-    } else {
-        Object.keys(components).forEach(key => {
-            Vue.component(`Vc${key}`, components[key])
-        })
-    }
-    Vue.prototype.$setTheme = setTheme
+  }
+  if (partialComponentsKeys.length) {
+    partialComponentsKeys.forEach(key => {
+      Vue.component(`Vc${key}`, components[key])
+    })
+  } else {
+    Object.keys(components).forEach(key => {
+      Vue.component(`Vc${key}`, components[key])
+    })
+  }
+  Vue.prototype.$setTheme = setTheme
 }
 
 export default {
@@ -198,5 +198,5 @@ export {
   Progress,
   FormLayoutGroup,
   File,
-  PullToRefresh,
+  PullToRefresh
 }
