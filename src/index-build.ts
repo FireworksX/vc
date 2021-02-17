@@ -51,6 +51,7 @@ import File from './components/File/File'
 import './styles/bright_light.sass'
 import './styles/conts.sass'
 
+import { VueConstructor } from "vue";
 import { canUseDOM, lockDomZoom } from './lib/dom'
 import SelectMimicry from './components/SelectMimicry/SelectMimicry'
 import { setTheme } from './lib/styles'
@@ -114,21 +115,28 @@ const components: any = {
 }
 
 export interface PluginOptions {
-  platform?: OS
+    platform?: OS
+    components?: Record<string, VueConstructor>
 }
 
 export function install(Vue: any, options: PluginOptions = {}) {
-  if (options !== undefined) {
-    if (options.platform !== undefined) {
-      setForcePlatform(options.platform)
+    const partialComponents = options.components || []
+    const partialComponentsKeys = Object.keys(partialComponents)
+    if (options !== undefined) {
+        if (options.platform !== undefined) {
+            setForcePlatform(options.platform)
+        }
     }
-  }
-
-  Object.keys(components).forEach(key => {
-    Vue.component(`Vc${key}`, components[key])
-  })
-
-  Vue.prototype.$setTheme = setTheme
+    if (partialComponentsKeys.length) {
+        partialComponentsKeys.forEach(key => {
+            Vue.component(`Vc${key}`, components[key])
+        })
+    } else {
+        Object.keys(components).forEach(key => {
+            Vue.component(`Vc${key}`, components[key])
+        })
+    }
+    Vue.prototype.$setTheme = setTheme
 }
 
 export default {
@@ -136,4 +144,59 @@ export default {
   lockDomZoom,
   canUseDOM,
   setTheme
+}
+
+export {
+  Root,
+  View,
+  Panel,
+  Tabbar,
+  TabbarItem,
+  Avatar,
+  Epic,
+  PanelHeader,
+  PanelHeaderButton,
+  PanelHeaderContent,
+  ActionSheet,
+  ActionSheetItem,
+  Alert,
+  Button,
+  Separator,
+  Link,
+  List,
+  Footer,
+  Div,
+  Radio,
+  Placeholder,
+  Header,
+  CellButton,
+  InfoRow,
+  Switch,
+  Spinner,
+  ScreenSpinner,
+  Checkbox,
+  Group,
+  ModalCard,
+  Touch,
+  Slider,
+  FixedLayout,
+  Snackbar,
+  Textarea,
+  FormLayout,
+  Input,
+  Select,
+  ModalRoot,
+  ModalPage,
+  ModalPageHeader,
+  Cell,
+  HorizontalScroll,
+  UserStack,
+  SelectMimicry,
+  Search,
+  Counter,
+  FormStatus,
+  Progress,
+  FormLayoutGroup,
+  File,
+  PullToRefresh,
 }
