@@ -33,7 +33,7 @@
     "@fireworksx/vc-icons": "^1.0.4",
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mozaikjs": "^0.1.336",
     "nodemon": "^2.0.3",
     "vue": "^2.6.11",
